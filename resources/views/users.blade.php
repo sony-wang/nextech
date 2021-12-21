@@ -8,6 +8,6 @@
 </head>
 <body>
     AA
-    {!! $tt !!}
+    {{ $tt }}
 </body>
 </html>

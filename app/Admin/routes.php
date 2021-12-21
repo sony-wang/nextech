@@ -15,4 +15,8 @@ Route::group([
 
     $router->resource('users', UsersController::class);
 
+    $router->resource('question_category', Question_categorysController::class);
+    $router->resource('question', QuestionsController::class);
+    $router->resource('class01', Class01sController::class);
+    $router->resource('class02', Class02sController::class);
 });
