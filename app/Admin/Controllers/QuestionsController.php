@@ -27,7 +27,7 @@ class QuestionsController extends AdminController
         $grid = new Grid(new Question());
 
         $grid->column('id', __('Id'));
-        $grid->column('category', __('Category'));
+        $grid->column('category_id', __('Category'));
         $grid->column('content', __('Content'));
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
@@ -46,7 +46,7 @@ class QuestionsController extends AdminController
         $show = new Show(Question::findOrFail($id));
 
         $show->field('id', __('Id'));
-        $show->field('category', __('Category'));
+        $show->field('category_id', __('Category'));
         $show->field('content', __('Content'));
         $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));
@@ -63,7 +63,7 @@ class QuestionsController extends AdminController
     {
         $form = new Form(new Question());
 
-        $form->text('category', __('Category'));
+        $form->text('category_id', __('Category'));
         $form->text('content', __('Content'));
 
         return $form;

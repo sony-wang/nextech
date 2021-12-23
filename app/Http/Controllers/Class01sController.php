@@ -19,12 +19,41 @@ class Class01sController extends Controller
     {
         //
         // $users = DB::select('select * from users where 1', [1]);
-        $questions = DB::table('questions')->select('category', 'content')->get();
-        // Log::info($questions);
-        Log::info(json_decode($questions));
+        $questions = DB::table('questions')->select('category_id', 'content')->get();
+        $question_categories_s = DB::table('question_categories')->select('options', 'category')->where('choice','S')->get();
+        $question_categories_m = DB::table('question_categories')->select('options', 'category','customize')->where('choice','M')->get();
+        $ques = json_decode($questions, JSON_UNESCAPED_UNICODE);
+        $ques_cate_s = json_decode($question_categories_s, JSON_UNESCAPED_UNICODE);
+        $ques_cate_m = json_decode($question_categories_m, JSON_UNESCAPED_UNICODE);
+
+        // $quesCount = DB::table('questions')->where('category_id','1')->count();
+        $quesCount = DB::table('questions')->select(DB::raw('count(*) as total'))->groupBy('category_id')->get();
+
+        // Log::info(gettype($quesCount));
+
+        $per_cato = [];
+        $n = 0;
+        array_push($per_cato, 0);
+        foreach ($quesCount as $key => $i) {
+            if ($key == count($quesCount) - 1) {
+                continue;
+            }
+            array_push($per_cato, $n += $i->total);
+        }
+        Log::info($per_cato);
+
+
+        // Log::info($ques_cate);
+
+        // foreach ($questions as $key => $item) {
+        // }
+
+
+        // Log::info($ques);
+        // Log::info(json_decode($questions));
         // $tt = json_decode($users)[0]->name;
-        // return view('class01s', ['tt' => $tt,'qq' => 'aa',]);
-        return view('class01s');
+        return view('class01s', ['ques' => $ques, 'ques_cate_s' => $ques_cate_s, 'ques_cate_m' => $ques_cate_m, 'per_cato' => $per_cato]);
+        // return view('class01s');
     }
 
     /**
@@ -45,7 +74,35 @@ class Class01sController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Log::info('112233');
+        Log::info($request);
+
+
+        $data = [
+            'company' => $request['company'],
+            'tax_id_no' => $request['tax_id_no'],
+            'establishment' => $request['establishment'],
+            'capital' => $request['capital'],
+            'employees' => $request['employees'],
+            'industry' => $request['industry'],
+            'business' => $request['business'],
+            'address' => $request['address'],
+
+            'leader' => $request['leader'],
+            // 'succeed' => $request['succeed'],
+            // 'amount_scale' => $request['amount_scale'],
+            // 'change_classes' => $request['change_classes'],
+            // 'proposal' => $request['proposal'],
+            // 'statement' => $request['statement'],
+            // 'company_registration' => $request['company_registration'],
+            // 'topic_01' => $request['topic_01'],
+            // 'topic_02' => $request['topic_02'],
+            // 'upload' => $request['upload']
+        ];
+
+        DB::table('class01s')->insert(
+            $data
+        );
     }
 
     /**

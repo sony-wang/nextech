@@ -227,39 +227,76 @@
                 <div class="row">
                     @foreach ($ques as $key => $item)
 
+
+                    @if ($item['category_id'] == 1)
                     @if ($key == $per_cato[0])
                     <h3>{{$ques_cate_s[0]['category']}}</h3>
                     @endif
-                    @if ($key == $per_cato[1])
-                    <h3>{{$ques_cate_s[1]['category']}}</h3>
-                    @endif
-                    @if ($key == $per_cato[2])
-                    <h3>{{$ques_cate_s[2]['category']}}</h3>
-                    @endif
-
                     <div class="mb-3 col-md-12 ansCount">
                         <label for="inputx" class="form-label ">{{$key+1}}. {{$item['content']}}</label>
                         <div class="row">
 
-                            @foreach ($per_cato as $key3 => $item3)
+                            @foreach (json_decode($ques_cate_s[0]['options']) as $key2 => $cate_item)
 
-                            @if ($item['category_id'] == $key3+1 )
-                            @foreach (json_decode($ques_cate_s[$key3]['options']) as $key2 => $cate_item)
                             <div class="form-check mx-3">
-                                <input class="form-check-input" type="radio" name="s{{$key+1}}" id="s{{$key+1}}-{{$key2+1}}" value="{{$key2+1}}">
-                                <label class="form-check-label" for="s{{$key+1}}-{{$key2+1}}">
+                                <input class="form-check-input" type="radio" name="ans{{$key+1}}" id="ans{{$key}}-{{$key2}}" value="{{$key2+1}}">
+                                <label class="form-check-label" for="ans{{$key}}-{{$key2}}">
                                     {{$cate_item}}
                                 </label>
                             </div>
                             @endforeach
-                            @endif
-
-                            @endforeach
-
-
 
                         </div>
                     </div>
+                    @endif
+
+                    @if ($item['category_id'] == 2)
+                    @if ($key == $per_cato[1])
+                    <h3>{{$ques_cate_s[1]['category']}}</h3>
+                    @endif
+                    <div class="mb-3 col-md-12 ansCount">
+                        <label for="inputx" class="form-label ">{{$key+1}}. {{$item['content']}}</label>
+                        <div class="row">
+
+                            @foreach (json_decode($ques_cate_s[0]['options']) as $key2 => $cate_item)
+
+                            <div class="form-check mx-3">
+                                <input class="form-check-input" type="radio" name="ans{{$key+1}}" id="ans{{$key}}-{{$key2}}" value="{{$key2+1}}">
+                                <label class="form-check-label" for="ans{{$key}}-{{$key2}}">
+                                    {{$cate_item}}
+                                </label>
+                            </div>
+                            @endforeach
+
+                        </div>
+                    </div>
+                    @endif
+
+
+
+                    @if ($item['category_id'] == 3)
+                    @if ($key == $per_cato[2])
+                    <h3>{{$ques_cate_s[2]['category']}}</h3>
+                    @endif
+                    <div class="mb-3 col-md-12 ansCount">
+                        <label for="inputx" class="form-label ">{{$key+1}}. {{$item['content']}}</label>
+                        <div class="row">
+
+                            @foreach (json_decode($ques_cate_s[0]['options']) as $key2 => $cate_item)
+
+                            <div class="form-check mx-3">
+                                <input class="form-check-input" type="radio" name="ans{{$key+1}}" id="ans{{$key}}-{{$key2}}" value="{{$key2+1}}">
+                                <label class="form-check-label" for="ans{{$key}}-{{$key2}}">
+                                    {{$cate_item}}
+                                </label>
+                            </div>
+                            @endforeach
+
+                        </div>
+                    </div>
+                    @endif
+
+
 
                     @endforeach
                 </div>
@@ -273,24 +310,20 @@
                 <div class="row">
                     @foreach ($ques_cate_m as $key => $cate_item_m)
                     <div class="mb-3 col-md-12">
-                        <label for="" class="form-label ">{{$key+1}}. {{$cate_item_m['category']}}</label>
-
-                        @foreach (json_decode($ques_cate_m[$key]['options']) as $key2 => $cate_options)
+                        <label for="" class="form-label ">{{$cate_item_m['category']}}</label>
+                        
+                        @foreach (json_decode($ques_cate_m[$key]['options']) as $key => $cate_options)
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="checkbox" value="{{$key2+1}}" id="m{{$key+1}}-{{$key2+1}}" name="m{{$key+1}}">
-                            <label class="form-check-label" for="m{{$key+1}}-{{$key2+1}}">
+                            <input class="form-check-input" type="checkbox" value="m-{{$key}}-{{$key2}}" id="m-{{$key}}-{{$key2}}">
+                            <label class="form-check-label" for="m-{{$key}}-{{$key2}}">
                                 {{$cate_options}}
                             </label>
                         </div>
                         @endforeach
-                        @if ($cate_item_m['customize'] == 'Y' )
-                        <div class="mb-3 col-md-3">
-                            <input type="text" class="form-control" id="m{{$key+1}}-{{$key2+1}}-custom" name="m{{$key+1}}-{{$key2+1}}-custom">
-                        </div>
-                        @endif
+
                     </div>
-                    @endforeach
                 </div>
+                @endforeach
             </div>
         </div>
 

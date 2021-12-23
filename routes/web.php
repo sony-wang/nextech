@@ -22,5 +22,6 @@ Route::get('/', function () {
 // Route::get('/users', 'UsersController@index');
 Route::get('/users', 'App\Http\Controllers\UsersController@index');
 Route::get('/class01', 'App\Http\Controllers\Class01sController@index');
+Route::post('/class01s', 'App\Http\Controllers\Class01sController@store');
 
 // Route::resource('users', 'UsersController');
