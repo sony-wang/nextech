@@ -74,6 +74,7 @@ class Class01sController extends Controller
      */
     public function store(Request $request)
     {
+        $request = $request['data'];
         Log::info('112233');
         Log::info($request);
 
@@ -87,22 +88,28 @@ class Class01sController extends Controller
             'industry' => $request['industry'],
             'business' => $request['business'],
             'address' => $request['address'],
-
             'leader' => $request['leader'],
-            // 'succeed' => $request['succeed'],
-            // 'amount_scale' => $request['amount_scale'],
-            // 'change_classes' => $request['change_classes'],
-            // 'proposal' => $request['proposal'],
-            // 'statement' => $request['statement'],
-            // 'company_registration' => $request['company_registration'],
-            // 'topic_01' => $request['topic_01'],
-            // 'topic_02' => $request['topic_02'],
-            // 'upload' => $request['upload']
+            'succeed' => $request['succeed'],
+            'amount_scale' => $request['amount_scale'],
+            'change_classes' => $request['change_classes'],
+            'proposal' => $request['proposal'],
+            'statement' => $request['statement'],
+            'company_registration' => $request['company_registration'],
+            'topic_01' => $request['topic_01'],
+            'topic_02' => $request['topic_02'],
+            'upload' => $request['upload'],
+            'ques_s' => $request['ques_s'],
+
+            'created_at' => date('d-m-y h:i:s'),
+            'updated_at' => date('d-m-y h:i:s')
         ];
+
 
         DB::table('class01s')->insert(
             $data
         );
+
+        return '999555';
     }
 
     /**
