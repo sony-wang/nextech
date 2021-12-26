@@ -1,5 +1,5 @@
 .logo{
-    max-width: 150px;
+    width: 150px;
 }
 
 .bg-brand{
@@ -7,4 +7,10 @@
 }
 .text-brand{
     color: #6AC2B3;
+}
+.bg-brand2{
+    background-color: #efa960;
+}
+.text-brand2{
+    color: #efa960;
 }

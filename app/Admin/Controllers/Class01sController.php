@@ -42,9 +42,10 @@ class Class01sController extends AdminController
         $grid->column('proposal', __('Proposal'));
         $grid->column('statement', __('Statement'));
         $grid->column('company_registration', __('Company registration'));
-        $grid->column('topic_01', __('Topic 01'));
-        $grid->column('topic_02', __('Topic 02'));
+        // $grid->column('topic_01', __('Topic 01'));
+        // $grid->column('topic_02', __('Topic 02'));
         $grid->column('upload', __('Upload'));
+        $grid->column('ques_s', __('Ques_s'));
         $grid->column('ques_m', __('Ques_m'));
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
@@ -78,9 +79,10 @@ class Class01sController extends AdminController
         $show->field('proposal', __('Proposal'));
         $show->field('statement', __('Statement'));
         $show->field('company_registration', __('Company registration'));
-        $show->field('topic_01', __('Topic 01'));
-        $show->field('topic_02', __('Topic 02'));
+        // $show->field('topic_01', __('Topic 01'));
+        // $show->field('topic_02', __('Topic 02'));
         $show->field('upload', __('Upload'));
+        $show->field('ques_s', __('Ques_s'));
         $show->field('ques_m', __('Ques_m'));
         $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));
@@ -112,8 +114,8 @@ class Class01sController extends AdminController
         $form->text('proposal', __('Proposal'));
         $form->text('statement', __('Statement'));
         $form->text('company_registration', __('Company registration'));
-        $form->text('topic_01', __('Topic 01'));
-        $form->text('topic_02', __('Topic 02'));
+        // $form->text('topic_01', __('Topic 01'));
+        // $form->text('topic_02', __('Topic 02'));
         $form->text('upload', __('Upload'));
         $form->text('ques_s', __('Ques_s'));
         $form->text('ques_m', __('Ques_m'));

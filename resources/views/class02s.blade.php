@@ -5,19 +5,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NexTech 標竿企業實戰班</title>
+    <title>NexTech 潛力企業共學班</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="{{url('/css/style.css')}}" rel="stylesheet">
 </head>
 
 <body>
     <div class="d-flex justify-content-center my-3">
-        <a href="/class01">
+        <a href="/">
             <img class="logo" src="{{url('/img/logo.svg')}}" alt="">
         </a>
     </div>
     <div class="container">
-        <h3 class="bg-brand text-white rounded-3 p-2 text-center">標竿企業實戰班</h3>
+        <h3 class="bg-brand text-white rounded-3 p-2 text-center">潛力企業共學班</h3>
         <!-- <form action="/class01s" method="post"> -->
         @csrf
         <div class="card mb-3">
@@ -29,12 +29,16 @@
                         <input type="text" class="form-control" id="company" name="company">
                     </div>
                     <div class="mb-3 col-md-6">
+                        <label for="establishment" class="form-label" id="flag_establishment">創立日期(西元年)</label>
+                        <input type="text" class="form-control" id="establishment" name="establishment">
+                    </div>
+                    <div class="mb-3 col-md-6">
                         <label for="tax_id_no" class="form-label" id="flag_tax_id_no">統一編號</label>
                         <input type="text" class="form-control" id="tax_id_no" name="tax_id_no">
                     </div>
                     <div class="mb-3 col-md-6">
-                        <label for="establishment" class="form-label" id="flag_establishment">創立日期(西元年)</label>
-                        <input type="text" class="form-control" id="establishment" name="establishment">
+                        <label for="address" class="form-label" id="flag_address">公司地址</label>
+                        <input type="text" class="form-control" id="address" name="address">
                     </div>
                     <div class="mb-3 col-md-6">
                         <label for="capital" class="form-label" id="flag_capital">資本額(萬元)</label>
@@ -43,6 +47,11 @@
                     <div class="mb-3 col-md-6">
                         <label for="employees" class="form-label" id="flag_employees">員工人數</label>
                         <input type="text" class="form-control" id="employees" name="employees">
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <!-- 這裡 -->
+                        <label for="revenue" class="form-label" id="flag_revenue">110年營收(萬元)</label>
+                        <input type="text" class="form-control" id="revenue" name="revenue">
                     </div>
                     <div class="mb-3 col-md-6">
                         <label for="industry" class="form-label" id="flag_industry">行業別</label>
@@ -58,12 +67,82 @@
                         </select>
                     </div>
                     <div class="mb-3 col-md-6">
-                        <label for="business" class="form-label" id="flag_business">主要業務</label>
+                        <label for="business" class="form-label" id="flag_business">主要業務或產品</label>
                         <input type="text" class="form-control" id="business" name="business">
                     </div>
                     <div class="mb-3 col-md-6">
-                        <label for="address" class="form-label" id="flag_address">公司地址</label>
-                        <input type="text" class="form-control" id="address" name="address">
+                        <label for="status_and_goals" class="form-label" id="flag_status_and_goals">營運現況及發展目標</label>
+                        <input type="text" class="form-control" id="status_and_goals" name="status_and_goals">
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="challenge" class="form-label" id="flag_challenge">企業當前面臨的環境挑戰或數位轉型瓶頸</label>
+                        <input type="text" class="form-control" id="challenge" name="challenge">
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="class" class="form-label" id="flag_class">參加班別</label>
+                        <select class="form-select" aria-label="Default select" id="class" name="class">
+                            <option value="" selected>請選擇</option>
+                            <option value="(1)北部班">(1)北部班</option>
+                            <option value="(2)中部班">(2)中部班</option>
+                            <option value="(3)南部班">(3)南部班</option>
+                        </select>
+                    </div>
+                    <div class="mb-3 col-md-12">
+                        <label class="form-label">期待學習主題</label>
+                        <div class="row">
+                            <div class="form-check col-md-3">
+                                <input class="form-check-input" type="checkbox" value="(1)組織管理" id="expect-1" name="expect">
+                                <label class="form-check-label" for="expect-1">(1)組織管理</label>
+                            </div>
+                            <div class="form-check col-md-3">
+                                <input class="form-check-input" type="checkbox" value="(2)品牌建構" id="expect-2" name="expect">
+                                <label class="form-check-label" for="expect-2">(2)品牌建構</label>
+                            </div>
+                            <div class="form-check col-md-3">
+                                <input class="form-check-input" type="checkbox" value="(3)市場行銷" id="expect-3" name="expect">
+                                <label class="form-check-label" for="expect-3">(3)市場行銷</label>
+                            </div>
+                            <div class="form-check col-md-3">
+                                <input class="form-check-input" type="checkbox" value="(4)生產製造" id="expect-4" name="expect">
+                                <label class="form-check-label" for="expect-4">(4)生產製造</label>
+                            </div>
+                            <div class="form-check col-md-3">
+                                <input class="form-check-input" type="checkbox" value="(5)供應鏈整合" id="expect-5" name="expect">
+                                <label class="form-check-label" for="expect-5">(5)供應鏈整合</label>
+                            </div>
+                            <div class="form-check col-md-3">
+                                <input class="form-check-input" type="checkbox" value="(6)企業創新" id="expect-6" name="expect">
+                                <label class="form-check-label" for="expect-6">(6)企業創新</label>
+                            </div>
+                            <div class="form-check col-md-12">
+                                <input class="form-check-input" type="checkbox" value="其他(請說明)：" id="expect-7" name="expect">
+                                <label class="form-check-label" for="expect-7">其他(請說明)：</label>
+                                <div class="mb-3 col-md-3">
+                                <input type="text" class="form-control" id="expect-custom" name="expect-custom">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="mb-3 col-md-3">
+                            <input type="text" class="form-control" id="expect-custom" name="expect-custom">
+                        </div> -->
+                    </div>
+
+                    <div class="mb-3 col-md-6">
+                        <label for="succeed" class="form-label" id="flag_succeed">企業接班情形</label>
+                        <select class="form-select" aria-label="Default select" id="succeed" name="succeed">
+                            <option value="" selected>請選擇</option>
+                            <option value="(1)接班人已負責公司整體事務">(1)接班人已負責公司整體事務</option>
+                            <option value="(2)接班人已著手負責公司部分專案">(2)接班人已著手負責公司部分專案</option>
+                            <option value="(3)接班人尚未負責公司事務">(3)接班人尚未負責公司事務</option>
+                        </select>
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="deputy" class="form-label" id="flag_deputy">接班梯隊代表</label>
+                        <select class="form-select" aria-label="Default select" id="deputy" name="deputy">
+                            <option value="" selected>請選擇</option>
+                            <option value="(1)家族接班">(1)家族接班</option>
+                            <option value="(2)專業經理人">(2)專業經理人</option>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -71,7 +150,7 @@
         <div class="card mb-3">
             <div class="card-body">
                 <div class="d-flex justify-content-between">
-                    <h5 class="card-title text-brand" id="flag_leader">第二部分：參與計畫接班梯隊</h5>
+                    <h5 class="card-title text-brand" id="flag_leader">預計參訓名單</h5>
                     <div>
                         <a class="btn btn-secondary" id="delete_btn" style="display: none;"> 清除</a>
                         <a class="btn bg-brand text-white" id="add_btn"> 新增</a>
@@ -146,84 +225,22 @@
                 </div>
             </div>
         </div>
-
-
-        <div class="card mb-3">
-            <div class="card-body">
-                <div class="d-flex justify-content-between">
-                    <h5 class="card-title text-brand">第三部分：企業預期投入資源</h5>
-                </div>
-                <div class="row">
-                    <div class="mb-3 col-md-12">
-                        <label for="succeed" class="form-label" id="flag_succeed">企業接班情形</label>
-                        <select class="form-select" aria-label="Default select example" id="succeed" name="succeed">
-                            <option value="" selected>請選擇</option>
-                            <option value="(1)接班人已負責公司整體事務">(1)接班人已負責公司整體事務</option>
-                            <option value="(2)接班人已著手負責公司部分專案">(2)接班人已著手負責公司部分專案</option>
-                            <option value="(3)接班人尚未負責公司事務">(3)接班人尚未負責公司事務</option>
-                        </select>
-                    </div>
-                    <div class="mb-3 col-md-12">
-                        <label for="amount_scale-01" class="form-label" id="flag_amount_scale">投入金額規模</label>
-                        <p>(例:投入 51 至 100 萬，導入光學檢測系統優化生產流程)</p>
-                        <select class="form-select" aria-label="Default select example" id="amount_scale-01" name="amount_scale-01">
-                            <option selected>請選擇</option>
-                            <option value="50 萬以下，導入:">50 萬以下</option>
-                            <option value="51 至 100 萬，導入:">51 至 100 萬</option>
-                            <option value="101 萬以上，導入:">101 萬以上</option>
-                        </select>
-                        <label for="amount_scale-02" class="form-label">導入:</label>
-                        <input type="text" class="form-control" id="amount_scale-02" name="amount_scale-02">
-                    </div>
-                </div>
-            </div>
-        </div>
-
+ <!-- ----------------------------------------------------- -->
+       
 
         <div class="card mb-3">
             <div class="card-body">
                 <div class="d-flex justify-content-between">
-                    <h5 class="card-title text-brand">第四部分：其他</h5>
+                    <h5 class="card-title text-brand">上傳資料</h5>
                 </div>
                 <div class="row">
                     <div class="mb-3 col-md-12">
-                        <label for="change_classes_Y" class="form-label" id="flag_change_classes">如實戰班額度已滿，是否同意由委員決議轉入共學班：</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" value="同意" id="change_classes_Y" name="change_classes">
-                            <label class="form-check-label" for="change_classes_Y">同意</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" value="不同意" id="change_classes_N" name="change_classes">
-                            <label class="form-check-label" for="change_classes_N">不同意</label>
-                        </div>
-
-                        <!-- <select class="form-select" aria-label="Default select example" id="change_classes" name="change_classes">
-                            <option selected>請選擇</option>
-                            <option value="同意">同意</option>
-                            <option value="不同意">不同意</option>
-                        </select> -->
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card mb-3">
-            <div class="card-body">
-                <div class="d-flex justify-content-between">
-                    <h5 class="card-title text-brand">第五部分：上傳資料</h5>
-                </div>
-                <div class="row">
-                    <div class="mb-3 col-md-12">
-                        <label for="proposal" class="form-label">提案計畫書(上傳格式WORD、PDF)</label>
+                        <label for="proposal" class="form-label">執行政府計畫揭露聲明書(上傳格式PDF、JPG、PNG)</label>
                         <input type="file" class="form-control" id="proposal" name="proposal">
                     </div>
                     <div class="mb-3 col-md-12">
-                        <label for="statement" class="form-label">曾執行政府計畫揭露聲明書(上傳格式PDF、JPG、PNG)</label>
+                        <label for="statement" class="form-label">公司登記證明文件(上傳格式PDF、JPG、PNG)</label>
                         <input type="file" class="form-control" id="statement" name="statement">
-                    </div>
-                    <div class="mb-3 col-md-12">
-                        <label for="company_registration" class="form-label ">公司登記證明文件(上傳格式PDF、JPG、PNG)</label>
-                        <input type="file" class="form-control" id="company_registration" name="company_registration">
                     </div>
                 </div>
             </div>
@@ -249,7 +266,7 @@
                     @endif
 
                     <div class="mb-3 col-md-12 ansCount">
-                        <label for="inputx" class="form-label ">{{$key+1}}. {{$item['content']}}</label>
+                        <label for="inputx" class="form-label" id="flag_s{{$key+1}}">{{$key+1}}. {{$item['content']}}</label>
                         <div class="row">
 
                             @foreach ($per_cato as $key3 => $item3)
@@ -284,7 +301,7 @@
                 <div class="row">
                     @foreach ($ques_cate_m as $key => $cate_item_m)
                     <div class="mb-3 col-md-12">
-                        <label for="" class="form-label ">{{$key+1}}. {{$cate_item_m['category']}}</label>
+                        <label class="form-label" id="flag_m{{$key+1}}">{{$key+1}}. {{$cate_item_m['category']}}</label>
 
                         @foreach (json_decode($ques_cate_m[$key]['options']) as $key2 => $cate_options)
                         <div class="form-check mx-3">
@@ -392,18 +409,18 @@
             const businessVal = document.querySelector('#business').value = '影片娛樂'
             const addressVal = document.querySelector('#address').value = '影片娛樂'
             const succeedVal = document.querySelector('#succeed').value = '(1)接班人已負責公司整體事務'
-            const amount_scaleVal = document.querySelector('#amount_scale-01').value + document.querySelector('#amount_scale-02').value;
             
             for(let i=1;i<=15;i++){
                 leaderArr.push(document.querySelector('#leader-'+i).value);
             }
 
             const txt = '請輸入'
-            if(companyVal == ''){
-                alert(txt+flag_company.innerHTML);
-                flag_company.scrollIntoView()
-                return
-            }
+            const txtUpload = '請上傳'
+            // if(companyVal == ''){
+            //     alert(txt+flag_company.innerHTML);
+            //     flag_company.scrollIntoView()
+            //     return
+            // }
             // if(tax_id_noVal == ''){
             //     alert(txt+flag_tax_id_no.innerHTML);
             //     flag_tax_id_no.scrollIntoView()
@@ -449,11 +466,6 @@
             //     flag_succeed.scrollIntoView()
             //     return
             // }
-            // if(amount_scaleVal == ''){
-            //     alert(txt+flag_amount_scale.innerHTML);
-            //     flag_amount_scale.scrollIntoView()
-            //     return
-            // }
             // if(change_classes == null){
             //     alert(txt+flag_change_classes.innerHTML);
             //     flag_change_classes.scrollIntoView()
@@ -472,7 +484,6 @@
             data['business'] = businessVal;
             data['address'] = addressVal;
             data['succeed'] = succeedVal;
-            data['amount_scale'] = amount_scaleVal;
 
             
                 data['change_classes'] = change_classesVal;
@@ -481,7 +492,6 @@
 
             data['proposal'] = document.querySelector('#proposal').value;
             data['statement'] = document.querySelector('#statement').value;
-            data['company_registration'] = document.querySelector('#company_registration').value;
             data['leader'] = leaderArr;
             
 
@@ -491,6 +501,11 @@
             if(s{{$key+1}}checked !== null){
                 // s{{$key+1}} = s{{$key+1}}checked.value;
                 ques_sObj['s{{$key+1}}'] = s{{$key+1}}checked.value;
+            }
+            if(s{{$key+1}}checked == null){
+                alert(txt+document.querySelector('#flag_s{{$key+1}}').innerHTML);
+                document.querySelector('#flag_s{{$key+1}}').scrollIntoView()
+                return
             }
             @endforeach
             data['ques_s'] = ques_sObj;
@@ -502,7 +517,14 @@
             tempArr = [];
             let m{{$key+1}} = document.querySelector('input[name="m{{$key+1}}"]');
             let m{{$key+1}}checked = document.querySelectorAll('input[name="m{{$key+1}}"]:checked');
-            // console.log(m{{$key+1}}checked)
+            
+            //判斷多選為空不通過
+            console.log(m{{$key+1}}checked.length)
+            if(m{{$key+1}}checked.length == 0){
+                alert(txt+document.querySelector('#flag_m{{$key+1}}').innerHTML);
+                document.querySelector('#flag_m{{$key+1}}').scrollIntoView()
+                return
+            }
             
             
             for(let i=0;i<   m{{$key+1}}checked.length;i++){

@@ -30,6 +30,8 @@
     "Category":"類別說明",
     "Choice":"單(S)/多(M)選",
     "Customize":"開(Y)/關(N)輸入選項",
+    "Ques_s":"單選",
+    "Ques_m":"多選",
     "Content":"內容",
     "Options":"選項"
 

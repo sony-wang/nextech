@@ -5,17 +5,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>NexTech 標竿企業實戰班</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="{{url('/css/style.css')}}" rel="stylesheet">
 </head>
 
 <body>
     <div class="d-flex justify-content-center my-3">
-        <img class="logo" src="{{url('/img/logo.svg')}}" alt="">
+        <a href="/">
+            <img class="logo" src="{{url('/img/logo.svg')}}" alt="">
+        </a>
     </div>
     <div class="container">
-        <h3 class="bg-brand text-white rounded-3 p-2 text-center">標竿企業實戰班</h3>
+        <h3 class="bg-brand2 text-white rounded-3 p-2 text-center">標竿企業實戰班</h3>
         <!-- <form action="/class01s" method="post"> -->
         @csrf
         <div class="card mb-3">
@@ -165,7 +167,7 @@
                         <label for="amount_scale-01" class="form-label" id="flag_amount_scale">投入金額規模</label>
                         <p>(例:投入 51 至 100 萬，導入光學檢測系統優化生產流程)</p>
                         <select class="form-select" aria-label="Default select example" id="amount_scale-01" name="amount_scale-01">
-                            <option selected>請選擇</option>
+                            <option value="" selected>請選擇</option>
                             <option value="50 萬以下，導入:">50 萬以下</option>
                             <option value="51 至 100 萬，導入:">51 至 100 萬</option>
                             <option value="101 萬以上，導入:">101 萬以上</option>
@@ -212,93 +214,101 @@
                 </div>
                 <div class="row">
                     <div class="mb-3 col-md-12">
-                        <label for="proposal" class="form-label">提案計畫書(上傳格式WORD、PDF)</label>
+                        <label for="proposal" class="form-label" id="flag_proposal">提案計畫書(上傳格式WORD、PDF)</label>
                         <input type="file" class="form-control" id="proposal" name="proposal">
                     </div>
                     <div class="mb-3 col-md-12">
-                        <label for="statement" class="form-label">曾執行政府計畫揭露聲明書(上傳格式PDF、JPG、PNG)</label>
+                        <label for="statement" class="form-label" id="flag_statement">曾執行政府計畫揭露聲明書(上傳格式PDF、JPG、PNG)</label>
                         <input type="file" class="form-control" id="statement" name="statement">
                     </div>
                     <div class="mb-3 col-md-12">
-                        <label for="company_registration" class="form-label ">公司登記證明文件(上傳格式PDF、JPG、PNG)</label>
+                        <label for="company_registration" class="form-label " id="flag_company_registration">公司登記證明文件(上傳格式PDF、JPG、PNG)</label>
                         <input type="file" class="form-control" id="company_registration" name="company_registration">
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="card mb-3">
-            <div class="card-body">
-                <div class="pb-3">
-                    <h5 class="card-title text-brand">企業數位化程度健診</h5>
-                    <p>以下請就公司運用數位工具輔助營運現況回答</p>
+        <div class="form-check my-3">
+            <input class="form-check-input" type="checkbox" id="dotest" name="dotest">
+            <label class="form-check-label" for="dotest">
+            進行企業數位化程度健診 (非必填)
+            </label>
+        </div>
+        <div id="test_wrap" style="display:none">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="pb-3">
+                        <h5 class="card-title text-brand">企業數位化程度健診</h5>
+                        <p>以下請就公司運用數位工具輔助營運現況回答</p>
+                    </div>
+                    <div class="row">
+                        @foreach ($ques as $key => $item)
+
+                        @if ($key == $per_cato[0])
+                        <h3>{{$ques_cate_s[0]['category']}}</h3>
+                        @endif
+                        @if ($key == $per_cato[1])
+                        <h3>{{$ques_cate_s[1]['category']}}</h3>
+                        @endif
+                        @if ($key == $per_cato[2])
+                        <h3>{{$ques_cate_s[2]['category']}}</h3>
+                        @endif
+
+                        <div class="mb-3 col-md-12 ansCount">
+                            <label for="inputx" class="form-label" id="flag_s{{$key+1}}">{{$key+1}}. {{$item['content']}}</label>
+                            <div class="row">
+
+                                @foreach ($per_cato as $key3 => $item3)
+
+                                @if ($item['category_id'] == $key3+1 )
+                                @foreach (json_decode($ques_cate_s[$key3]['options']) as $key2 => $cate_item)
+                                <div class="form-check mx-3">
+                                    <input class="form-check-input" type="radio" name="s{{$key+1}}" id="s{{$key+1}}-{{$key2+1}}" value="{{$key2+1}}">
+                                    <label class="form-check-label" for="s{{$key+1}}-{{$key2+1}}">
+                                        {{$cate_item}}
+                                    </label>
+                                </div>
+                                @endforeach
+                                @endif
+
+                                @endforeach
+
+
+
+                            </div>
+                        </div>
+
+                        @endforeach
+                    </div>
                 </div>
-                <div class="row">
-                    @foreach ($ques as $key => $item)
+            </div>
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="pb-3">
+                        <h5 class="card-title text-brand">第三部分：企業需求及準備</h5>
+                    </div>
+                    <div class="row">
+                        @foreach ($ques_cate_m as $key => $cate_item_m)
+                        <div class="mb-3 col-md-12">
+                            <label class="form-label" id="flag_m{{$key+1}}">{{$key+1}}. {{$cate_item_m['category']}}</label>
 
-                    @if ($key == $per_cato[0])
-                    <h3>{{$ques_cate_s[0]['category']}}</h3>
-                    @endif
-                    @if ($key == $per_cato[1])
-                    <h3>{{$ques_cate_s[1]['category']}}</h3>
-                    @endif
-                    @if ($key == $per_cato[2])
-                    <h3>{{$ques_cate_s[2]['category']}}</h3>
-                    @endif
-
-                    <div class="mb-3 col-md-12 ansCount">
-                        <label for="inputx" class="form-label ">{{$key+1}}. {{$item['content']}}</label>
-                        <div class="row">
-
-                            @foreach ($per_cato as $key3 => $item3)
-
-                            @if ($item['category_id'] == $key3+1 )
-                            @foreach (json_decode($ques_cate_s[$key3]['options']) as $key2 => $cate_item)
+                            @foreach (json_decode($ques_cate_m[$key]['options']) as $key2 => $cate_options)
                             <div class="form-check mx-3">
-                                <input class="form-check-input" type="radio" name="s{{$key+1}}" id="s{{$key+1}}-{{$key2+1}}" value="{{$key2+1}}">
-                                <label class="form-check-label" for="s{{$key+1}}-{{$key2+1}}">
-                                    {{$cate_item}}
+                                <input class="form-check-input" type="checkbox" value="{{$key2+1}}" id="m{{$key+1}}-{{$key2+1}}" name="m{{$key+1}}">
+                                <label class="form-check-label" for="m{{$key+1}}-{{$key2+1}}">
+                                    {{$cate_options}}
                                 </label>
                             </div>
                             @endforeach
+                            @if ($cate_item_m['customize'] == 'Y' )
+                            <div class="mb-3 col-md-3">
+                                <input type="text" class="form-control" id="m{{$key+1}}-custom" name="m{{$key+1}}-custom">
+                            </div>
                             @endif
-
-                            @endforeach
-
-
-
-                        </div>
-                    </div>
-
-                    @endforeach
-                </div>
-            </div>
-        </div>
-        <div class="card mb-3">
-            <div class="card-body">
-                <div class="pb-3">
-                    <h5 class="card-title text-brand">第三部分：企業需求及準備</h5>
-                </div>
-                <div class="row">
-                    @foreach ($ques_cate_m as $key => $cate_item_m)
-                    <div class="mb-3 col-md-12">
-                        <label for="" class="form-label ">{{$key+1}}. {{$cate_item_m['category']}}</label>
-
-                        @foreach (json_decode($ques_cate_m[$key]['options']) as $key2 => $cate_options)
-                        <div class="form-check mx-3">
-                            <input class="form-check-input" type="checkbox" value="{{$key2+1}}" id="m{{$key+1}}-{{$key2+1}}" name="m{{$key+1}}">
-                            <label class="form-check-label" for="m{{$key+1}}-{{$key2+1}}">
-                                {{$cate_options}}
-                            </label>
                         </div>
                         @endforeach
-                        @if ($cate_item_m['customize'] == 'Y' )
-                        <div class="mb-3 col-md-3">
-                            <input type="text" class="form-control" id="m{{$key+1}}-{{$key2+1}}-custom" name="m{{$key+1}}-{{$key2+1}}-custom">
-                        </div>
-                        @endif
                     </div>
-                    @endforeach
                 </div>
             </div>
         </div>
@@ -324,6 +334,17 @@
     
 
     <script>
+
+        //顯示 進行企業數位化程度健診 (非必填)
+        const dotest = document.querySelector('#dotest')
+        const test_wrap = document.querySelector('#test_wrap')
+        dotest.addEventListener('change',(e)=>{
+            if(e.srcElement.checked){
+                test_wrap.style.display = 'block'
+            }else{
+                test_wrap.style.display = 'none'
+            }
+        })
         
 
         const add_btn = document.querySelector('#add_btn');
@@ -381,83 +402,103 @@
             const change_classes = document.querySelector('input[name="change_classes"]:checked');
             
             
-            const companyVal = document.querySelector('#company').value = '胖胖工作室'
-            const tax_id_noVal = document.querySelector('#tax_id_no').value = '81934353'
-            const establishmentVal = document.querySelector('#establishment').value = '2019'
-            const capitalVal = document.querySelector('#capital').value = '100'
-            const employeesVal = document.querySelector('#employees').value = '3'
-            const industryVal = document.querySelector('#industry').value = '其他行業'
-            const businessVal = document.querySelector('#business').value = '影片娛樂'
-            const addressVal = document.querySelector('#address').value = '影片娛樂'
-            const succeedVal = document.querySelector('#succeed').value = '(1)接班人已負責公司整體事務'
+            const companyVal = document.querySelector('#company').value;
+            const tax_id_noVal = document.querySelector('#tax_id_no').value;
+            const establishmentVal = document.querySelector('#establishment').value;
+            const capitalVal = document.querySelector('#capital').value;
+            const employeesVal = document.querySelector('#employees').value;
+            const industryVal = document.querySelector('#industry').value;
+            const businessVal = document.querySelector('#business').value;
+            const addressVal = document.querySelector('#address').value;
+            const succeedVal = document.querySelector('#succeed').value;
             const amount_scaleVal = document.querySelector('#amount_scale-01').value + document.querySelector('#amount_scale-02').value;
-            
+            const proposalVal = document.querySelector('#proposal').value;
+            const statementVal = document.querySelector('#statement').value;
+            const company_registrationVal = document.querySelector('#company_registration').value;
+
+
             for(let i=1;i<=15;i++){
                 leaderArr.push(document.querySelector('#leader-'+i).value);
             }
 
             const txt = '請輸入'
+            const txtUpload = '請上傳'
             if(companyVal == ''){
                 alert(txt+flag_company.innerHTML);
                 flag_company.scrollIntoView()
                 return
             }
-            // if(tax_id_noVal == ''){
-            //     alert(txt+flag_tax_id_no.innerHTML);
-            //     flag_tax_id_no.scrollIntoView()
-            //     return
-            // }
-            // if(establishmentVal == ''){
-            //     alert(txt+flag_establishment.innerHTML);
-            //     flag_establishment.scrollIntoView()
-            //     return
-            // }
-            // if(capitalVal == ''){
-            //     alert(txt+flag_capital.innerHTML);
-            //     flag_capital.scrollIntoView()
-            //     return
-            // }
-            // if(employeesVal == ''){
-            //     alert(txt+flag_employees.innerHTML);
-            //     flag_employees.scrollIntoView()
-            //     return
-            // }
-            // if(industryVal == ''){
-            //     alert(txt+flag_industry.innerHTML);
-            //     flag_industry.scrollIntoView()
-            //     return
-            // }
-            // if(businessVal == ''){
-            //     alert(txt+flag_business.innerHTML);
-            //     flag_business.scrollIntoView()
-            //     return
-            // }
-            // if(addressVal == ''){
-            //     alert(txt+flag_address.innerHTML);
-            //     flag_address.scrollIntoView()
-            //     return
-            // }
-            // if(leaderArr[0] == ''){
-            //     alert(txt+flag_leader.innerHTML);
-            //     flag_leader.scrollIntoView()
-            //     return
-            // }
-            // if(succeedVal == ''){
-            //     alert(txt+flag_succeed.innerHTML);
-            //     flag_succeed.scrollIntoView()
-            //     return
-            // }
-            // if(amount_scaleVal == ''){
-            //     alert(txt+flag_amount_scale.innerHTML);
-            //     flag_amount_scale.scrollIntoView()
-            //     return
-            // }
-            // if(change_classes == null){
-            //     alert(txt+flag_change_classes.innerHTML);
-            //     flag_change_classes.scrollIntoView()
-            //     return
-            // }
-            const change_classesVal = '';
+            if(tax_id_noVal == ''){
+                alert(txt+flag_tax_id_no.innerHTML);
+                flag_tax_id_no.scrollIntoView()
+                return
+            }
+            if(establishmentVal == ''){
+                alert(txt+flag_establishment.innerHTML);
+                flag_establishment.scrollIntoView()
+                return
+            }
+            if(capitalVal == ''){
+                alert(txt+flag_capital.innerHTML);
+                flag_capital.scrollIntoView()
+                return
+            }
+            if(employeesVal == ''){
+                alert(txt+flag_employees.innerHTML);
+                flag_employees.scrollIntoView()
+                return
+            }
+            if(industryVal == ''){
+                alert(txt+flag_industry.innerHTML);
+                flag_industry.scrollIntoView()
+                return
+            }
+            if(businessVal == ''){
+                alert(txt+flag_business.innerHTML);
+                flag_business.scrollIntoView()
+                return
+            }
+            if(addressVal == ''){
+                alert(txt+flag_address.innerHTML);
+                flag_address.scrollIntoView()
+                return
+            }
+            if(leaderArr[0] == ''){
+                alert(txt+flag_leader.innerHTML);
+                flag_leader.scrollIntoView()
+                return
+            }
+            if(succeedVal == ''){
+                alert(txt+flag_succeed.innerHTML);
+                flag_succeed.scrollIntoView()
+                return
+            }
+            if(amount_scaleVal == ''){
+                alert(txt+flag_amount_scale.innerHTML);
+                flag_amount_scale.scrollIntoView()
+                return
+            }
+            if(change_classes == null){
+                alert(txt+flag_change_classes.innerHTML);
+                flag_change_classes.scrollIntoView()
+                return
+            }
+            if(proposalVal == null || proposalVal == ''){
+                alert(txtUpload+flag_proposal.innerHTML);
+                flag_proposal.scrollIntoView()
+                return
+            }
+            if(statementVal == null || statementVal == ''){
+                alert(txtUpload+flag_statement.innerHTML);
+                flag_statement.scrollIntoView()
+                return
+            }
+            if(company_registrationVal == null || company_registrationVal == ''){
+                alert(txtUpload+flag_company_registration.innerHTML);
+                flag_company_registration.scrollIntoView()
+                return
+            }
+            let change_classesVal = '';
             if(change_classes !== null){
                  change_classesVal = change_classes.value
             }
@@ -471,13 +512,11 @@
             data['address'] = addressVal;
             data['succeed'] = succeedVal;
             data['amount_scale'] = amount_scaleVal;
-
+            data['change_classes'] = change_classesVal;
             
-                data['change_classes'] = change_classesVal;
-            
-
-
             data['proposal'] = document.querySelector('#proposal').value;
+            data['statement'] = document.querySelector('#statement').value;
+            data['company_registration'] = document.querySelector('#company_registration').value;
             data['leader'] = leaderArr;
             
 
@@ -487,6 +526,12 @@
             if(s{{$key+1}}checked !== null){
                 // s{{$key+1}} = s{{$key+1}}checked.value;
                 ques_sObj['s{{$key+1}}'] = s{{$key+1}}checked.value;
+            }
+            //判斷單選為空不通過
+            if(s{{$key+1}}checked == null && dotest.checked){
+                alert(txt+document.querySelector('#flag_s{{$key+1}}').innerHTML);
+                document.querySelector('#flag_s{{$key+1}}').scrollIntoView()
+                return
             }
             @endforeach
             data['ques_s'] = ques_sObj;
@@ -498,30 +543,48 @@
             tempArr = [];
             let m{{$key+1}} = document.querySelector('input[name="m{{$key+1}}"]');
             let m{{$key+1}}checked = document.querySelectorAll('input[name="m{{$key+1}}"]:checked');
-            // console.log(m{{$key+1}}checked)
+
+            //判斷多選為空不通過
+            console.log(m{{$key+1}}checked.length)
+            if(m{{$key+1}}checked.length == 0 && dotest.checked){
+                alert(txt+document.querySelector('#flag_m{{$key+1}}').innerHTML);
+                document.querySelector('#flag_m{{$key+1}}').scrollIntoView()
+                return
+            }
             
             
             for(let i=0;i<   m{{$key+1}}checked.length;i++){
                 
                 tempArr.push(m{{$key+1}}checked[i].value)
+                @if ($cate_item_m['customize'] == 'Y' )
+                    const custom = document.querySelector('input[name="m{{$key+1}}-custom"]');
+                    tempArr.push(custom.value)
+                @endif
             }
             ques_mArr.push(tempArr);
 
             @endforeach
             console.log(ques_mArr)
 
-            // axios.post('/class01s', {
-            //     data
-            // }).then((response) => {
-            //     console.log(response)
-            //     if(response.status == 200){
-            //         alert('已發送完成');
-            //         // window.location.reload();
-            //     }
-            // }).catch(function(error) { // 请求失败处理
-            //     console.log(error);
-            // });
+            // for(let i=0;i<ques_mArr.length;i++){
+            //     console.log('aa',ques_mArr[i].length)
+            // }
+
+            data['ques_m'] = ques_mArr;
+            axios.post('/class01s', {
+                data
+            }).then((response) => {
+                console.log(response)
+                if(response.status == 200){
+                    alert('已發送完成');
+                    window.location.reload();
+                }
+            }).catch(function(error) { // 请求失败处理
+                console.log(error);
+            });
         }
+
+        
     </script>
 </body>
 

@@ -14,7 +14,8 @@ use App\Http\Controllers\UsersController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    // return view('welcome');
+    return view('index');
 });
 // Route::get('/users', function () {
 //     return view('users');
@@ -23,5 +24,8 @@ Route::get('/', function () {
 Route::get('/users', 'App\Http\Controllers\UsersController@index');
 Route::get('/class01', 'App\Http\Controllers\Class01sController@index');
 Route::post('/class01s', 'App\Http\Controllers\Class01sController@store');
+
+Route::get('/class02', 'App\Http\Controllers\Class02sController@index');
+Route::post('/class02s', 'App\Http\Controllers\Class02sController@store');
 
 // Route::resource('users', 'UsersController');

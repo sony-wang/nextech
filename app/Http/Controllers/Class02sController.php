@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Log;
 
-class Class01sController extends Controller
+class Class02sController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -52,7 +52,7 @@ class Class01sController extends Controller
         // Log::info($ques);
         // Log::info(json_decode($questions));
         // $tt = json_decode($users)[0]->name;
-        return view('class01s', ['ques' => $ques, 'ques_cate_s' => $ques_cate_s, 'ques_cate_m' => $ques_cate_m, 'per_cato' => $per_cato]);
+        return view('class02s', ['ques' => $ques, 'ques_cate_s' => $ques_cate_s, 'ques_cate_m' => $ques_cate_m, 'per_cato' => $per_cato]);
         // return view('class01s');
     }
 
@@ -97,13 +97,14 @@ class Class01sController extends Controller
             'company_registration' => $request['company_registration'],
             'ques_s' => json_encode($request['ques_s']),
             'ques_m' => json_encode($request['ques_m']),
+            // 'upload' => $request['upload'],
 
             'created_at' => date('d-m-y h:i:s'),
             'updated_at' => date('d-m-y h:i:s')
         ];
 
 
-        DB::table('class01s')->insert(
+        DB::table('class02s')->insert(
             $data
         );
 
