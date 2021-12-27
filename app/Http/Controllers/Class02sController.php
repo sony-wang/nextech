@@ -81,23 +81,27 @@ class Class02sController extends Controller
 
         $data = [
             'company' => $request['company'],
-            'tax_id_no' => $request['tax_id_no'],
             'establishment' => $request['establishment'],
+            'tax_id_no' => $request['tax_id_no'],
+            'address' => $request['address'],
             'capital' => $request['capital'],
             'employees' => $request['employees'],
+            'revenue' => $request['revenue'],
             'industry' => $request['industry'],
             'business' => $request['business'],
-            'address' => $request['address'],
-            'leader' => json_encode($request['leader']),
+            'status_and_goals' => $request['status_and_goals'],
+            'challenge' => $request['challenge'],
+            'class' => $request['class'],
+            'expect' => $request['expect'],
             'succeed' => $request['succeed'],
-            'amount_scale' => $request['amount_scale'],
-            'change_classes' => $request['change_classes'],
-            'proposal' => $request['proposal'],
-            'statement' => $request['statement'],
-            'company_registration' => $request['company_registration'],
+            'deputy' => $request['deputy'],
+
+            'leader' => json_encode($request['leader']),
             'ques_s' => json_encode($request['ques_s']),
             'ques_m' => json_encode($request['ques_m']),
-            // 'upload' => $request['upload'],
+            
+            'upload' => $request['upload'],
+            'upload2' => $request['upload2'],
 
             'created_at' => date('d-m-y h:i:s'),
             'updated_at' => date('d-m-y h:i:s')

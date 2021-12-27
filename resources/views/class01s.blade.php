@@ -394,8 +394,8 @@
             const ques_sObj = {};
             const ques_mObj = {};
 
-            const flag_change_classes = document.querySelector('#flag_change_classes');
-            const flag_company = document.querySelector('#flag_company');
+            // const flag_change_classes = document.querySelector('#flag_change_classes');
+            // const flag_company = document.querySelector('#flag_company');
 
 
 
@@ -545,7 +545,7 @@
             let m{{$key+1}}checked = document.querySelectorAll('input[name="m{{$key+1}}"]:checked');
 
             //判斷多選為空不通過
-            console.log(m{{$key+1}}checked.length)
+            // console.log(m{{$key+1}}checked.length)
             if(m{{$key+1}}checked.length == 0 && dotest.checked){
                 alert(txt+document.querySelector('#flag_m{{$key+1}}').innerHTML);
                 document.querySelector('#flag_m{{$key+1}}').scrollIntoView()
