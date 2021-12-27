@@ -39,12 +39,11 @@ class Class01sController extends AdminController
         $grid->column('succeed', __('Succeed'));
         $grid->column('amount_scale', __('Amount scale'));
         $grid->column('change_classes', __('Change classes'));
-        $grid->column('proposal', __('Proposal'));
-        $grid->column('statement', __('Statement'));
-        $grid->column('company_registration', __('Company registration'));
+        $grid->column('upload', __('Proposal'));
+        $grid->column('upload2', __('Statement'));
+        $grid->column('upload3', __('Company registration'));
         // $grid->column('topic_01', __('Topic 01'));
         // $grid->column('topic_02', __('Topic 02'));
-        $grid->column('upload', __('Upload'));
         $grid->column('ques_s', __('Ques_s'));
         $grid->column('ques_m', __('Ques_m'));
         $grid->column('created_at', __('Created at'));
@@ -76,12 +75,9 @@ class Class01sController extends AdminController
         $show->field('succeed', __('Succeed'));
         $show->field('amount_scale', __('Amount scale'));
         $show->field('change_classes', __('Change classes'));
-        $show->field('proposal', __('Proposal'));
-        $show->field('statement', __('Statement'));
-        $show->field('company_registration', __('Company registration'));
-        // $show->field('topic_01', __('Topic 01'));
-        // $show->field('topic_02', __('Topic 02'));
-        $show->field('upload', __('Upload'));
+        $show->field('upload', __('Proposal'));
+        $show->field('upload2', __('Statement'));
+        $show->field('upload3', __('Company registration'));
         $show->field('ques_s', __('Ques_s'));
         $show->field('ques_m', __('Ques_m'));
         $show->field('created_at', __('Created at'));
@@ -111,12 +107,9 @@ class Class01sController extends AdminController
         $form->text('succeed', __('Succeed'));
         $form->text('amount_scale', __('Amount scale'));
         $form->text('change_classes', __('Change classes'));
-        $form->text('proposal', __('Proposal'));
-        $form->text('statement', __('Statement'));
-        $form->text('company_registration', __('Company registration'));
-        // $form->text('topic_01', __('Topic 01'));
-        // $form->text('topic_02', __('Topic 02'));
-        $form->text('upload', __('Upload'));
+        $form->text('upload', __('Proposal'));
+        $form->text('upload2', __('Statement'));
+        $form->text('upload3', __('Company registration'));
         $form->text('ques_s', __('Ques_s'));
         $form->text('ques_m', __('Ques_m'));
 

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class Class02sController extends Controller
 {
@@ -74,43 +75,47 @@ class Class02sController extends Controller
      */
     public function store(Request $request)
     {
-        $request = $request['data'];
-        Log::info('112233');
-        Log::info($request);
+        $storagePath_upload = Storage::put('/public/class02/upload', $request['upload']);
+        $fileName_upload = basename($storagePath_upload);
+        Log::info($fileName_upload);
 
+        $storagePath_upload2 = Storage::put('/public/class02/upload2', $request['upload2']);
+        $fileName_upload2 = basename($storagePath_upload2);
+        Log::info($fileName_upload2);
+        $req = json_decode($request['data'],JSON_UNESCAPED_UNICODE);
 
-        $data = [
-            'company' => $request['company'],
-            'establishment' => $request['establishment'],
-            'tax_id_no' => $request['tax_id_no'],
-            'address' => $request['address'],
-            'capital' => $request['capital'],
-            'employees' => $request['employees'],
-            'revenue' => $request['revenue'],
-            'industry' => $request['industry'],
-            'business' => $request['business'],
-            'status_and_goals' => $request['status_and_goals'],
-            'challenge' => $request['challenge'],
-            'class' => $request['class'],
-            'expect' => $request['expect'],
-            'succeed' => $request['succeed'],
-            'deputy' => $request['deputy'],
+        // $data = [
+        //     'company' => $req['company'],
+        //     'establishment' => $req['establishment'],
+        //     'tax_id_no' => $req['tax_id_no'],
+        //     'address' => $req['address'],
+        //     'capital' => $req['capital'],
+        //     'employees' => $req['employees'],
+        //     'revenue' => $req['revenue'],
+        //     'industry' => $req['industry'],
+        //     'business' => $req['business'],
+        //     'status_and_goals' => $req['status_and_goals'],
+        //     'challenge' => $req['challenge'],
+        //     'class' => $req['class'],
+        //     'expect' => $req['expect'],
+        //     'succeed' => $req['succeed'],
+        //     'deputy' => $req['deputy'],
 
-            'leader' => json_encode($request['leader']),
-            'ques_s' => json_encode($request['ques_s']),
-            'ques_m' => json_encode($request['ques_m']),
+        //     'leader' => json_encode($req['leader'], JSON_UNESCAPED_UNICODE),
+        //     'ques_s' => json_encode($req['ques_s'], JSON_UNESCAPED_UNICODE),
+        //     'ques_m' => json_encode($req['ques_m'], JSON_UNESCAPED_UNICODE),
             
-            'upload' => $request['upload'],
-            'upload2' => $request['upload2'],
+        //     'upload' => '/storage/class01/upload/'.$fileName_upload,
+        //     'upload2' => '/storage/class01/upload2/'.$fileName_upload2,
 
-            'created_at' => date('d-m-y h:i:s'),
-            'updated_at' => date('d-m-y h:i:s')
-        ];
+        //     'created_at' => date('d-m-y h:i:s'),
+        //     'updated_at' => date('d-m-y h:i:s')
+        // ];
 
 
-        DB::table('class02s')->insert(
-            $data
-        );
+        // DB::table('class02s')->insert(
+        //     $data
+        // );
 
         return 'OKOK';
     }

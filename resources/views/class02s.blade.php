@@ -384,6 +384,7 @@
         const submit_onclick = () => {
             
             const data = {};
+            const files = {};
             const ques_s = {};
             const leaderArr = [];
             const ques_sObj = {};
@@ -395,20 +396,20 @@
 
             
             
-            const companyVal = document.querySelector('#company').value = '胖胖工作室'
-            const establishmentVal = document.querySelector('#establishment').value = '2019'
-            const tax_id_noVal = document.querySelector('#tax_id_no').value = '81934353'
-            const addressVal = document.querySelector('#address').value = '屏東潮州'
-            const capitalVal = document.querySelector('#capital').value = '100'
-            const employeesVal = document.querySelector('#employees').value = '3'
-            const revenueVal = document.querySelector('#revenue').value = '100'
-            const industryVal = document.querySelector('#industry').value = '其他行業'
-            const businessVal = document.querySelector('#business').value = '影片娛樂'
-            const status_and_goalsVal = document.querySelector('#status_and_goals').value = '營運現況及發展目標是...'
-            const challengeVal = document.querySelector('#challenge').value = '挑戰是...'
+            const companyVal = document.querySelector('#company').value;
+            const establishmentVal = document.querySelector('#establishment').value;
+            const tax_id_noVal = document.querySelector('#tax_id_no').value;
+            const addressVal = document.querySelector('#address').value;
+            const capitalVal = document.querySelector('#capital').value;
+            const employeesVal = document.querySelector('#employees').value;
+            const revenueVal = document.querySelector('#revenue').value;
+            const industryVal = document.querySelector('#industry').value;
+            const businessVal = document.querySelector('#business').value;
+            const status_and_goalsVal = document.querySelector('#status_and_goals').value;
+            const challengeVal = document.querySelector('#challenge').value;
             const classVal = document.querySelector('#class').value;
             const expectVal = document.querySelector('input[name="expect"]:checked');
-            const succeedVal = document.querySelector('#succeed').value = '(1)接班人已負責公司整體事務'
+            const succeedVal = document.querySelector('#succeed').value;
             const deputyVal = document.querySelector('#deputy').value;
             // const leaderVal = document.querySelector('#leader').value;
             const uploadVal = document.querySelector('#upload').value;
@@ -422,96 +423,96 @@
 
             const txt = '請輸入'
             const txtUpload = '請上傳'
-            // if(companyVal == ''){
-            //     alert(txt+flag_company.innerHTML);
-            //     flag_company.scrollIntoView()
-            //     return
-            // }
-            // if(establishmentVal == ''){
-            //     alert(txt+flag_establishment.innerHTML);
-            //     flag_establishment.scrollIntoView()
-            //     return
-            // }
-            // if(tax_id_noVal == ''){
-            //     alert(txt+flag_tax_id_no.innerHTML);
-            //     flag_tax_id_no.scrollIntoView()
-            //     return
-            // }
-            // if(addressVal == ''){
-            //     alert(txt+flag_address.innerHTML);
-            //     flag_address.scrollIntoView()
-            //     return
-            // }
-            // if(capitalVal == ''){
-            //     alert(txt+flag_capital.innerHTML);
-            //     flag_capital.scrollIntoView()
-            //     return
-            // }
-            // if(employeesVal == ''){
-            //     alert(txt+flag_employees.innerHTML);
-            //     flag_employees.scrollIntoView()
-            //     return
-            // }
-            // if(revenueVal == ''){
-            //     alert(txt+flag_revenue.innerHTML);
-            //     flag_revenue.scrollIntoView()
-            //     return
-            // }
-            // if(industryVal == ''){
-            //     alert(txt+flag_industry.innerHTML);
-            //     flag_industry.scrollIntoView()
-            //     return
-            // }
-            // if(businessVal == ''){
-            //     alert(txt+flag_business.innerHTML);
-            //     flag_business.scrollIntoView()
-            //     return
-            // }
-            // if(status_and_goalsVal == ''){
-            //     alert(txt+flag_status_and_goals.innerHTML);
-            //     flag_status_and_goals.scrollIntoView()
-            //     return
-            // }
-            // if(challengeVal == ''){
-            //     alert(txt+flag_challenge.innerHTML);
-            //     flag_challenge.scrollIntoView()
-            //     return
-            // }
-            // if(classVal == ''){
-            //     alert(txt+flag_class.innerHTML);
-            //     flag_class.scrollIntoView()
-            //     return
-            // }
-            // if(expectVal == ''){
-            //     alert(txt+flag_expect.innerHTML);
-            //     flag_expect.scrollIntoView()
-            //     return
-            // }
-            // if(succeedVal == ''){
-            //     alert(txt+flag_succeed.innerHTML);
-            //     flag_succeed.scrollIntoView()
-            //     return
-            // }
-            // if(deputyVal == ''){
-            //     alert(txt+flag_deputy.innerHTML);
-            //     flag_deputy.scrollIntoView()
-            //     return
-            // }
-            // if(leaderArr[0] == ''){
-            //     alert(txt+flag_leader.innerHTML);
-            //     flag_leader.scrollIntoView()
-            //     return
-            // }
-            // if(uploadVal == ''){
-            //     alert(txt+flag_upload.innerHTML);
-            //     flag_upload.scrollIntoView()
-            //     return
-            // }
-            // if(upload2Val == ''){
-            //     alert(txt+flag_upload2.innerHTML);
-            //     flag_upload2.scrollIntoView()
-            //     return
-            // }
+            if(companyVal == ''){
+                alert(txt+flag_company.innerHTML);
+                flag_company.scrollIntoView()
+                return
+            }
+            if(establishmentVal == ''){
+                alert(txt+flag_establishment.innerHTML);
+                flag_establishment.scrollIntoView()
+                return
+            }
+            if(tax_id_noVal == ''){
+                alert(txt+flag_tax_id_no.innerHTML);
+                flag_tax_id_no.scrollIntoView()
+                return
+            }
+            if(addressVal == ''){
+                alert(txt+flag_address.innerHTML);
+                flag_address.scrollIntoView()
+                return
+            }
+            if(capitalVal == ''){
+                alert(txt+flag_capital.innerHTML);
+                flag_capital.scrollIntoView()
+                return
+            }
+            if(employeesVal == ''){
+                alert(txt+flag_employees.innerHTML);
+                flag_employees.scrollIntoView()
+                return
+            }
+            if(revenueVal == ''){
+                alert(txt+flag_revenue.innerHTML);
+                flag_revenue.scrollIntoView()
+                return
+            }
+            if(industryVal == ''){
+                alert(txt+flag_industry.innerHTML);
+                flag_industry.scrollIntoView()
+                return
+            }
+            if(businessVal == ''){
+                alert(txt+flag_business.innerHTML);
+                flag_business.scrollIntoView()
+                return
+            }
+            if(status_and_goalsVal == ''){
+                alert(txt+flag_status_and_goals.innerHTML);
+                flag_status_and_goals.scrollIntoView()
+                return
+            }
+            if(challengeVal == ''){
+                alert(txt+flag_challenge.innerHTML);
+                flag_challenge.scrollIntoView()
+                return
+            }
+            if(classVal == ''){
+                alert(txt+flag_class.innerHTML);
+                flag_class.scrollIntoView()
+                return
+            }
+            if(expectVal == ''){
+                alert(txt+flag_expect.innerHTML);
+                flag_expect.scrollIntoView()
+                return
+            }
+            if(succeedVal == ''){
+                alert(txt+flag_succeed.innerHTML);
+                flag_succeed.scrollIntoView()
+                return
+            }
+            if(deputyVal == ''){
+                alert(txt+flag_deputy.innerHTML);
+                flag_deputy.scrollIntoView()
+                return
+            }
+            if(leaderArr[0] == ''){
+                alert(txt+flag_leader.innerHTML);
+                flag_leader.scrollIntoView()
+                return
+            }
+            if(uploadVal == ''){
+                alert(txt+flag_upload.innerHTML);
+                flag_upload.scrollIntoView()
+                return
+            }
+            if(upload2Val == ''){
+                alert(txt+flag_upload2.innerHTML);
+                flag_upload2.scrollIntoView()
+                return
+            }
             
             
 
@@ -531,8 +532,11 @@
             data['succeed'] = succeedVal;
             data['deputy'] = deputyVal;
             data['leader'] = leaderArr;
-            data['upload'] = uploadVal;
-            data['upload2'] = upload2Val;
+            
+            
+            //上傳檔案
+            files['upload'] = document.querySelector('#upload').files[0];
+            files['upload2'] = document.querySelector('#upload2').files[0];
 
 
             @foreach ($ques as $key => $item)
@@ -542,11 +546,11 @@
                 // s{{$key+1}} = s{{$key+1}}checked.value;
                 ques_sObj['s{{$key+1}}'] = s{{$key+1}}checked.value;
             }
-            // if(s{{$key+1}}checked == null){
-            //     alert(txt+document.querySelector('#flag_s{{$key+1}}').innerHTML);
-            //     document.querySelector('#flag_s{{$key+1}}').scrollIntoView()
-            //     return
-            // }
+            if(s{{$key+1}}checked == null){
+                alert(txt+document.querySelector('#flag_s{{$key+1}}').innerHTML);
+                document.querySelector('#flag_s{{$key+1}}').scrollIntoView()
+                return
+            }
             @endforeach
             data['ques_s'] = ques_sObj;
             console.log(data);
@@ -559,11 +563,11 @@
             let m{{$key+1}}checked = document.querySelectorAll('input[name="m{{$key+1}}"]:checked');
             
             //判斷多選為空不通過
-            // if(m{{$key+1}}checked.length == 0){
-            //     alert(txt+document.querySelector('#flag_m{{$key+1}}').innerHTML);
-            //     document.querySelector('#flag_m{{$key+1}}').scrollIntoView()
-            //     return
-            // }
+            if(m{{$key+1}}checked.length == 0){
+                alert(txt+document.querySelector('#flag_m{{$key+1}}').innerHTML);
+                document.querySelector('#flag_m{{$key+1}}').scrollIntoView()
+                return
+            }
             
             
             for(let i=0;i< m{{$key+1}}checked.length;i++){
@@ -586,16 +590,39 @@
             data['ques_m'] = ques_mArr;
 
             console.log(data)
-            axios.post('/class02s', {
-                data
-            }).then((response) => {
+            // axios.post('/class02s', {
+            //     data
+            // }).then((response) => {
+            //     console.log(response)
+            //     if(response.status == 200){
+            //         alert('已發送完成');
+            //         // window.location.reload();
+            //     }
+            // }).catch(function(error) { // 请求失败处理
+            //     console.log(error);
+            // });
+            let bodyFormData = new FormData();
+            bodyFormData.append('data', JSON.stringify(data)); 
+            bodyFormData.append('upload', files['upload']); 
+            bodyFormData.append('upload2', files['upload2']); 
+            console.log(bodyFormData)
+            //檔案
+            axios({
+            method: "post",
+            url: '/class02s',
+            data: bodyFormData,
+            headers: { "Content-Type": "multipart/form-data" },
+            })
+            .then(function (response) {
                 console.log(response)
                 if(response.status == 200){
                     alert('已發送完成');
                     // window.location.reload();
                 }
-            }).catch(function(error) { // 请求失败处理
-                console.log(error);
+            })
+            .catch(function (response) {
+                //handle error
+                console.log(response);
             });
         }
     </script>

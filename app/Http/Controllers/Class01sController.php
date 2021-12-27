@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class Class01sController extends Controller
 {
@@ -40,7 +41,7 @@ class Class01sController extends Controller
             }
             array_push($per_cato, $n += $i->total);
         }
-        Log::info($per_cato);
+        // Log::info($per_cato);
 
 
         // Log::info($ques_cate);
@@ -74,34 +75,43 @@ class Class01sController extends Controller
      */
     public function store(Request $request)
     {
-        $request = $request['data'];
-        Log::info('112233');
-        Log::info($request);
+        $storagePath_upload = Storage::put('/public/class01/upload', $request['upload']);
+        $fileName_upload = basename($storagePath_upload);
+        // Log::info($fileName_upload);
 
+        $storagePath_upload2 = Storage::put('/public/class01/upload2', $request['upload2']);
+        $fileName_upload2 = basename($storagePath_upload2);
+        // Log::info($fileName_upload2);
+
+        $storagePath_upload3 = Storage::put('/public/class01/upload3', $request['upload3']);
+        $fileName_upload3 = basename($storagePath_upload3);
+        // Log::info($fileName_upload3);
+        
+        $req = json_decode($request['data'],JSON_UNESCAPED_UNICODE);
 
         $data = [
-            'company' => $request['company'],
-            'tax_id_no' => $request['tax_id_no'],
-            'establishment' => $request['establishment'],
-            'capital' => $request['capital'],
-            'employees' => $request['employees'],
-            'industry' => $request['industry'],
-            'business' => $request['business'],
-            'address' => $request['address'],
-            'leader' => json_encode($request['leader']),
-            'succeed' => $request['succeed'],
-            'amount_scale' => $request['amount_scale'],
-            'change_classes' => $request['change_classes'],
-            'proposal' => $request['proposal'],
-            'statement' => $request['statement'],
-            'company_registration' => $request['company_registration'],
-            'ques_s' => json_encode($request['ques_s']),
-            'ques_m' => json_encode($request['ques_m']),
+            'company' => $req['company'],
+            'tax_id_no' => $req['tax_id_no'],
+            'establishment' => $req['establishment'],
+            'capital' => $req['capital'],
+            'employees' => $req['employees'],
+            'industry' => $req['industry'],
+            'business' => $req['business'],
+            'address' => $req['address'],
+            'leader' => json_encode($req['leader'],JSON_UNESCAPED_UNICODE),
+            'succeed' => $req['succeed'],
+            'amount_scale' => $req['amount_scale'],
+            'change_classes' => $req['change_classes'],
+            'upload' => '/storage/class01/upload/'.$fileName_upload,
+            'upload2' => '/storage/class01/upload2/'.$fileName_upload2,
+            'upload3' => '/storage/class01/upload3/'.$fileName_upload3,
+            'ques_s' => json_encode($req['ques_s'],JSON_UNESCAPED_UNICODE),
+            'ques_m' => json_encode($req['ques_m'],JSON_UNESCAPED_UNICODE),
 
             'created_at' => date('d-m-y h:i:s'),
             'updated_at' => date('d-m-y h:i:s')
         ];
-
+        
 
         DB::table('class01s')->insert(
             $data
@@ -153,5 +163,52 @@ class Class01sController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function handUpload(Request $request){
+        
+        $storagePath_upload = Storage::put('/public/class01/upload', $request['upload']);
+        $fileName_upload = basename($storagePath_upload);
+        Log::info($fileName_upload);
+
+        $storagePath_upload2 = Storage::put('/public/class01/upload2', $request['upload2']);
+        $fileName_upload2 = basename($storagePath_upload2);
+        Log::info($fileName_upload2);
+
+        $storagePath_upload3 = Storage::put('/public/class01/upload3', $request['upload3']);
+        $fileName_upload3 = basename($storagePath_upload3);
+        Log::info($fileName_upload3);
+
+
+        $data = [
+            'company' => $request['company'],
+            'tax_id_no' => $request['tax_id_no'],
+            'establishment' => $request['establishment'],
+            'capital' => $request['capital'],
+            'employees' => $request['employees'],
+            'industry' => $request['industry'],
+            'business' => $request['business'],
+            'address' => $request['address'],
+            'leader' => json_encode($request['leader']),
+            'succeed' => $request['succeed'],
+            'amount_scale' => $request['amount_scale'],
+            'change_classes' => $request['change_classes'],
+            'upload' => '/storage/class01/upload/'.$fileName_upload,
+            'upload2' => '/storage/class01/upload2/'.$fileName_upload2,
+            'upload3' => '/storage/class01/upload3/'.$fileName_upload3,
+            'ques_s' => json_encode($request['ques_s']),
+            'ques_m' => json_encode($request['ques_m']),
+
+            'created_at' => date('d-m-y h:i:s'),
+            'updated_at' => date('d-m-y h:i:s')
+        ];
+        
+
+        DB::table('class01s')->insert(
+            $data
+        );
+
+        return 'OKOK';
     }
 }

@@ -214,16 +214,16 @@
                 </div>
                 <div class="row">
                     <div class="mb-3 col-md-12">
-                        <label for="proposal" class="form-label" id="flag_proposal">提案計畫書(上傳格式WORD、PDF)</label>
-                        <input type="file" class="form-control" id="proposal" name="proposal">
+                        <label for="upload" class="form-label" id="flag_upload">提案計畫書(上傳格式WORD、PDF)</label>
+                        <input type="file" class="form-control" id="upload" name="upload">
                     </div>
                     <div class="mb-3 col-md-12">
-                        <label for="statement" class="form-label" id="flag_statement">曾執行政府計畫揭露聲明書(上傳格式PDF、JPG、PNG)</label>
-                        <input type="file" class="form-control" id="statement" name="statement">
+                        <label for="upload2" class="form-label" id="flag_upload2">曾執行政府計畫揭露聲明書(上傳格式PDF、JPG、PNG)</label>
+                        <input type="file" class="form-control" id="upload2" name="upload2">
                     </div>
                     <div class="mb-3 col-md-12">
-                        <label for="company_registration" class="form-label " id="flag_company_registration">公司登記證明文件(上傳格式PDF、JPG、PNG)</label>
-                        <input type="file" class="form-control" id="company_registration" name="company_registration">
+                        <label for="upload3" class="form-label " id="flag_upload3">公司登記證明文件(上傳格式PDF、JPG、PNG)</label>
+                        <input type="file" class="form-control" id="upload3" name="upload3">
                     </div>
                 </div>
             </div>
@@ -389,6 +389,7 @@
         const submit_onclick = () => {
             
             const data = {};
+            const files = {};
             const ques_s = {};
             const leaderArr = [];
             const ques_sObj = {};
@@ -412,9 +413,9 @@
             const addressVal = document.querySelector('#address').value;
             const succeedVal = document.querySelector('#succeed').value;
             const amount_scaleVal = document.querySelector('#amount_scale-01').value + document.querySelector('#amount_scale-02').value;
-            const proposalVal = document.querySelector('#proposal').value;
-            const statementVal = document.querySelector('#statement').value;
-            const company_registrationVal = document.querySelector('#company_registration').value;
+            const uploadVal = document.querySelector('#upload').value;
+            const upload2Val = document.querySelector('#upload2').value;
+            const upload3Val = document.querySelector('#upload3').value;
 
 
             for(let i=1;i<=15;i++){
@@ -483,19 +484,19 @@
                 flag_change_classes.scrollIntoView()
                 return
             }
-            if(proposalVal == null || proposalVal == ''){
-                alert(txtUpload+flag_proposal.innerHTML);
-                flag_proposal.scrollIntoView()
+            if(uploadVal == null || uploadVal == ''){
+                alert(txtUpload+flag_upload.innerHTML);
+                flag_upload.scrollIntoView()
                 return
             }
-            if(statementVal == null || statementVal == ''){
-                alert(txtUpload+flag_statement.innerHTML);
-                flag_statement.scrollIntoView()
+            if(upload2Val == null || upload2Val == ''){
+                alert(txtUpload+flag_upload2.innerHTML);
+                flag_upload2.scrollIntoView()
                 return
             }
-            if(company_registrationVal == null || company_registrationVal == ''){
-                alert(txtUpload+flag_company_registration.innerHTML);
-                flag_company_registration.scrollIntoView()
+            if(upload3Val == null || upload3Val == ''){
+                alert(txtUpload+flag_upload3.innerHTML);
+                flag_upload3.scrollIntoView()
                 return
             }
             let change_classesVal = '';
@@ -513,11 +514,13 @@
             data['succeed'] = succeedVal;
             data['amount_scale'] = amount_scaleVal;
             data['change_classes'] = change_classesVal;
-            
-            data['proposal'] = document.querySelector('#proposal').value;
-            data['statement'] = document.querySelector('#statement').value;
-            data['company_registration'] = document.querySelector('#company_registration').value;
             data['leader'] = leaderArr;
+
+
+            //上傳檔案
+            files['upload'] = document.querySelector('#upload').files[0];
+            files['upload2'] = document.querySelector('#upload2').files[0];
+            files['upload3'] = document.querySelector('#upload3').files[0];
             
 
             @foreach ($ques as $key => $item)
@@ -571,17 +574,46 @@
             // }
 
             data['ques_m'] = ques_mArr;
-            axios.post('/class01s', {
-                data
-            }).then((response) => {
+
+            //資料
+            // axios.post('/class01s', {
+            //     data
+            // }).then((response) => {
+            //     console.log(response)
+            //     if(response.status == 200){
+            //         alert('已發送完成');
+            //         window.location.reload();
+            //     }
+            // }).catch(function(error) { // 请求失败处理
+            //     console.log(error);
+            // });
+
+
+            let bodyFormData = new FormData();
+            bodyFormData.append('data', JSON.stringify(data)); 
+            bodyFormData.append('upload', files['upload']); 
+            bodyFormData.append('upload2', files['upload2']); 
+            bodyFormData.append('upload3', files['upload3']); 
+            console.log(bodyFormData)
+            //檔案
+            axios({
+            method: "post",
+            url: '/class01s',
+            data: bodyFormData,
+            headers: { "Content-Type": "multipart/form-data" },
+            })
+            .then(function (response) {
                 console.log(response)
                 if(response.status == 200){
                     alert('已發送完成');
-                    window.location.reload();
+                    // window.location.reload();
                 }
-            }).catch(function(error) { // 请求失败处理
-                console.log(error);
+            })
+            .catch(function (response) {
+                //handle error
+                console.log(response);
             });
+
         }
 
         
