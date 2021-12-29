@@ -301,12 +301,21 @@
                         <label class="form-label" id="flag_m{{$key+1}}">{{$key+1}}. {{$cate_item_m['category']}}</label>
 
                         @foreach (json_decode($ques_cate_m[$key]['options']) as $key2 => $cate_options)
-                        <div class="form-check mx-3">
-                            <input class="form-check-input" type="checkbox" value="{{$key2+1}}" id="m{{$key+1}}-{{$key2+1}}" name="m{{$key+1}}">
-                            <label class="form-check-label" for="m{{$key+1}}-{{$key2+1}}">
-                                {{$cate_options}}
-                            </label>
-                        </div>
+                            @if ($cate_item_m['customize'] != 'Y' )
+                            <div class="form-check mx-3">
+                                <input class="form-check-input" type="checkbox" value="{{$key2+1}}" id="m{{$key+1}}-{{$key2+1}}" name="m{{$key+1}}">
+                                <label class="form-check-label" for="m{{$key+1}}-{{$key2+1}}">
+                                    {{$cate_options}}
+                                </label>
+                            </div>
+                            @else
+                            <div class="form-check mx-3">
+                                <input class="form-check-input" type="radio" value="{{$key2+1}}" id="m{{$key+1}}-{{$key2+1}}" name="m{{$key+1}}">
+                                <label class="form-check-label" for="m{{$key+1}}-{{$key2+1}}">
+                                    {{$cate_options}}
+                                </label>
+                            </div>
+                            @endif
                         @endforeach
                         @if ($cate_item_m['customize'] == 'Y' )
                         <div class="mb-3 col-md-3">
@@ -623,6 +632,7 @@
             .catch(function (response) {
                 //handle error
                 console.log(response);
+                alert('檔案發生錯誤，請確認檔案格式或檔案大小');
             });
         }
     </script>

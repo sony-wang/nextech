@@ -84,38 +84,38 @@ class Class02sController extends Controller
         Log::info($fileName_upload2);
         $req = json_decode($request['data'],JSON_UNESCAPED_UNICODE);
 
-        // $data = [
-        //     'company' => $req['company'],
-        //     'establishment' => $req['establishment'],
-        //     'tax_id_no' => $req['tax_id_no'],
-        //     'address' => $req['address'],
-        //     'capital' => $req['capital'],
-        //     'employees' => $req['employees'],
-        //     'revenue' => $req['revenue'],
-        //     'industry' => $req['industry'],
-        //     'business' => $req['business'],
-        //     'status_and_goals' => $req['status_and_goals'],
-        //     'challenge' => $req['challenge'],
-        //     'class' => $req['class'],
-        //     'expect' => $req['expect'],
-        //     'succeed' => $req['succeed'],
-        //     'deputy' => $req['deputy'],
+        $data = [
+            'company' => $req['company'],
+            'establishment' => $req['establishment'],
+            'tax_id_no' => $req['tax_id_no'],
+            'address' => $req['address'],
+            'capital' => $req['capital'],
+            'employees' => $req['employees'],
+            'revenue' => $req['revenue'],
+            'industry' => $req['industry'],
+            'business' => $req['business'],
+            'status_and_goals' => $req['status_and_goals'],
+            'challenge' => $req['challenge'],
+            'class' => $req['class'],
+            'expect' => json_encode($req['expect']),
+            'succeed' => $req['succeed'],
+            'deputy' => $req['deputy'],
 
-        //     'leader' => json_encode($req['leader'], JSON_UNESCAPED_UNICODE),
-        //     'ques_s' => json_encode($req['ques_s'], JSON_UNESCAPED_UNICODE),
-        //     'ques_m' => json_encode($req['ques_m'], JSON_UNESCAPED_UNICODE),
+            'leader' => json_encode($req['leader']),
+            'ques_s' => json_encode($req['ques_s']),
+            'ques_m' => json_encode($req['ques_m']),
             
-        //     'upload' => '/storage/class01/upload/'.$fileName_upload,
-        //     'upload2' => '/storage/class01/upload2/'.$fileName_upload2,
+            // 'upload' => '/storage/class01/upload/'.$fileName_upload,
+            // 'upload2' => '/storage/class01/upload2/'.$fileName_upload2,
 
-        //     'created_at' => date('d-m-y h:i:s'),
-        //     'updated_at' => date('d-m-y h:i:s')
-        // ];
+            'created_at' => date('d-m-y h:i:s'),
+            'updated_at' => date('d-m-y h:i:s')
+        ];
 
 
-        // DB::table('class02s')->insert(
-        //     $data
-        // );
+        DB::table('class02s')->insert(
+            $data
+        );
 
         return 'OKOK';
     }
