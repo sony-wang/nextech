@@ -33,6 +33,8 @@
     "Ques_s":"單選",
     "Ques_m":"多選",
     "Content":"內容",
-    "Options":"選項"
+    "Options":"選項",
+    "Gov_plan_tatement":"執行政府計畫揭露聲明書",
+    "Com_reg_cert":"公司登記證明文件"
 
 }

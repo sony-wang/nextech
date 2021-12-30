@@ -74,13 +74,61 @@ class Class01sController extends AdminController
         $show->field('industry', __('Industry'));
         $show->field('business', __('Business'));
         $show->field('address', __('Address'));
-        $show->field('leader', __('Leader'));
+        $show->field('leader', __('Leader'))->unescape()->as(function ($title) {
+            $arrangeArr = [];
+            $content = json_decode($title,JSON_UNESCAPED_UNICODE);
+            // Log::info($content);
+            foreach($content as $key=>$item){
+                if($item != ''){
+                    if($key%5 == 0){
+                        $arrangeArr[$key] = "名子: {$item}";
+                    }
+                    if(($key-1)%5 == 0){
+                        $arrangeArr[$key] = "部門職稱: {$item}";
+                    }
+                    if(($key-2)%5 == 0){
+                        $arrangeArr[$key] = "連絡電話: {$item}";
+                    }
+                    if(($key-3)%5 == 0){
+                        $arrangeArr[$key] = "E-MAIL: {$item}";
+                    }
+                    if(($key-4)%5 == 0){
+                        $arrangeArr[$key] = "業務簡介: {$item}";
+                    }
+                    // if($key == 0 || $key == 5 || $key == 10){
+                    //     $arrangeArr[$key]['名子'] = "名子: {$item}";
+                    // }
+                }
+            }
+
+            $dom = '';
+            // Log::info($arrangeArr);
+            foreach($arrangeArr as $key => $item){
+                if($key <= 5*$key){
+                    $dom .= "{$item}、 ";
+                }
+                // Log::info($key % 5);
+                if($key % 5 == 4){
+                    $dom .= "<hr>";
+                }
+            }
+            // Log::info(implode(" ",$arrangeArr));
+            // Log::info($dom);
+            
+            return $dom;
+        });
         $show->field('succeed', __('Succeed'));
         $show->field('amount_scale', __('Amount scale'));
         $show->field('change_classes', __('Change classes'));
-        $show->field('upload', __('Proposal'));
-        $show->field('upload2', __('Statement'));
-        $show->field('upload3', __('Company registration'));
+        $show->field('upload', __('Proposal'))->unescape()->as(function ($title) {
+            return "<a href='{$title}' target='_blank'>下載</a>";
+        });
+        $show->field('upload2', __('Statement'))->unescape()->as(function ($title) {
+            return "<a href='{$title}' target='_blank'>下載</a>";
+        });
+        $show->field('upload3', __('Company registration'))->unescape()->as(function ($title) {
+            return "<a href='{$title}' target='_blank'>下載</a>";
+        });
         $show->field('ques_s', __('Ques_s'))->unescape()->as(function ($title) {
             $content_ok = [];
             //題目
@@ -130,7 +178,7 @@ class Class01sController extends AdminController
             $dom .= "<ul>";
             return "{$dom}";
         });
-        $show->field('ques_m', __('Ques_m'))->as(function ($title) {
+        $show->field('ques_m', __('Ques_m'))->unescape()->as(function ($title) {
             $content_ok = [];
             $question_categories_m = DB::table('question_categories')->select('options', 'category','customize')->where('choice','M')->get();
             $ques_cate_m = json_decode($question_categories_m, JSON_UNESCAPED_UNICODE);
@@ -144,42 +192,32 @@ class Class01sController extends AdminController
                 // Log::info($item['category']);
                 $content_ok[$key]['category'] = $item['category'];
                 $content_ok[$key]['ansNO'] = $newTitle[$key];
+                $content_ok[$key]['customize'] = $item['customize'];
             }
+            
             foreach($content_ok as $key => $item){
-                // Log::info($item['ansNO']);
-                // Log::info(json_decode($ques_cate_m[$key]['options'],JSON_UNESCAPED_UNICODE));
-                if ($key == 0) {
-                    if(in_array(1, $item['ansNO'])){
-                        // Log::info(json_decode($ques_cate_m[$key]['options'],JSON_UNESCAPED_UNICODE)[0]);
-                        $content_ok[$key]['ansTxt'] = json_decode($ques_cate_m[$key]['options'],JSON_UNESCAPED_UNICODE)[0];
-                    }
-                    if(in_array(2, $item['ansNO'])){
-                        $content_ok[$key]['ansTxt'] .= json_decode($ques_cate_m[$key]['options'],JSON_UNESCAPED_UNICODE)[1];
-                    }
-                    if(in_array(3, $item['ansNO'])){
-                        $content_ok[$key]['ansTxt'] .= json_decode($ques_cate_m[$key]['options'],JSON_UNESCAPED_UNICODE)[2];
+                //取得多選選項數量
+                $choiceCount = count(json_decode($ques_cate_m[$key]['options'],JSON_UNESCAPED_UNICODE));
+                // Log::info($choiceCount);
+                $tmpChoice = '';
+                for($i=0;$i<=$choiceCount;$i++){
+                    if(in_array($i+1, $item['ansNO'])){
+                        if($item['customize'] == 'Y'){
+                            $tmpChoice .= json_decode($ques_cate_m[$key]['options'],JSON_UNESCAPED_UNICODE)[$i].$item['ansNO'][1];
+                        }else{
+                            $tmpChoice .= json_decode($ques_cate_m[$key]['options'],JSON_UNESCAPED_UNICODE)[$i];
+                        }
                     }
                 }
-                
+                $content_ok[$key]['ansTxt'] = $tmpChoice;
             }
-
-
-            // foreach($newTitle as $key=>$ansNO){
-            //     Log::info($ansNO);
-            //     $content_ok['ansNO'] = $ansNO;
-            //     // foreach($ansNO as $key2=>$item_ansNo){
-            //     //     // if($item_ansNo)
-            //     //     if($item_ansNo = 1){
-            //     //         // Log::info(json_decode($ques_cate_m[0]['options'],JSON_UNESCAPED_UNICODE)[0]);
-            //     //         // $content_ok[$tmpKey]['ansTxt'] = $ques_cate_m['options'][1];
-            //     //         // array_push($content_ok[$tmpKey]['ansTxt'], json_decode($ques_cate_m[$key2]['options'],JSON_UNESCAPED_UNICODE)[1]);
-            //     //     }
-            //     // }
-            //     // array_push($content_ok[$tmpKey], $ansNO);
-            // }
-            
-Log::info($content_ok);
-            // return "{$content_ok['category']}";
+            // Log::info($content_ok);
+            $dom = "<ul>";
+            foreach($content_ok as $item){
+                $dom .= "<li>[ {$item['ansTxt']} ] - {$item['category']}</li>";
+            }
+            $dom .= "<ul>";
+            return "{$dom}";
         });
         $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));

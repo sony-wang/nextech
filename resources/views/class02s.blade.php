@@ -417,7 +417,7 @@
             const status_and_goalsVal = document.querySelector('#status_and_goals').value;
             const challengeVal = document.querySelector('#challenge').value;
             const classVal = document.querySelector('#class').value;
-            const expectVal = document.querySelector('input[name="expect"]:checked');
+            const expectVal = document.querySelectorAll('input[name="expect"]:checked');
             const succeedVal = document.querySelector('#succeed').value;
             const deputyVal = document.querySelector('#deputy').value;
             // const leaderVal = document.querySelector('#leader').value;
@@ -522,8 +522,14 @@
                 flag_upload2.scrollIntoView()
                 return
             }
-            
-            
+            let exp = '';
+            // console.log(expectVal)
+            if(expectVal !== null || expectVal!== ''){
+                expectVal.forEach(element => {
+                     exp += element.value
+                });
+            }
+                
 
             data['company'] = companyVal;
             data['establishment'] = establishmentVal;
@@ -537,7 +543,7 @@
             data['status_and_goals'] = status_and_goalsVal;
             data['challenge'] = challengeVal;
             data['class'] = classVal;
-            data['expect'] = expectVal;
+            data['expect'] = exp;
             data['succeed'] = succeedVal;
             data['deputy'] = deputyVal;
             data['leader'] = leaderArr;

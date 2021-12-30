@@ -97,16 +97,16 @@ class Class02sController extends Controller
             'status_and_goals' => $req['status_and_goals'],
             'challenge' => $req['challenge'],
             'class' => $req['class'],
-            'expect' => json_encode($req['expect']),
+            'expect' => json_encode($req['expect'],JSON_UNESCAPED_UNICODE),
             'succeed' => $req['succeed'],
             'deputy' => $req['deputy'],
 
-            'leader' => json_encode($req['leader']),
+            'leader' => json_encode($req['leader'],JSON_UNESCAPED_UNICODE),
             'ques_s' => json_encode($req['ques_s']),
             'ques_m' => json_encode($req['ques_m']),
             
-            // 'upload' => '/storage/class01/upload/'.$fileName_upload,
-            // 'upload2' => '/storage/class01/upload2/'.$fileName_upload2,
+            'upload' => '/storage/class02/upload/'.$fileName_upload,
+            'upload2' => '/storage/class02/upload2/'.$fileName_upload2,
 
             'created_at' => date('d-m-y h:i:s'),
             'updated_at' => date('d-m-y h:i:s')

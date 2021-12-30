@@ -44,9 +44,9 @@ class Class02sController extends AdminController
         $grid->column('expect', __('Expect'));
         $grid->column('succeed', __('Succeed'));
         $grid->column('deputy', __('Deputy'));
-        $grid->column('member_list', __('Member list'));
-        $grid->column('upload', __('Upload'))->hide();
-        $grid->column('upload2', __('Upload2'))->hide();
+        $grid->column('leader', __('Member list'));
+        $grid->column('upload', __('Gov_plan_tatement'))->hide();
+        $grid->column('upload2', __('Com_reg_cert'))->hide();
         $grid->column('ques_s', __('Ques_s'))->hide();
         $grid->column('ques_m', __('Ques_m'))->hide();
         $grid->column('created_at', __('Created at'));
@@ -81,9 +81,55 @@ class Class02sController extends AdminController
         $show->field('expect', __('Expect'));
         $show->field('succeed', __('Succeed'));
         $show->field('deputy', __('Deputy'));
-        $show->field('member_list', __('Member list'));
-        $show->field('upload', __('Upload'));
-        $show->field('upload2', __('Upload2'));
+        $show->field('leader', __('Member list'))->unescape()->as(function ($title) {
+            $arrangeArr = [];
+            $content = json_decode($title,JSON_UNESCAPED_UNICODE);
+            // Log::info($content);
+            foreach($content as $key=>$item){
+                if($item != ''){
+                    if($key%5 == 0){
+                        $arrangeArr[$key] = "名子: {$item}";
+                    }
+                    if(($key-1)%5 == 0){
+                        $arrangeArr[$key] = "部門職稱: {$item}";
+                    }
+                    if(($key-2)%5 == 0){
+                        $arrangeArr[$key] = "連絡電話: {$item}";
+                    }
+                    if(($key-3)%5 == 0){
+                        $arrangeArr[$key] = "E-MAIL: {$item}";
+                    }
+                    if(($key-4)%5 == 0){
+                        $arrangeArr[$key] = "業務簡介: {$item}";
+                    }
+                    // if($key == 0 || $key == 5 || $key == 10){
+                    //     $arrangeArr[$key]['名子'] = "名子: {$item}";
+                    // }
+                }
+            }
+
+            $dom = '';
+            // Log::info($arrangeArr);
+            foreach($arrangeArr as $key => $item){
+                if($key <= 5*$key){
+                    $dom .= "{$item}、 ";
+                }
+                // Log::info($key % 5);
+                if($key % 5 == 4){
+                    $dom .= "<hr>";
+                }
+            }
+            // Log::info(implode(" ",$arrangeArr));
+            // Log::info($dom);
+            
+            return $dom;
+        });
+        $show->field('upload', __('Gov_plan_tatement'))->unescape()->as(function ($title) {
+            return "<a href='{$title}' target='_blank'>下載</a>";
+        });
+        $show->field('upload2', __('Com_reg_cert'))->unescape()->as(function ($title) {
+            return "<a href='{$title}' target='_blank'>下載</a>";
+        });
         $show->field('ques_s', __('Ques_s'))->unescape()->as(function ($title) {
             $content_ok = [];
             //題目
@@ -133,7 +179,47 @@ class Class02sController extends AdminController
             $dom .= "<ul>";
             return "{$dom}";
         });
-        $show->field('ques_m', __('Ques_m'));
+        $show->field('ques_m', __('Ques_m'))->unescape()->as(function ($title) {
+            $content_ok = [];
+            $question_categories_m = DB::table('question_categories')->select('options', 'category','customize')->where('choice','M')->get();
+            $ques_cate_m = json_decode($question_categories_m, JSON_UNESCAPED_UNICODE);
+            
+            // Log::info($ques_cate_m);
+            //答案
+            $newTitle = json_decode("{$title}", true);
+            
+            //題目
+            foreach($ques_cate_m as $key=>$item){
+                // Log::info($item['category']);
+                $content_ok[$key]['category'] = $item['category'];
+                $content_ok[$key]['ansNO'] = $newTitle[$key];
+                $content_ok[$key]['customize'] = $item['customize'];
+            }
+            
+            foreach($content_ok as $key => $item){
+                //取得多選選項數量
+                $choiceCount = count(json_decode($ques_cate_m[$key]['options'],JSON_UNESCAPED_UNICODE));
+                // Log::info($choiceCount);
+                $tmpChoice = '';
+                for($i=0;$i<=$choiceCount;$i++){
+                    if(in_array($i+1, $item['ansNO'])){
+                        if($item['customize'] == 'Y'){
+                            $tmpChoice .= json_decode($ques_cate_m[$key]['options'],JSON_UNESCAPED_UNICODE)[$i].$item['ansNO'][1];
+                        }else{
+                            $tmpChoice .= json_decode($ques_cate_m[$key]['options'],JSON_UNESCAPED_UNICODE)[$i];
+                        }
+                    }
+                }
+                $content_ok[$key]['ansTxt'] = $tmpChoice;
+            }
+            // Log::info($content_ok);
+            $dom = "<ul>";
+            foreach($content_ok as $item){
+                $dom .= "<li>[ {$item['ansTxt']} ] - {$item['category']}</li>";
+            }
+            $dom .= "<ul>";
+            return "{$dom}";
+        });
         $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));
 
@@ -164,9 +250,9 @@ class Class02sController extends AdminController
         $form->text('expect', __('Expect'));
         $form->text('succeed', __('Succeed'));
         $form->text('deputy', __('Deputy'));
-        $form->text('member_list', __('Member list'));
-        $form->text('upload', __('Upload'));
-        $form->text('upload2', __('Upload2'));
+        $form->text('leader', __('Member list'));
+        $form->text('upload', __('Gov_plan_tatement'));
+        $form->text('upload2', __('Com_reg_cert'));
         $form->text('ques_s', __('Ques_s'));
         $form->text('ques_m', __('Ques_m'));
 
