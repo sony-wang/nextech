@@ -31,7 +31,7 @@ class Class01sController extends AdminController
         $grid->column('id', __('Id'));
         // $grid->column('company', __('Company'));
         $grid->column('company', __('Company'))->display(function ($title) {
-            return "<span style='color:blue'>$title</span>";
+            return "<span style='color:#efa960'>$title</span>";
         });
         $grid->column('tax_id_no', __('Tax id no'));
         $grid->column('establishment', __('Establishment'));
@@ -40,7 +40,7 @@ class Class01sController extends AdminController
         $grid->column('industry', __('Industry'));
         $grid->column('business', __('Business'));
         $grid->column('address', __('Address'));
-        $grid->column('leader', __('Leader'));
+        $grid->column('leader', __('Leader'))->hide();
         $grid->column('succeed', __('Succeed'));
         $grid->column('amount_scale', __('Amount scale'));
         $grid->column('change_classes', __('Change classes'));

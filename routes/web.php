@@ -28,6 +28,7 @@ Route::post('/class01s', 'App\Http\Controllers\Class01sController@store');
 Route::get('/class02', 'App\Http\Controllers\Class02sController@index');
 Route::post('/class02s', 'App\Http\Controllers\Class02sController@store');
 
+Route::get('/result', 'App\Http\Controllers\ResultController@index');
 Route::post('/upload', 'App\Http\Controllers\Class01sController@handUpload');
 
 // Route::resource('users', 'UsersController');
