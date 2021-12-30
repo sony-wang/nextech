@@ -18,24 +18,21 @@ class ResultController extends Controller
     public function index()
     {
         
-         if(empty($_GET['id'])){
+         if(empty($_GET['class']) || empty($_GET['id'])){
              return view('result',['noTaxId' => '查詢流程錯誤']);
          }
-        // $question_categories_s = DB::table('class01s')->select('ques_s')->where('choice','S')->get();
-        $getResultData = DB::table('class01s')->select('company','ques_s')->where('tax_id_no',$_GET['id'])->get();
+         if($_GET['class'] == '01'){
+            $getResultData = DB::table('class01s')->select('company','ques_s')->where('tax_id_no',$_GET['id'])->get();
+        }else if($_GET['class'] == '02'){
+            $getResultData = DB::table('class02s')->select('company','ques_s')->where('tax_id_no',$_GET['id'])->get();
+         }
         $resultData = json_decode($getResultData, JSON_UNESCAPED_UNICODE);
         Log::info($resultData);
         $ansArr = [];
         foreach(json_decode($resultData[0]['ques_s']) as $item){
-            // Log::info($item);
             array_push($ansArr,$item);
         }
-
-        // Log::info($ansArr);
-        // return view('result', ['tt' => $tt]);
-        // return view('result',['company'=> $resultData[0]['company'],'ques'=> $resultData[0]['ques_s']]);
         return view('result',['company'=> $resultData[0]['company'],'ques'=>$resultData[0]['ques_s']]);
-        // return view('user.name', $users);
     }
 
     /**

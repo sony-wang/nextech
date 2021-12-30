@@ -66,9 +66,9 @@
 
 
         if ( dataArr["s3"] == 0 ) { d1d = 7; } else { d1d = 8; }
-        let d1 = (dataArr["s1"] + dataArr["s2"] + dataArr["s3"] + dataArr["s4"] + dataArr["s5"] + dataArr["s6"] + dataArr["s7"] + dataArr["s8"]) / d1d;
-        let d2 = (dataArr["s9"] + dataArr["s10"] + dataArr["s11"] + dataArr["s12"] + dataArr["s13"] + dataArr["s14"] + dataArr["s15"]) / 7;
-        let d3 = (dataArr["s16"] + dataArr["s17"] + dataArr["s18"] + dataArr["s19"] ) / 4;
+        let d1 = (parseInt(dataArr["s1"]) + parseInt(dataArr["s2"]) + parseInt(dataArr["s3"]) + parseInt(dataArr["s4"]) + parseInt(dataArr["s5"]) + parseInt(dataArr["s6"]) + parseInt(dataArr["s7"]) + parseInt(dataArr["s8"])) / d1d;
+        let d2 = (parseInt(dataArr["s9"]) + parseInt(dataArr["s10"]) + parseInt(dataArr["s11"]) + parseInt(dataArr["s12"]) + parseInt(dataArr["s13"]) + parseInt(dataArr["s14"]) + parseInt(dataArr["s15"])) / 7;
+        let d3 = (parseInt(dataArr["s16"]) + parseInt(dataArr["s17"]) + parseInt(dataArr["s18"]) + parseInt(dataArr["s19"]) ) / 4;
 
         console.log(d1);
         console.log(d2);
@@ -135,7 +135,7 @@
         };
 
         data.labels = ['營運卓越', '顧客體驗', '商模再造'];
-        data.datasets[0].data = [1, 1, 1];
+        data.datasets[0].data = [d1, d2, d3];
         var ctx = document.getElementById('myChart1');
         var myChart = new Chart(ctx, {
             type: 'radar',

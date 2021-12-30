@@ -633,6 +633,9 @@
                 if(response.status == 200){
                     alert('已發送完成');
                     // window.location.reload();
+                    setTimeout(()=>{
+                        document.location.href=`/result?class=01&&id=${data['tax_id_no']}`;
+                    },1000)
                 }
             })
             .catch(function (response) {

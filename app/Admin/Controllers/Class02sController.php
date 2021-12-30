@@ -222,6 +222,10 @@ class Class02sController extends AdminController
             $dom .= "<ul>";
             return "{$dom}";
         });
+        $show->field('tax_id_no',__('Chart'))->unescape()->as(function ($title) {
+            // return "<a href='/result?class=01&id={$title}' target=_blank>開啟</a>";
+            return "<iframe width=100% height=600 src='/result?class=02&id={$title}'>你的瀏覽器不支援 iframe</iframe>";
+        });
         $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));
 
