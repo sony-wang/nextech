@@ -18,18 +18,14 @@
     </div>
     <div class="text-center">
         <p>N世代學苑（NexTech Academy）線上申請</p>
-        <p><span class="bg-brand2  text-white px-3 rounded-pill">標竿企業實戰班</span>-自公告日起至 111 年 2 月 25 日17:00止</p>
-        <p><span class="bg-brand text-white px-3 rounded-pill">潛力企業共學班</span>-自公告日起至 111 年 3 月 18 日17:00止</p>
-
-
+        <p><span class="bg-brand2  text-white p-2 rounded-pill mx-2">標竿企業實戰班</span>自公告日起至 111 年 2 月 25 日17:00止</p>
+        <p><span class="bg-brand text-white  p-2 rounded-pill mx-2">潛力企業共學班</span>自公告日起至 111 年 3 月 18 日17:00止</p>
     </div>
 
-
-
-    <div class="d-flex justify-content-center my-5">
+    <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <a class="text-center d-block bg-brand2 text-white text-decoration-none py-4 px-3 rounded" href="/class01">
+                <a class="text-center d-block bg-brand2 text-white text-decoration-none py-4 px-3 rounded my-3" href="/class01">
                     <h3>標竿企業實戰班</h3>
                     <p>報名截止日期倒數</p>
                     <div class="d-flex justify-content-center" id="timeTXT">
@@ -38,10 +34,11 @@
                         <h2 id="mm" class="mx-1"></h2><span class="">分</span>
                         <h2 id="ss" class="mx-1"></h2><span class="">秒</span>
                     </div>
+                    <h3 class="text-center rounded-pill bg-white text-brand2 py-2">我要報名</h3>
                 </a>
             </div>
             <div class="col-md-6">
-                <a class="text-center d-block bg-brand text-white text-decoration-none py-4 px-3 rounded" href="/class02">
+                <a class="text-center d-block bg-brand text-white text-decoration-none py-4 px-3 rounded my-3" href="/class02">
                     <h3>潛力企業共學班</h3>
                     <p>報名截止日期倒數</p>
                     <div class="d-flex justify-content-center" id="timeTXT">
@@ -50,6 +47,7 @@
                         <h2 id="mm2" class="mx-1"></h2><span class="">分</span>
                         <h2 id="ss2" class="mx-1"></h2><span class="">秒</span>
                     </div>
+                    <h3 class="text-center rounded-pill bg-white text-brand py-2">我要報名</h3>
                 </a>
             </div>
         </div>

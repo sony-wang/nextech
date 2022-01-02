@@ -34,7 +34,8 @@
                     </div>
                     <div class="mb-3 col-md-6">
                         <label for="establishment" class="form-label" id="flag_establishment">創立日期(西元年)</label>
-                        <input type="text" class="form-control" id="establishment" name="establishment">
+                        <!-- <input type="text" class="form-control" id="establishment" name="establishment"> -->
+                        <select class="form-select" id="establishment" name="establishment"></select>
                     </div>
                     <div class="mb-3 col-md-6">
                         <label for="capital" class="form-label" id="flag_capital">資本額(萬元)</label>
@@ -330,7 +331,7 @@
 
 
         <div class="my-5 d-flex justify-content-center">
-            <a class="btn bg-brand text-white" onClick="submit_onclick()">送出</a>
+            <a class="btn bg-brand text-white submit_btn" onClick="submit_onclick()">送出</a>
         </div>
         <!-- </form> -->
     </div>
@@ -343,6 +344,24 @@
     
 
     <script>
+        //西元年
+        let max = new Date().getFullYear(),
+        min = max - 30
+        select = document.querySelector('#establishment');
+
+        for (let i = max; i>=min; i--){
+            if(i == new Date().getFullYear()){
+                let opt = document.createElement('option');
+                opt.value = '';
+                opt.innerHTML = '請選擇';
+                select.appendChild(opt);
+            }else{
+            let opt = document.createElement('option');
+            opt.value = i;
+            opt.innerHTML = i;
+            select.appendChild(opt);
+            }
+        }
 
         //顯示 進行企業數位化程度健診 (非必填)
         const dotest = document.querySelector('#dotest')
@@ -393,9 +412,19 @@
         }
         
         
-        
+        const submit_btn = document.querySelector('.submit_btn');
 
         const submit_onclick = () => {
+
+            //按下後鎖定
+            submit_btn.disabled = true;
+            submit_btn.innerHTML = `
+            發送中
+            <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+            </div>
+            `;
+            
             
             const data = {};
             const files = {};
@@ -612,16 +641,22 @@
             headers: { "Content-Type": "multipart/form-data" },
             })
             .then(function (response) {
+                submit_btn.disabled = false;
+                submit_btn.innerHTML = '送出';
                 console.log(response)
                 if(response.status == 200){
                     alert('已發送完成');
                     // window.location.reload();
                         if(dotest.checked){
                             console.log('有打勾')
+                            setTimeout(()=>{
+                                document.location.href=`/result?class=01&&id=${data['tax_id_no']}`;
+                            },1000)
+                        }else{
+                            setTimeout(()=>{
+                                document.location.href=`/`;
+                            },1000)
                         }
-                    setTimeout(()=>{
-                        document.location.href=`/result?class=01&&id=${data['tax_id_no']}`;
-                    },1000)
                 }
             })
             .catch(function (response) {
