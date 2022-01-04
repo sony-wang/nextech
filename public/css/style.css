@@ -14,3 +14,10 @@
 .text-brand2{
     color: #efa960;
 }
+
+.bg{
+    background: url('/img/bg.jpg') no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}

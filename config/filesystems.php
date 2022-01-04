@@ -52,9 +52,16 @@ return [
             'endpoint' => env('AWS_ENDPOINT'),
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
         ],
+        // 'admin' => [
+        //     'driver' => 'local',
+        //     'root' => storage_path('upload'),
+        //     'visibility' => 'public',
+        //     'url' => env('APP_URL').'/public/upload',
+
+        // ],
         'admin' => [
             'driver' => 'local',
-            'root' => storage_path('upload'),
+            'root' => public_path('upload'),
             'visibility' => 'public',
             'url' => env('APP_URL').'/public/upload',
 

@@ -36,6 +36,9 @@
     "Options":"選項",
     "Gov_plan_tatement":"執行政府計畫揭露聲明書",
     "Com_reg_cert":"公司登記證明文件",
-    "Chart":"雷達圖"
+    "Chart":"雷達圖",
+    "Time01":"到期時間1",
+    "Time02":"到期時間2",
+    "Link":"首頁檔案連結"
 
 }

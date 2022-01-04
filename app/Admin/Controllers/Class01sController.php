@@ -140,43 +140,45 @@ class Class01sController extends AdminController
             //答案
             $newTitle = json_decode("{$title}", true);
             $tmpKey = 0;
-            foreach($newTitle as $key=>$ansNO){
-                $content_ok[$tmpKey]['ansNO'] = $ansNO;
-                // array_push($content_ok[$tmpKey], $ansNO);
-                $tmpKey++;
-            }
-            //選項
-            $question_categories_s = DB::table('question_categories')->select('options', 'category')->where('choice','S')->get();
-            $ques_cate_s = json_decode($question_categories_s, JSON_UNESCAPED_UNICODE);
-            $quesCount = DB::table('questions')->select(DB::raw('count(*) as total'))->groupBy('category_id')->get();
-            for($i=1;$i<=count($quesCount);$i++){
-                foreach($content_ok as $key=>$item){
-                    if($item['category_id'] == $i){
-                        if($item['ansNO'] == 1){
-                            $content_ok[$key]['ansTxt'] = json_decode($ques_cate_s[$i-1]['options'])[0];
-                        }
-                        if($item['ansNO'] == 2){
-                            $content_ok[$key]['ansTxt'] = json_decode($ques_cate_s[$i-1]['options'])[1];
-                        }
-                        if($item['ansNO'] == 3){
-                            $content_ok[$key]['ansTxt'] = json_decode($ques_cate_s[$i-1]['options'])[2];
-                        }
-                        if($item['ansNO'] == 4){
-                            $content_ok[$key]['ansTxt'] = json_decode($ques_cate_s[$i-1]['options'])[3];
-                        }
-                        if($item['ansNO'] == 5){
-                            $content_ok[$key]['ansTxt'] = json_decode($ques_cate_s[$i-1]['options'])[4];
+            if(!empty( $newTitle )){
+                foreach($newTitle as $key=>$ansNO){
+                    $content_ok[$tmpKey]['ansNO'] = $ansNO;
+                    // array_push($content_ok[$tmpKey], $ansNO);
+                    $tmpKey++;
+                }
+                //選項
+                $question_categories_s = DB::table('question_categories')->select('options', 'category')->where('choice','S')->get();
+                $ques_cate_s = json_decode($question_categories_s, JSON_UNESCAPED_UNICODE);
+                $quesCount = DB::table('questions')->select(DB::raw('count(*) as total'))->groupBy('category_id')->get();
+                for($i=1;$i<=count($quesCount);$i++){
+                    foreach($content_ok as $key=>$item){
+                        if($item['category_id'] == $i){
+                            if($item['ansNO'] == 1){
+                                $content_ok[$key]['ansTxt'] = json_decode($ques_cate_s[$i-1]['options'])[0];
+                            }
+                            if($item['ansNO'] == 2){
+                                $content_ok[$key]['ansTxt'] = json_decode($ques_cate_s[$i-1]['options'])[1];
+                            }
+                            if($item['ansNO'] == 3){
+                                $content_ok[$key]['ansTxt'] = json_decode($ques_cate_s[$i-1]['options'])[2];
+                            }
+                            if($item['ansNO'] == 4){
+                                $content_ok[$key]['ansTxt'] = json_decode($ques_cate_s[$i-1]['options'])[3];
+                            }
+                            if($item['ansNO'] == 5){
+                                $content_ok[$key]['ansTxt'] = json_decode($ques_cate_s[$i-1]['options'])[4];
+                            }
                         }
                     }
                 }
+                // Log::info($content_ok);
+                $dom = "<ul>";
+                foreach($content_ok as $item){
+                    $dom .= "<li>[ {$item['ansNO']}.{$item['ansTxt']} ] - {$item['content']}</li>";
+                }
+                $dom .= "<ul>";
+                return "{$dom}";
             }
-            // Log::info($content_ok);
-            $dom = "<ul>";
-            foreach($content_ok as $item){
-                $dom .= "<li>[ {$item['ansNO']}.{$item['ansTxt']} ] - {$item['content']}</li>";
-            }
-            $dom .= "<ul>";
-            return "{$dom}";
         });
         $show->field('ques_m', __('Ques_m'))->unescape()->as(function ($title) {
             $content_ok = [];

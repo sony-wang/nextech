@@ -416,15 +416,6 @@
 
         const submit_onclick = () => {
 
-            //按下後鎖定
-            submit_btn.disabled = true;
-            submit_btn.innerHTML = `
-            發送中
-            <div class="spinner-border" role="status">
-            <span class="visually-hidden">Loading...</span>
-            </div>
-            `;
-            
             
             const data = {};
             const files = {};
@@ -625,6 +616,15 @@
             // }).catch(function(error) { // 请求失败处理
             //     console.log(error);
             // });
+
+            //按下後鎖定
+            submit_btn.disabled = true;
+            submit_btn.innerHTML = `
+            發送中
+            <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+            </div>
+            `;
 
 
             let bodyFormData = new FormData();

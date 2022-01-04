@@ -10,7 +10,7 @@
     <link href="{{url('/css/style.css')}}" rel="stylesheet">
 </head>
 
-<body>
+<body class="bg">
     <div class="d-flex justify-content-center my-3">
         <a href="/">
             <img class="logo" src="{{url('/img/logo.svg')}}" alt="">
@@ -18,8 +18,10 @@
     </div>
     <div class="text-center">
         <p>N世代學苑（NexTech Academy）線上申請</p>
-        <p><span class="bg-brand2  text-white p-2 rounded-pill mx-2">標竿企業實戰班</span>自公告日起至 111 年 2 月 25 日17:00止</p>
-        <p><span class="bg-brand text-white  p-2 rounded-pill mx-2">潛力企業共學班</span>自公告日起至 111 年 3 月 18 日17:00止</p>
+        <p><span class="bg-brand2 text-white p-2 rounded-pill mx-2">標竿企業實戰班</span>自公告日起至 <strong id="time_01"></strong>止</p>
+        <p><span class="bg-brand text-white  p-2 rounded-pill mx-2">潛力企業共學班</span>自公告日起至 <strong id="time_02"></strong>止</p>
+        <!-- <p><span class="bg-brand2  text-white p-2 rounded-pill mx-2">標竿企業實戰班</span>自公告日起至 111 年 2 月 25 日17:00止</p> -->
+        <!-- <p><span class="bg-brand text-white  p-2 rounded-pill mx-2">潛力企業共學班</span>自公告日起至 111 年 3 月 18 日17:00止</p> -->
     </div>
 
     <div class="container">
@@ -41,7 +43,7 @@
                 <a class="text-center d-block bg-brand text-white text-decoration-none py-4 px-3 rounded my-3" href="/class02">
                     <h3>潛力企業共學班</h3>
                     <p>報名截止日期倒數</p>
-                    <div class="d-flex justify-content-center" id="timeTXT">
+                    <div class="d-flex justify-content-center" id="timeTXT2">
                         <h2 id="dd2" class="mx-1"></h2><span class="">天</span>
                         <h2 id="hh2" class="mx-1"></h2><span class="">時</span>
                         <h2 id="mm2" class="mx-1"></h2><span class="">分</span>
@@ -63,15 +65,38 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js"></script>
 
     <script>
+        let timeAll01 = new Date("{{$t01}}");
+        let yy_01 = timeAll01.getFullYear()-1911;
+        let mm_01 = timeAll01.getMonth()+1;
+        let dd_01 = timeAll01.getDate();
+        let hh_01 = timeAll01.getHours();
+        let nn_01 = timeAll01.getMinutes();
+        let arrange_time01 = `${yy_01} 年 ${mm_01} 月 ${dd_01} 日 ${hh_01}:${nn_01}`;
+        console.log(arrange_time01);
+        document.querySelector('#time_01').innerHTML = arrange_time01;
+
+        let timeAll02 = new Date("{{$t02}}");
+        let yy_02 = timeAll02.getFullYear()-1911;
+        let mm_02 = timeAll02.getMonth()+1;
+        let dd_02 = timeAll02.getDate();
+        let hh_02 = timeAll02.getHours();
+        let nn_02 = timeAll02.getMinutes();
+        let arrange_time02 = `${yy_02} 年 ${mm_02} 月 ${dd_02} 日 ${hh_02}:${nn_02}`;
+        console.log(arrange_time02);
+        document.querySelector('#time_02').innerHTML = arrange_time02;
+        
+
         let DifferenceHour = -1
         let DifferenceMinute = -1
         let DifferenceSecond = -1
         //Jan,Feb,Mar,Apr,Jun,Jul,Aug,Sep,Nov,dec
         // let Tday = new Date("Febru 30, 2021 23:59:59")
         // 標竿企業實戰班-自公告日起至 111 年 2 月 25 日17:00止
-        let Tday = new Date("Feb 25, 2022 16:59:59")
+        // let Tday = new Date("Feb 25, 2022 16:59:59")
+        let Tday = new Date("{{$t01}}")
         // 潛力企業共學班    111 年 3 月 18 日17:00止
-        let Tday2 = new Date("Mar 18, 2022 16:59:59")
+        // let Tday2 = new Date("Mar 18, 2022 16:59:59")
+        let Tday2 = new Date("{{$t02}}")
         let daysms = 24 * 60 * 60 * 1000
         let hoursms = 60 * 60 * 1000
         let Secondms = 60 * 1000
@@ -143,8 +168,10 @@
             Diffms -= DifferenceSecond * Secondms
             let dSecs = Math.floor(Diffms / microsecond)
 
+            const timeTXT2 = document.querySelector('#timeTXT2');
+
             if (DifferenceHour < 0 || DifferenceMinute < 0 || DifferenceSecond < 0) {
-                timeTXT.innerHTML = '<h1 class="text-danger">已截止</h1>'
+                timeTXT2.innerHTML = '<h1 class="text-danger">已截止</h1>'
             }
 
             // if (convertHour != DifferenceHour) dd2.innerHTML = DifferenceHour //+ '天'

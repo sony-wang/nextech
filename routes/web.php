@@ -31,4 +31,5 @@ Route::post('/class02s', 'App\Http\Controllers\Class02sController@store');
 Route::get('/result', 'App\Http\Controllers\ResultController@index');
 Route::post('/upload', 'App\Http\Controllers\Class01sController@handUpload');
 
+Route::get('/', 'App\Http\Controllers\MainsController@index');
 // Route::resource('users', 'UsersController');
