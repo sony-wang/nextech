@@ -36,7 +36,7 @@ class MainsController extends AdminController
         $grid->column('updated_at', __('Updated at'));
 
         $grid->actions(function (Grid\Displayers\Actions $actions) {
-            // $actions->disableView();
+            $actions->disableView();
             // $actions->disableEdit();
             $actions->disableDelete();
         });

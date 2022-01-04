@@ -16,7 +16,7 @@
             <img class="logo" src="{{url('/img/logo.svg')}}" alt="">
         </a>
     </div>
-    <div class="text-center">
+    <div class="text-center my-5">
         <p>N世代學苑（NexTech Academy）線上申請</p>
         <p><span class="bg-brand2 text-white p-2 rounded-pill mx-2">標竿企業實戰班</span>自公告日起至 <strong id="time_01"></strong>止</p>
         <p><span class="bg-brand text-white  p-2 rounded-pill mx-2">潛力企業共學班</span>自公告日起至 <strong id="time_02"></strong>止</p>
@@ -51,6 +51,9 @@
                     </div>
                     <h3 class="text-center rounded-pill bg-white text-brand py-2">我要報名</h3>
                 </a>
+            </div>
+            <div class="d-flex justify-content-center my-5">
+                <a class="btn btn-outline-secondary" href="upload/{{$link}}" target="_blank">簡章下載</a>
             </div>
         </div>
     </div>
