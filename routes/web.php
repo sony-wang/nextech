@@ -32,4 +32,8 @@ Route::get('/result', 'App\Http\Controllers\ResultController@index');
 Route::post('/upload', 'App\Http\Controllers\Class01sController@handUpload');
 
 Route::get('/', 'App\Http\Controllers\MainsController@index');
+
+Route::get('/degree', 'App\Http\Controllers\DegreesController@index');
+Route::post('/degree', 'App\Http\Controllers\DegreesController@store');
+Route::post('/checkdegree', 'App\Http\Controllers\DegreesController@checkdegree');
 // Route::resource('users', 'UsersController');

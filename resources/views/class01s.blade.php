@@ -427,8 +427,6 @@
             // const flag_change_classes = document.querySelector('#flag_change_classes');
             // const flag_company = document.querySelector('#flag_company');
 
-
-
             const change_classes = document.querySelector('input[name="change_classes"]:checked');
             
             
@@ -660,12 +658,49 @@
                 }
             })
             .catch(function (response) {
+                submit_btn.disabled = false;
+                submit_btn.innerHTML = '送出';
                 //handle error
                 console.log(response);
-                alert('檔案發生錯誤，請確認檔案格式或檔案大小');
+                alert('送出發生錯誤，請聯絡管理人員');
             });
 
         }
+
+
+        //偵聽以填寫過的統編
+        const tax_id_no_inp = document.querySelector('input[name="tax_id_no"]');
+        const checkData = {};
+        tax_id_no_inp.addEventListener('blur',()=>{
+            checkData['tax_id_no_inp'] = tax_id_no_inp.value
+
+            if(tax_id_no_inp.value !='' && tax_id_no_inp.value.length == 8){
+
+                axios.post('/checkdegree', {
+                    checkData
+                }).then((response) => {
+                    if(response.status == 200){
+                        // console.log(response.data[0])
+                        console.log(response.data[0].capital)
+                        console.log(response.data[0].company)
+                        console.log(response.data[0].employees)
+                        console.log(response.data[0].establishment)
+                        console.log(response.data[0].industry)
+                        console.log(response.data[0].ques_m)
+                        console.log(response.data[0].ques_s)
+                        console.log(response.data[0].tax_id_no)
+                    }
+                }).catch(function(error) {
+                    console.log(error);
+                });
+            }
+
+
+            // let filled = confirm('您以填寫過健診，是否套用您的健診資料?');
+            // if (filled) {
+                
+            // }
+        })
 
         
     </script>

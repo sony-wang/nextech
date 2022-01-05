@@ -11,7 +11,8 @@ Route::group([
     'as'            => config('admin.route.prefix') . '.',
 ], function (Router $router) {
 
-    $router->get('/', 'HomeController@index')->name('home');
+    // $router->get('/', 'HomeController@index')->name('home');
+    $router->get('/', 'MainsController@index');
 
     $router->resource('users', UsersController::class);
 
@@ -20,4 +21,5 @@ Route::group([
     $router->resource('class01', Class01sController::class);
     $router->resource('class02', Class02sController::class);
     $router->resource('main', MainsController::class);
+    $router->resource('degree', DegreesController::class);
 });

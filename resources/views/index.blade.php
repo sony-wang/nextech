@@ -25,9 +25,16 @@
     </div>
 
     <div class="container">
+    <div class="d-flex justify-content-center">
+        <a class="shadow-sm btn btn-outline-secondary text-center d-block text-decoration-none px-3 rounded my-3" href="/degree">
+            <p>不知道適合報名哪班嗎?</p>
+            <h3>企業數位化程度健診</h3>
+            <h3 class="text-center rounded-pill border border-1 shadow-sm py-2">前往健診</h3>
+        </a>
+    </div>
         <div class="row">
             <div class="col-md-6">
-                <a class="text-center d-block bg-brand2 text-white text-decoration-none py-4 px-3 rounded my-3" href="/class01">
+                <a class="text-center d-block bg-brand2 text-white text-decoration-none py-4 px-3 rounded my-3 class01" href="/class01">
                     <h3>標竿企業實戰班</h3>
                     <p>報名截止日期倒數</p>
                     <div class="d-flex justify-content-center" id="timeTXT">
@@ -36,11 +43,11 @@
                         <h2 id="mm" class="mx-1"></h2><span class="">分</span>
                         <h2 id="ss" class="mx-1"></h2><span class="">秒</span>
                     </div>
-                    <h3 class="text-center rounded-pill bg-white text-brand2 py-2">我要報名</h3>
+                    <h4 class="text-center rounded-pill bg-white text-brand2 py-2">我要報名</h4>
                 </a>
             </div>
             <div class="col-md-6">
-                <a class="text-center d-block bg-brand text-white text-decoration-none py-4 px-3 rounded my-3" href="/class02">
+                <a class="text-center d-block bg-brand text-white text-decoration-none py-4 px-3 rounded my-3 class02" href="/class02">
                     <h3>潛力企業共學班</h3>
                     <p>報名截止日期倒數</p>
                     <div class="d-flex justify-content-center" id="timeTXT2">
@@ -49,7 +56,7 @@
                         <h2 id="mm2" class="mx-1"></h2><span class="">分</span>
                         <h2 id="ss2" class="mx-1"></h2><span class="">秒</span>
                     </div>
-                    <h3 class="text-center rounded-pill bg-white text-brand py-2">我要報名</h3>
+                    <h4 class="text-center rounded-pill bg-white text-brand py-2">我要報名</h4>
                 </a>
             </div>
             <div class="d-flex justify-content-center my-5">

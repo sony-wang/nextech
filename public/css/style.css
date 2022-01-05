@@ -21,3 +21,30 @@
     background-attachment: fixed;
     background-position: center;
 }
+
+.class01{
+    transition : .3s;
+}
+.class01:hover{
+    background-color: #ffffff;
+    color: #efa960!important;
+    border: 1px solid #efa960;
+}
+.class01:hover > h4{
+    background-color: #efa960!important;
+    color: #ffffff!important;
+    transition : .3s;
+}
+.class02{
+    transition : .3s;
+}
+.class02:hover{
+    background-color: #ffffff;
+    color: #6AC2B3!important;
+    border: 1px solid #6AC2B3;
+}
+.class02:hover > h4{
+    background-color: #6AC2B3!important;
+    color: #ffffff!important;
+    transition : .3s;
+}
