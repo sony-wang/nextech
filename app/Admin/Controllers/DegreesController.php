@@ -179,8 +179,8 @@ class DegreesController extends AdminController
         $form->text('capital', __('Capital'));
         $form->text('employees', __('Employees'));
         $form->text('industry', __('Industry'));
-        $form->text('ques_s', __('Ques s'))->hide();
-        $form->text('ques_m', __('Ques m'))->hide();
+        $form->text('ques_s', __('Ques s'));
+        $form->text('ques_m', __('Ques m'));
 
         return $form;
     }
