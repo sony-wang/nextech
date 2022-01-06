@@ -35,8 +35,8 @@ class DegreesController extends AdminController
         $grid->column('capital', __('Capital'));
         $grid->column('employees', __('Employees'));
         $grid->column('industry', __('Industry'));
-        $grid->column('ques_s', __('Ques s'));
-        $grid->column('ques_m', __('Ques m'));
+        $grid->column('ques_s', __('Ques s'))->hide();
+        $grid->column('ques_m', __('Ques m'))->hide();
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
 
@@ -156,7 +156,7 @@ class DegreesController extends AdminController
         });
         $show->field('tax_id_no',__('Chart'))->unescape()->as(function ($title) {
             // return "<a href='/result?class=01&id={$title}' target=_blank>開啟</a>";
-            return "<iframe width=100% height=600 src='/result?class=01&id={$title}'>你的瀏覽器不支援 iframe</iframe>";
+            return "<iframe width=100% height=600 src='/result?class=00&id={$title}'>你的瀏覽器不支援 iframe</iframe>";
         });
         $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));
@@ -179,8 +179,8 @@ class DegreesController extends AdminController
         $form->text('capital', __('Capital'));
         $form->text('employees', __('Employees'));
         $form->text('industry', __('Industry'));
-        $form->text('ques_s', __('Ques s'));
-        $form->text('ques_m', __('Ques m'));
+        $form->text('ques_s', __('Ques s'))->hide();
+        $form->text('ques_m', __('Ques m'))->hide();
 
         return $form;
     }
