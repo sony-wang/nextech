@@ -91,13 +91,22 @@ class DegreesController extends Controller
             'created_at' => date('d-m-y h:i:s'),
             'updated_at' => date('d-m-y h:i:s')
         ];
-        
 
-        DB::table('degrees')->insert(
-            $data
-        );
+        //先查有沒有已存在統編
+        $getExisted = DB::table('degrees')->where('tax_id_no',$data['tax_id_no'])->get();
+        $getFilled = json_decode($getExisted,JSON_UNESCAPED_UNICODE);
 
-        return 'OKOK';
+        if(empty($getFilled)){
+            DB::table('degrees')->insert(
+                $data
+            );
+            // Log::info('寫入資料');
+            return array('code'=>1000,'msg'=>'已送出成功');
+        }else{
+            return array('code'=>2000,'msg'=>'該公司已填寫過');
+        }
+
+
     }
 
     /**
@@ -147,12 +156,18 @@ class DegreesController extends Controller
 
     public function checkdegree(Request $request)
     {
-        Log::info('112233');
         $tax_id_no = $request['checkData']['tax_id_no_inp'];
         // Log::info($tax_id_no);
         $getDegree = DB::table('degrees')->select('company', 'tax_id_no','establishment','capital','employees','industry','ques_s','ques_m')->where('tax_id_no',$tax_id_no)->get();
-        Log::info(json_decode($getDegree,JSON_UNESCAPED_UNICODE));
-        return json_decode($getDegree,JSON_UNESCAPED_UNICODE);
+        $getFilled = json_decode($getDegree,JSON_UNESCAPED_UNICODE);
+        // Log::info(empty($getFilled));
+
+        if(empty($getFilled)){
+            return array('code'=>-1,'msg'=>'查無資料');
+        }else{
+            $getDegree['code'] = 1000;
+            return json_decode($getDegree,JSON_UNESCAPED_UNICODE);
+        }
     }
 
 }

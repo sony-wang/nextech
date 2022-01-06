@@ -25,12 +25,12 @@
                 <h5 class="card-title text-brand">第一部分:基本資料</h5>
                 <div class="row">
                     <div class="mb-3 col-md-6">
-                        <label for="company" class="form-label" id="flag_company">公司名稱</label>
-                        <input type="text" class="form-control" id="company" name="company">
-                    </div>
-                    <div class="mb-3 col-md-6">
                         <label for="tax_id_no" class="form-label" id="flag_tax_id_no">統一編號</label>
                         <input type="text" class="form-control" id="tax_id_no" name="tax_id_no">
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="company" class="form-label" id="flag_company">公司名稱</label>
+                        <input type="text" class="form-control" id="company" name="company">
                     </div>
                     <div class="mb-3 col-md-6">
                         <label for="establishment" class="form-label" id="flag_establishment">創立日期(西元年)</label>
@@ -643,10 +643,10 @@
                 submit_btn.innerHTML = '送出';
                 console.log(response)
                 if(response.status == 200){
-                    alert('已發送完成');
                     // window.location.reload();
+                    if(response.data.code==1000){
                         if(dotest.checked){
-                            console.log('有打勾')
+                            // console.log('有打勾')
                             setTimeout(()=>{
                                 document.location.href=`/result?class=01&&id=${data['tax_id_no']}`;
                             },1000)
@@ -655,6 +655,10 @@
                                 document.location.href=`/`;
                             },1000)
                         }
+                    }else{
+                        alert(response.data.msg);
+                    }
+                        
                 }
             })
             .catch(function (response) {
@@ -680,15 +684,63 @@
                     checkData
                 }).then((response) => {
                     if(response.status == 200){
-                        // console.log(response.data[0])
-                        console.log(response.data[0].capital)
-                        console.log(response.data[0].company)
-                        console.log(response.data[0].employees)
-                        console.log(response.data[0].establishment)
-                        console.log(response.data[0].industry)
-                        console.log(response.data[0].ques_m)
-                        console.log(response.data[0].ques_s)
-                        console.log(response.data[0].tax_id_no)
+                        const code = response.data.code;
+                        if(code == 1000){
+
+                            // alert('您已填寫過企業數位化程度健診，系統會自動寫入問卷資料。')
+                            let filled = confirm('您已填寫過企業數位化程度健診，是否套用您的資料?');
+                            if (filled) {
+                                // console.log(response.data[0])
+                                // console.log(response.data[0].capital)
+                                // console.log(response.data[0].company)
+                                // console.log(response.data[0].employees)
+                                // console.log(response.data[0].establishment)
+                                // console.log(response.data[0].industry)
+                                // console.log(response.data[0].ques_m)
+                                // console.log(response.data[0].ques_s)
+                                // console.log(response.data[0].tax_id_no)
+
+                                document.querySelector('#capital').value = response.data[0].capital
+                                document.querySelector('#company').value = response.data[0].company
+                                document.querySelector('#employees').value = response.data[0].employees
+                                document.querySelector('#establishment').value = response.data[0].establishment
+                                document.querySelector('#industry').value = response.data[0].industry
+                                
+                                dotest.checked = true;
+                                test_wrap.style.display = 'block'
+
+                                let ques_s = JSON.parse(response.data[0].ques_s);
+                                // console.log(ques_s)
+
+                                for (const [key, value] of Object.entries(ques_s)) {
+                                    // console.log(`${key}: ${value}`);
+                                    // console.log(document.querySelectorAll(`input[name="${key}"]`));
+                                    // console.log(key)
+                                    // console.log(value)
+                                    document.querySelectorAll(`input[name="${key}"]`)[parseInt(value)-1].checked = true;
+                                }
+                                // let ques_m = JSON.parse(response.data[0].ques_m);
+                                let ques_m = JSON.parse(response.data[0].ques_m);
+                                // console.log(ques_m)
+                                ques_m.forEach((val, key)=>{
+                                    // console.log(ques_m[key])
+                                    // console.log(val)
+                                    for(let i=0;i<ques_m[key].length;i++){
+                                        if(key+1==5 && i==1){
+                                            console.log(
+                                            // `m${key+1}-custom`,
+                                            document.querySelector(`#m${key+1}-custom`).value = val[i]
+                                            )
+                                        }else{
+                                            // console.log(`#m${key+1}-${val[i]}`)
+                                            document.querySelector(`#m${key+1}-${val[i]}`).checked = true
+                                        }
+                                    }
+                                    
+                                })
+                            }
+                        }
+
                     }
                 }).catch(function(error) {
                     console.log(error);
@@ -696,10 +748,7 @@
             }
 
 
-            // let filled = confirm('您以填寫過健診，是否套用您的健診資料?');
-            // if (filled) {
-                
-            // }
+            
         })
 
         

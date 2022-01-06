@@ -25,6 +25,10 @@
                 <h5 class="card-title text-brand">第一部分:基本資料</h5>
                 <div class="row">
                     <div class="mb-3 col-md-6">
+                        <label for="tax_id_no" class="form-label" id="flag_tax_id_no">統一編號</label>
+                        <input type="text" class="form-control" id="tax_id_no" name="tax_id_no">
+                    </div>
+                    <div class="mb-3 col-md-6">
                         <label for="company" class="form-label" id="flag_company">公司名稱</label>
                         <input type="text" class="form-control" id="company" name="company">
                     </div>
@@ -32,10 +36,6 @@
                         <label for="establishment" class="form-label" id="flag_establishment">創立日期(西元年)</label>
                         <!-- <input type="text" class="form-control" id="establishment" name="establishment"> -->
                         <select class="form-select" id="establishment" name="establishment"></select>
-                    </div>
-                    <div class="mb-3 col-md-6">
-                        <label for="tax_id_no" class="form-label" id="flag_tax_id_no">統一編號</label>
-                        <input type="text" class="form-control" id="tax_id_no" name="tax_id_no">
                     </div>
                     <div class="mb-3 col-md-6">
                         <label for="address" class="form-label" id="flag_address">公司地址</label>
@@ -666,19 +666,102 @@
                 
                 console.log(response)
                 if(response.status == 200){
-                    alert('已發送完成');
-                    // window.location.reload();
-                    setTimeout(()=>{
-                        document.location.href=`/result?class=02&&id=${data['tax_id_no']}`;
-                    },1000)
+
+                    if(response.data.code==1000){
+                        alert('已發送完成');
+                        // window.location.reload();
+                        setTimeout(()=>{
+                            document.location.href=`/result?class=02&&id=${data['tax_id_no']}`;
+                        },1000)
+                    }else{
+                        alert(response.data.msg);
+                    }
                 }
             })
             .catch(function (response) {
                 //handle error
                 console.log(response);
-                alert('檔案發生錯誤，請確認檔案格式或檔案大小');
+                // alert('檔案發生錯誤，請確認檔案格式或檔案大小');
+                alert('送出發生錯誤，請聯絡管理人員');
             });
         }
+
+        //偵聽以填寫過的統編
+        const tax_id_no_inp = document.querySelector('input[name="tax_id_no"]');
+        const checkData = {};
+        tax_id_no_inp.addEventListener('blur',()=>{
+            checkData['tax_id_no_inp'] = tax_id_no_inp.value
+
+            if(tax_id_no_inp.value !='' && tax_id_no_inp.value.length == 8){
+
+                axios.post('/checkdegree', {
+                    checkData
+                }).then((response) => {
+                    console.log(response)
+
+                    if(response.status == 200){
+                        const code = response.data.code;
+                        if(code == 1000){
+
+                            // alert('您已填寫過企業數位化程度健診，系統會自動寫入問卷資料。')
+                            let filled = confirm('您已填寫過企業數位化程度健診，是否套用您的資料?');
+                            if (filled) {
+                                // console.log(response.data[0])
+                                // console.log(response.data[0].capital)
+                                // console.log(response.data[0].company)
+                                // console.log(response.data[0].employees)
+                                // console.log(response.data[0].establishment)
+                                // console.log(response.data[0].industry)
+                                // console.log(response.data[0].ques_m)
+                                // console.log(response.data[0].ques_s)
+                                // console.log(response.data[0].tax_id_no)
+
+                                document.querySelector('#capital').value = response.data[0].capital
+                                document.querySelector('#company').value = response.data[0].company
+                                document.querySelector('#employees').value = response.data[0].employees
+                                document.querySelector('#establishment').value = response.data[0].establishment
+                                document.querySelector('#industry').value = response.data[0].industry
+       
+                                let ques_s = JSON.parse(response.data[0].ques_s);
+                                // console.log(ques_s)
+
+                                for (const [key, value] of Object.entries(ques_s)) {
+                                    // console.log(`${key}: ${value}`);
+                                    // console.log(document.querySelectorAll(`input[name="${key}"]`));
+                                    // console.log(key)
+                                    // console.log(value)
+                                    document.querySelectorAll(`input[name="${key}"]`)[parseInt(value)-1].checked = true;
+                                }
+                                // let ques_m = JSON.parse(response.data[0].ques_m);
+                                let ques_m = JSON.parse(response.data[0].ques_m);
+                                // console.log(ques_m)
+                                ques_m.forEach((val, key)=>{
+                                    // console.log(ques_m[key])
+                                    // console.log(val)
+                                    for(let i=0;i<ques_m[key].length;i++){
+                                        if(key+1==5 && i==1){
+                                            console.log(
+                                            // `m${key+1}-custom`,
+                                            document.querySelector(`#m${key+1}-custom`).value = val[i]
+                                            )
+                                        }else{
+                                            // console.log(`#m${key+1}-${val[i]}`)
+                                            document.querySelector(`#m${key+1}-${val[i]}`).checked = true
+                                        }
+                                    }
+                                    
+                                })
+                            }
+                        }
+
+                    }
+                }).catch(function(error) {
+                    console.log(error);
+                });
+            }
+        })
+
+
     </script>
 </body>
 

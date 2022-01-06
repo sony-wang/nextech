@@ -341,11 +341,17 @@
                 submit_btn.innerHTML = '送出';
                 console.log(response)
                 if(response.status == 200){
+                    // console.log(response.data)
+                    if(response.data.code==1000){
                     alert('已發送完成');
                     // window.location.reload();
-                    setTimeout(()=>{
-                        document.location.href=`/result?class=01&&id=${data['tax_id_no']}`;
-                    },1000)
+                        setTimeout(()=>{
+                            document.location.href=`/result?class=00&&id=${data['tax_id_no']}`;
+                        },1000)
+                    }else{
+                        alert(response.data.msg);
+                    }
+                    
                 }
             })
             .catch(function (response) {

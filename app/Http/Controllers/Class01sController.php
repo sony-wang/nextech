@@ -113,11 +113,18 @@ class Class01sController extends Controller
         ];
         
 
-        DB::table('class01s')->insert(
-            $data
-        );
-
-        return 'OKOK';
+        //先查有沒有已存在統編
+        $getExisted = DB::table('class01s')->where('tax_id_no',$data['tax_id_no'])->get();
+        $getFilled = json_decode($getExisted,JSON_UNESCAPED_UNICODE);
+        if(empty($getFilled)){
+            DB::table('class01s')->insert(
+                $data
+            );
+            // Log::info('寫入資料');
+            return array('code'=>1000,'msg'=>'已送出成功');
+        }else{
+            return array('code'=>2000,'msg'=>'該公司已填寫過');
+        }
     }
 
     /**
