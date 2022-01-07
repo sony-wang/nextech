@@ -38,7 +38,7 @@
                         <select class="form-select" id="establishment" name="establishment"></select>
                     </div>
                     <div class="mb-3 col-md-6">
-                        <label for="address" class="form-label" id="flag_address">公司地址</label>
+                        <label for="address" class="form-label" id="flag_address">公司地址(含郵遞區號)</label>
                         <input type="text" class="form-control" id="address" name="address">
                     </div>
                     <div class="mb-3 col-md-6">
@@ -89,7 +89,7 @@
                         </select>
                     </div>
                     <div class="mb-3 col-md-12">
-                        <label class="form-label">期待學習主題</label>
+                        <label class="form-label" id="flag_expect">期待學習主題</label>
                         <div class="row">
                             <div class="form-check col-md-3">
                                 <input class="form-check-input" type="checkbox" value="(1)組織管理" id="expect-1" name="expect">
@@ -116,8 +116,8 @@
                                 <label class="form-check-label" for="expect-6">(6)企業創新</label>
                             </div>
                             <div class="form-check col-md-12">
-                                <input class="form-check-input" type="checkbox" value="其他(請說明)：" id="expect-7" name="expect">
-                                <label class="form-check-label" for="expect-7">其他(請說明)：</label>
+                                <input class="form-check-input" type="checkbox" value="(7)其他(請說明)：" id="expect-7" name="expect">
+                                <label class="form-check-label" for="expect-7" id="flag_expect_custom">其他(請說明)：</label>
                                 <div class="mb-3 col-md-3">
                                 <input type="text" class="form-control" id="expect-custom" name="expect-custom">
                                 </div>
@@ -156,9 +156,13 @@
                 </div>
                 <p>※參與團隊須包含企業接班人或高階主管職之企業領袖，可自行增列表格</p>
                 <div class="row leader01 border-bottom py-3 my-3">
+                    <div class="mb-3 col-md-12">
+                        <input class="form-check-input" type="radio" name="leader-call" id="leader-call-1" value="1" checked >
+                        <label class="form-check-label" for="leader-call-1">主要聯絡人</label>
+                    </div>
                     <div class="mb-3 col-md-3">
-                        <label for="leader-1" class="form-label">姓名1</label>
-                        <input type="text" class="form-control" id="leader-1" name="leader-0">
+                        <label for="leader-1" class="form-label">企業接班代表</label>
+                        <input type="text" class="form-control" id="leader-1" name="leader-1">
                     </div>
                     <div class="mb-3 col-md-3">
                         <label for="leader-2" class="form-label">部門職稱</label>
@@ -170,7 +174,7 @@
                     </div>
                     <div class="mb-3 col-md-3">
                         <label for="leader-4" class="form-label">E-MAIL</label>
-                        <input type="text" class="form-control" id="leader-4" name="leader-4">
+                        <input type="email" class="form-control" id="leader-4" name="leader-4" onblur=isEmail(this.value)>
                     </div>
                     <div class="mb-3 col-md-3">
                         <label for="leader-5" class="form-label">業務簡介</label>
@@ -178,6 +182,10 @@
                     </div>
                 </div>
                 <div class="row leader02 border-bottom py-3 my-3" style="display: none;">
+                    <div class="mb-3 col-md-12">
+                        <input class="form-check-input" type="radio" name="leader-call" value="6" id="leader-call-2">
+                        <label class="form-check-label" for="leader-call-2">主要聯絡人</label>
+                    </div>
                     <div class="mb-3 col-md-3">
                         <label for="leader-6" class="form-label">姓名2</label>
                         <input type="text" class="form-control" id="leader-6" name="leader-6">
@@ -192,7 +200,7 @@
                     </div>
                     <div class="mb-3 col-md-3">
                         <label for="leader-9" class="form-label">E-MAIL</label>
-                        <input type="text" class="form-control" id="leader-9" name="leader-9">
+                        <input type="email" class="form-control" id="leader-9" name="leader-9" onblur=isEmail(this.value)>
                     </div>
                     <div class="mb-3 col-md-3">
                         <label for="leader-10" class="form-label">業務簡介</label>
@@ -200,6 +208,10 @@
                     </div>
                 </div>
                 <div class="row leader03 border-bottom py-3 my-3" style="display: none;">
+                    <div class="mb-3 col-md-12">
+                        <input class="form-check-input" type="radio" name="leader-call" value="11" id="leader-call-3">
+                        <label class="form-check-label" for="leader-call-3">主要聯絡人</label>
+                    </div>
                     <div class="mb-3 col-md-3">
                         <label for="leader-11" class="form-label">姓名3</label>
                         <input type="text" class="form-control" id="leader-11" name="leader-11">
@@ -214,7 +226,7 @@
                     </div>
                     <div class="mb-3 col-md-3">
                         <label for="leader-14" class="form-label">E-MAIL</label>
-                        <input type="text" class="form-control" id="leader-14" name="leader-14">
+                        <input type="email" class="form-control" id="leader-14" name="leader-14" onblur=isEmail(this.value)>
                     </div>
                     <div class="mb-3 col-md-3">
                         <label for="leader-15" class="form-label">業務簡介</label>
@@ -352,11 +364,11 @@
     <script>
         //西元年
         let max = new Date().getFullYear(),
-        min = max - 30
+        min = max - 111
         select = document.querySelector('#establishment');
 
-        for (let i = max; i>=min; i--){
-            if(i == new Date().getFullYear()){
+        for (let i = max+1; i>=min; i--){
+            if(i == new Date().getFullYear()+1){
                 let opt = document.createElement('option');
                 opt.value = '';
                 opt.innerHTML = '請選擇';
@@ -391,7 +403,7 @@
             if (count > 3) {
                 count = 3
             }
-            console.log(count)
+            // console.log(count)
             if (count == 1) {
                 delete_btn.style.display = 'none'
                 leader02.style.display = 'none';
@@ -439,16 +451,22 @@
             const challengeVal = document.querySelector('#challenge').value;
             const classVal = document.querySelector('#class').value;
             const expectVal = document.querySelectorAll('input[name="expect"]:checked');
+            const expectCustomVal = document.querySelector('#expect-custom').value;
             const succeedVal = document.querySelector('#succeed').value;
             const deputyVal = document.querySelector('#deputy').value;
             // const leaderVal = document.querySelector('#leader').value;
             const uploadVal = document.querySelector('#upload').value;
             const upload2Val = document.querySelector('#upload2').value;
-
-
             
+            
+            const leaderCall = document.querySelectorAll('input[name="leader-call"]:checked');
+
             for(let i=1;i<=15;i++){
-                leaderArr.push(document.querySelector('#leader-'+i).value);
+                if(leaderCall[0].value == i){
+                    leaderArr.push(document.querySelector('#leader-'+i).value+'[聯絡人]');
+                }else{
+                    leaderArr.push(document.querySelector('#leader-'+i).value);
+                }
             }
 
             const txt = '請輸入'
@@ -513,10 +531,18 @@
                 flag_class.scrollIntoView()
                 return
             }
-            if(expectVal == ''){
+            if(expectVal.length == 0){
                 alert(txt+flag_expect.innerHTML);
                 flag_expect.scrollIntoView()
                 return
+            }
+            const expect_custom = document.querySelectorAll('input[name="expect"]')[document.querySelectorAll('input[name="expect"]').length-1]
+            if(expect_custom.checked){
+                if(expectCustomVal == ''){
+                    alert(txt+flag_expect_custom.innerHTML);
+                    flag_expect_custom.scrollIntoView()
+                    return
+                }
             }
             if(succeedVal == ''){
                 alert(txt+flag_succeed.innerHTML);
@@ -528,7 +554,7 @@
                 flag_deputy.scrollIntoView()
                 return
             }
-            if(leaderArr[0] == ''){
+            if(leaderArr[0] == '' || leaderArr[1] == '' || leaderArr[2] == '' ||  leaderArr[3] == '' || leaderArr[4] == ''){
                 alert(txt+flag_leader.innerHTML);
                 flag_leader.scrollIntoView()
                 return
@@ -564,7 +590,7 @@
             data['status_and_goals'] = status_and_goalsVal;
             data['challenge'] = challengeVal;
             data['class'] = classVal;
-            data['expect'] = exp;
+            data['expect'] = exp+expectCustomVal;
             data['succeed'] = succeedVal;
             data['deputy'] = deputyVal;
             data['leader'] = leaderArr;
@@ -612,6 +638,11 @@
                 @if ($cate_item_m['customize'] == 'Y' )
                     const custom = document.querySelector('input[name="m{{$key+1}}-custom"]');
                     tempArr.push(custom.value)
+                    if(tempArr[1] == null || tempArr[1] == ''){
+                        alert(txt+flag_m{{$key+1}}.innerHTML);
+                        txt+flag_m{{$key+1}}.scrollIntoView()
+                        return
+                    }
                 @endif
             }
             ques_mArr.push(tempArr);
@@ -680,6 +711,8 @@
             })
             .catch(function (response) {
                 //handle error
+                submit_btn.disabled = false;
+                submit_btn.innerHTML = '送出';
                 console.log(response);
                 // alert('檔案發生錯誤，請確認檔案格式或檔案大小');
                 alert('送出發生錯誤，請聯絡管理人員');
@@ -761,6 +794,14 @@
             }
         })
 
+        //email驗證
+        function isEmail(strEmail) {
+            let pattern = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+            if (pattern.test(strEmail))
+            return true;
+            else
+            alert("Email格式錯誤，請重新填寫");
+        }
 
     </script>
 </body>

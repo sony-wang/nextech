@@ -63,7 +63,7 @@
                         <input type="text" class="form-control" id="business" name="business">
                     </div>
                     <div class="mb-3 col-md-6">
-                        <label for="address" class="form-label" id="flag_address">公司地址</label>
+                        <label for="address" class="form-label" id="flag_address">公司地址(含郵遞區號)</label>
                         <input type="text" class="form-control" id="address" name="address">
                     </div>
                 </div>
@@ -80,8 +80,12 @@
                 </div>
                 <p>※參與團隊須包含企業接班人或高階主管職之企業領袖，可自行增列表格</p>
                 <div class="row leader01 border-bottom py-3 my-3">
+                    <div class="mb-3 col-md-12">
+                        <input class="form-check-input" type="radio" name="leader-call" id="leader-call-1" value="1" checked >
+                        <label class="form-check-label" for="leader-call-1">主要聯絡人</label>
+                    </div>
                     <div class="mb-3 col-md-3">
-                        <label for="leader-1" class="form-label">姓名1</label>
+                        <label for="leader-1" class="form-label">企業接班代表</label>
                         <input type="text" class="form-control" id="leader-1" name="leader-0">
                     </div>
                     <div class="mb-3 col-md-3">
@@ -94,7 +98,7 @@
                     </div>
                     <div class="mb-3 col-md-3">
                         <label for="leader-4" class="form-label">E-MAIL</label>
-                        <input type="text" class="form-control" id="leader-4" name="leader-4">
+                        <input type="email" class="form-control" id="leader-4" name="leader-4" onblur=isEmail(this.value)>
                     </div>
                     <div class="mb-3 col-md-3">
                         <label for="leader-5" class="form-label">業務簡介</label>
@@ -102,6 +106,10 @@
                     </div>
                 </div>
                 <div class="row leader02 border-bottom py-3 my-3" style="display: none;">
+                    <div class="mb-3 col-md-12">
+                        <input class="form-check-input" type="radio" name="leader-call" value="6" id="leader-call-2">
+                        <label class="form-check-label" for="leader-call-2">主要聯絡人</label>
+                    </div>
                     <div class="mb-3 col-md-3">
                         <label for="leader-6" class="form-label">姓名2</label>
                         <input type="text" class="form-control" id="leader-6" name="leader-6">
@@ -116,7 +124,7 @@
                     </div>
                     <div class="mb-3 col-md-3">
                         <label for="leader-9" class="form-label">E-MAIL</label>
-                        <input type="text" class="form-control" id="leader-9" name="leader-9">
+                        <input type="email" class="form-control" id="leader-9" name="leader-9" onblur=isEmail(this.value)>
                     </div>
                     <div class="mb-3 col-md-3">
                         <label for="leader-10" class="form-label">業務簡介</label>
@@ -124,6 +132,10 @@
                     </div>
                 </div>
                 <div class="row leader03 border-bottom py-3 my-3" style="display: none;">
+                    <div class="mb-3 col-md-12">
+                        <input class="form-check-input" type="radio" name="leader-call" value="11" id="leader-call-3">
+                        <label class="form-check-label" for="leader-call-3">主要聯絡人</label>
+                    </div>
                     <div class="mb-3 col-md-3">
                         <label for="leader-11" class="form-label">姓名3</label>
                         <input type="text" class="form-control" id="leader-11" name="leader-11">
@@ -138,7 +150,7 @@
                     </div>
                     <div class="mb-3 col-md-3">
                         <label for="leader-14" class="form-label">E-MAIL</label>
-                        <input type="text" class="form-control" id="leader-14" name="leader-14">
+                        <input type="email" class="form-control" id="leader-14" name="leader-14" onblur=isEmail(this.value)>
                     </div>
                     <div class="mb-3 col-md-3">
                         <label for="leader-15" class="form-label">業務簡介</label>
@@ -346,11 +358,11 @@
     <script>
         //西元年
         let max = new Date().getFullYear(),
-        min = max - 30
+        min = max - 111
         select = document.querySelector('#establishment');
 
-        for (let i = max; i>=min; i--){
-            if(i == new Date().getFullYear()){
+        for (let i = max+1; i>=min; i--){
+            if(i == new Date().getFullYear()+1){
                 let opt = document.createElement('option');
                 opt.value = '';
                 opt.innerHTML = '請選擇';
@@ -445,8 +457,14 @@
             const upload3Val = document.querySelector('#upload3').value;
 
 
+            const leaderCall = document.querySelectorAll('input[name="leader-call"]:checked');
+
             for(let i=1;i<=15;i++){
-                leaderArr.push(document.querySelector('#leader-'+i).value);
+                if(leaderCall[0].value == i){
+                    leaderArr.push(document.querySelector('#leader-'+i).value+'[聯絡人]');
+                }else{
+                    leaderArr.push(document.querySelector('#leader-'+i).value);
+                }
             }
 
             const txt = '請輸入'
@@ -491,7 +509,7 @@
                 flag_address.scrollIntoView()
                 return
             }
-            if(leaderArr[0] == ''){
+            if(leaderArr[0] == '' || leaderArr[1] == '' || leaderArr[2] == '' ||  leaderArr[3] == '' || leaderArr[4] == ''){
                 alert(txt+flag_leader.innerHTML);
                 flag_leader.scrollIntoView()
                 return
@@ -501,7 +519,12 @@
                 flag_succeed.scrollIntoView()
                 return
             }
-            if(amount_scaleVal == ''){
+            // if(amount_scaleVal == ''){
+            //     alert(txt+flag_amount_scale.innerHTML);
+            //     flag_amount_scale.scrollIntoView()
+            //     return
+            // }
+            if(document.querySelector('#amount_scale-01').value == '' || document.querySelector('#amount_scale-02').value == ''){
                 alert(txt+flag_amount_scale.innerHTML);
                 flag_amount_scale.scrollIntoView()
                 return
@@ -583,18 +606,24 @@
             }
             
             
-            for(let i=0;i<   m{{$key+1}}checked.length;i++){
+            for(let i=0;i< m{{$key+1}}checked.length;i++){
                 
                 tempArr.push(m{{$key+1}}checked[i].value)
                 @if ($cate_item_m['customize'] == 'Y' )
                     const custom = document.querySelector('input[name="m{{$key+1}}-custom"]');
                     tempArr.push(custom.value)
+                    if(tempArr[1] == null || tempArr[1] == ''){
+                        alert(txt+flag_m{{$key+1}}.innerHTML);
+                        txt+flag_m{{$key+1}}.scrollIntoView()
+                        return
+                    }
                 @endif
             }
             ques_mArr.push(tempArr);
 
             @endforeach
-            console.log(ques_mArr)
+            
+            
 
             // for(let i=0;i<ques_mArr.length;i++){
             //     console.log('aa',ques_mArr[i].length)
@@ -747,11 +776,16 @@
                     console.log(error);
                 });
             }
-
-
-            
         })
 
+        //email驗證
+        function isEmail(strEmail) {
+            let pattern = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+            if (pattern.test(strEmail))
+            return true;
+            else
+            alert("Email格式錯誤，請重新填寫");
+        }
         
     </script>
 </body>

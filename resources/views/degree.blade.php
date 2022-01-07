@@ -174,11 +174,11 @@
     <script>
         //西元年
         let max = new Date().getFullYear(),
-        min = max - 30
+        min = max - 111
         select = document.querySelector('#establishment');
 
-        for (let i = max; i>=min; i--){
-            if(i == new Date().getFullYear()){
+        for (let i = max+1; i>=min; i--){
+            if(i == new Date().getFullYear()+1){
                 let opt = document.createElement('option');
                 opt.value = '';
                 opt.innerHTML = '請選擇';
@@ -285,12 +285,17 @@
             }
             
             
-            for(let i=0;i<   m{{$key+1}}checked.length;i++){
+            for(let i=0;i< m{{$key+1}}checked.length;i++){
                 
                 tempArr.push(m{{$key+1}}checked[i].value)
                 @if ($cate_item_m['customize'] == 'Y' )
                     const custom = document.querySelector('input[name="m{{$key+1}}-custom"]');
                     tempArr.push(custom.value)
+                    if(tempArr[1] == null || tempArr[1] == ''){
+                        alert(txt+flag_m{{$key+1}}.innerHTML);
+                        txt+flag_m{{$key+1}}.scrollIntoView()
+                        return
+                    }
                 @endif
             }
             ques_mArr.push(tempArr);
@@ -356,6 +361,8 @@
             })
             .catch(function (response) {
                 //handle error
+                submit_btn.disabled = false;
+                submit_btn.innerHTML = '送出';
                 console.log(response);
                 alert('檔案發生錯誤，請確認檔案格式或檔案大小');
             });
