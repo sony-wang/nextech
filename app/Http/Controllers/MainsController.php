@@ -23,7 +23,7 @@ class MainsController extends Controller
         $t02 = json_decode($time02)[0]->time02;
         $link = DB::table('mains')->select('link')->get();
         $link_de = json_decode($link)[0]->link;
-        Log::info($link_de);
+        // Log::info($link_de);
         return view('index', ['t01'=>$t01, 't02'=>$t02, 'link'=>$link_de]);
         // return view('user.name', $users);
     }

@@ -29,10 +29,10 @@ class Class01sController extends AdminController
         $grid = new Grid(new Class01());
 
         $grid->column('id', __('Id'));
-        // $grid->column('company', __('Company'));
-        $grid->column('company', __('Company'))->display(function ($title) {
-            return "<span style='color:#efa960'>$title</span>";
-        });
+        $grid->column('company', __('Company'));
+        // $grid->column('company', __('Company'))->display(function ($title) {
+        //     return "<span style='color:#efa960'>$title</span>";
+        // });
         $grid->column('tax_id_no', __('Tax id no'));
         $grid->column('establishment', __('Establishment'));
         $grid->column('capital', __('Capital'));
