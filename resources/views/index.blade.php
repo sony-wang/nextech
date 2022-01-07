@@ -75,7 +75,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js"></script>
 
     <script>
-        let timeAll01 = new Date("{{$t01}}");
+        let timeAll01 = new Date("{{$t01}}".replace(/\s/, 'T'));
         let yy_01 = timeAll01.getFullYear()-1911;
         let mm_01 = timeAll01.getMonth()+1;
         let dd_01 = timeAll01.getDate();
@@ -85,7 +85,7 @@
         console.log(arrange_time01);
         document.querySelector('#time_01').innerHTML = arrange_time01;
 
-        let timeAll02 = new Date("{{$t02}}");
+        let timeAll02 = new Date("{{$t02}}".replace(/\s/, 'T'));
         let yy_02 = timeAll02.getFullYear()-1911;
         let mm_02 = timeAll02.getMonth()+1;
         let dd_02 = timeAll02.getDate();
@@ -103,10 +103,10 @@
         // let Tday = new Date("Febru 30, 2021 23:59:59")
         // 標竿企業實戰班-自公告日起至 111 年 2 月 25 日17:00止
         // let Tday = new Date("Feb 25, 2022 16:59:59")
-        let Tday = new Date("{{$t01}}")
+        let Tday = new Date("{{$t01}}".replace(/\s/, 'T'))
         // 潛力企業共學班    111 年 3 月 18 日17:00止
         // let Tday2 = new Date("Mar 18, 2022 16:59:59")
-        let Tday2 = new Date("{{$t02}}")
+        let Tday2 = new Date("{{$t02}}".replace(/\s/, 'T'))
         let daysms = 24 * 60 * 60 * 1000
         let hoursms = 60 * 60 * 1000
         let Secondms = 60 * 1000
