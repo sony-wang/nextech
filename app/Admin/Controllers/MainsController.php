@@ -32,6 +32,7 @@ class MainsController extends AdminController
         $grid->column('time01', __('Time01'));
         $grid->column('time02', __('Time02'));
         $grid->column('link', __('Link'));
+        $grid->column('file', __('File'));
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
 
@@ -58,6 +59,7 @@ class MainsController extends AdminController
         $show->field('time01', __('Time01'));
         $show->field('time02', __('Time02'));
         $show->field('link', __('Link'));
+        $show->field('file', __('File'));
         $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));
 
@@ -85,7 +87,8 @@ class MainsController extends AdminController
         $form->datetime('time01', __('Time01'))->format('YYYY-MM-DD HH:mm:ss');
         $form->datetime('time02', __('Time02'))->format('YYYY-MM-DD HH:mm:ss');
         // $form->file('link', __('Link'))->move('public/upload/file/');
-        $form->file('link', __('Link'));
+        $form->file('file', __('File'));
+        $form->text('link', __('Link'));
 
         //表單右上角
         $form->tools(function (Form\Tools $tools) {

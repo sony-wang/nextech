@@ -60,7 +60,11 @@
                 </a>
             </div>
             <div class="d-flex justify-content-center my-5">
-                <a class="btn btn-outline-secondary" href="upload/{{$link}}" target="_blank">簡章下載</a>
+                @if (empty($link))
+                <a class="btn btn-outline-secondary" href="upload/{{$file}}" target="_blank">簡章下載</a>
+                @else
+                <a class="btn btn-outline-secondary" href="{{$link}}" target="_blank">簡章下載</a>
+                @endif
             </div>
         </div>
     </div>

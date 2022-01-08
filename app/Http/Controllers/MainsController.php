@@ -21,10 +21,17 @@ class MainsController extends Controller
         $t01 = json_decode($time01)[0]->time01;
         $time02 = DB::table('mains')->select('time02')->get();
         $t02 = json_decode($time02)[0]->time02;
-        $link = DB::table('mains')->select('link')->get();
-        $link_de = json_decode($link)[0]->link;
+        $file = DB::table('mains')->select('file','link')->get();
+        $file_de = json_decode($file)[0]->file;
+        $link_de = json_decode($file)[0]->link;
         // Log::info($link_de);
-        return view('index', ['t01'=>$t01, 't02'=>$t02, 'link'=>$link_de]);
+        if(empty($link_de)){
+            // 無連結抓檔案
+            return view('index', ['t01'=>$t01, 't02'=>$t02, 'file'=>$file_de]);
+        }else{
+            // 有連結抓連結
+            return view('index', ['t01'=>$t01, 't02'=>$t02, 'link'=>$link_de]);
+        }
         // return view('user.name', $users);
     }
 
