@@ -87,7 +87,7 @@ class MainsController extends AdminController
         $form->datetime('time01', __('Time01'))->format('YYYY-MM-DD HH:mm:ss');
         $form->datetime('time02', __('Time02'))->format('YYYY-MM-DD HH:mm:ss');
         // $form->file('link', __('Link'))->move('public/upload/file/');
-        $form->file('file', __('File'));
+        $form->file('file', __('File'))->move('public/upload/file/');
         $form->text('link', __('Link'));
 
         //表單右上角
