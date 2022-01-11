@@ -81,7 +81,8 @@
         let dd_01 = timeAll01.getDate();
         let hh_01 = timeAll01.getHours();
         let nn_01 = timeAll01.getMinutes();
-        let arrange_time01 = `${yy_01} 年 ${mm_01} 月 ${dd_01} 日 ${hh_01}:${nn_01}`;
+        let sec_01 = nn_01 >= 10 ? nn_01 : '0' + nn_01
+        let arrange_time01 = `${yy_01} 年 ${mm_01} 月 ${dd_01} 日 ${hh_01}:${sec_01}`;
         console.log(arrange_time01);
         document.querySelector('#time_01').innerHTML = arrange_time01;
 
@@ -91,8 +92,10 @@
         let dd_02 = timeAll02.getDate();
         let hh_02 = timeAll02.getHours();
         let nn_02 = timeAll02.getMinutes();
-        let arrange_time02 = `${yy_02} 年 ${mm_02} 月 ${dd_02} 日 ${hh_02}:${nn_02}`;
+        let sec_02 = nn_02 >=10 ? nn_02 : '0' + nn_02
+        let arrange_time02 = `${yy_02} 年 ${mm_02} 月 ${dd_02} 日 ${hh_02}:${sec_02}`;
         console.log(arrange_time02);
+        
         document.querySelector('#time_02').innerHTML = arrange_time02;
         
 

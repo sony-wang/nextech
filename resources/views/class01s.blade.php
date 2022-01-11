@@ -78,85 +78,9 @@
                         <a class="btn bg-brand text-white" id="add_btn"> 新增</a>
                     </div>
                 </div>
-                <p>※參與團隊須包含企業接班人或高階主管職之企業領袖，可自行增列表格</p>
-                <div class="row leader01 border-bottom py-3 my-3">
-                    <div class="mb-3 col-md-12">
-                        <input class="form-check-input" type="radio" name="leader-call" id="leader-call-1" value="1" checked >
-                        <label class="form-check-label" for="leader-call-1">主要聯絡人</label>
-                    </div>
-                    <div class="mb-3 col-md-3">
-                        <label for="leader-1" class="form-label">企業接班代表</label>
-                        <input type="text" class="form-control" id="leader-1" name="leader-0">
-                    </div>
-                    <div class="mb-3 col-md-3">
-                        <label for="leader-2" class="form-label">部門職稱</label>
-                        <input type="text" class="form-control" id="leader-2" name="leader-2">
-                    </div>
-                    <div class="mb-3 col-md-3">
-                        <label for="leader-3" class="form-label">連絡電話</label>
-                        <input type="text" class="form-control" id="leader-3" name="leader-3">
-                    </div>
-                    <div class="mb-3 col-md-3">
-                        <label for="leader-4" class="form-label">E-MAIL</label>
-                        <input type="email" class="form-control" id="leader-4" name="leader-4" onblur=isEmail(this.value)>
-                    </div>
-                    <div class="mb-3 col-md-3">
-                        <label for="leader-5" class="form-label">業務簡介</label>
-                        <input type="text" class="form-control" id="leader-5" name="leader-5">
-                    </div>
-                </div>
-                <div class="row leader02 border-bottom py-3 my-3" style="display: none;">
-                    <div class="mb-3 col-md-12">
-                        <input class="form-check-input" type="radio" name="leader-call" value="6" id="leader-call-2">
-                        <label class="form-check-label" for="leader-call-2">主要聯絡人</label>
-                    </div>
-                    <div class="mb-3 col-md-3">
-                        <label for="leader-6" class="form-label">姓名2</label>
-                        <input type="text" class="form-control" id="leader-6" name="leader-6">
-                    </div>
-                    <div class="mb-3 col-md-3">
-                        <label for="leader-7" class="form-label">部門職稱</label>
-                        <input type="text" class="form-control" id="leader-7" name="leader-7">
-                    </div>
-                    <div class="mb-3 col-md-3">
-                        <label for="leader-8" class="form-label">連絡電話</label>
-                        <input type="text" class="form-control" id="leader-8" name="leader-8">
-                    </div>
-                    <div class="mb-3 col-md-3">
-                        <label for="leader-9" class="form-label">E-MAIL</label>
-                        <input type="email" class="form-control" id="leader-9" name="leader-9" onblur=isEmail(this.value)>
-                    </div>
-                    <div class="mb-3 col-md-3">
-                        <label for="leader-10" class="form-label">業務簡介</label>
-                        <input type="text" class="form-control" id="leader-10" name="leader-10">
-                    </div>
-                </div>
-                <div class="row leader03 border-bottom py-3 my-3" style="display: none;">
-                    <div class="mb-3 col-md-12">
-                        <input class="form-check-input" type="radio" name="leader-call" value="11" id="leader-call-3">
-                        <label class="form-check-label" for="leader-call-3">主要聯絡人</label>
-                    </div>
-                    <div class="mb-3 col-md-3">
-                        <label for="leader-11" class="form-label">姓名3</label>
-                        <input type="text" class="form-control" id="leader-11" name="leader-11">
-                    </div>
-                    <div class="mb-3 col-md-3">
-                        <label for="leader-12" class="form-label">部門職稱</label>
-                        <input type="text" class="form-control" id="leader-12" name="leader-12">
-                    </div>
-                    <div class="mb-3 col-md-3">
-                        <label for="leader-13" class="form-label">連絡電話</label>
-                        <input type="text" class="form-control" id="leader-13" name="leader-13">
-                    </div>
-                    <div class="mb-3 col-md-3">
-                        <label for="leader-14" class="form-label">E-MAIL</label>
-                        <input type="email" class="form-control" id="leader-14" name="leader-14" onblur=isEmail(this.value)>
-                    </div>
-                    <div class="mb-3 col-md-3">
-                        <label for="leader-15" class="form-label">業務簡介</label>
-                        <input type="text" class="form-control" id="leader-15" name="leader-15">
-                    </div>
-                </div>
+                <p class="mb-0">※參與團隊須包含企業接班人或高階主管職之企業領袖，可自行增列表格</p>
+                <p>主要聯絡人為計畫聯繫窗口，請留意勾選人員。</p>
+                <div id="leader-List"></div>
             </div>
         </div>
 
@@ -209,12 +133,6 @@
                             <input class="form-check-input" type="radio" value="不同意" id="change_classes_N" name="change_classes">
                             <label class="form-check-label" for="change_classes_N">不同意</label>
                         </div>
-
-                        <!-- <select class="form-select" aria-label="Default select example" id="change_classes" name="change_classes">
-                            <option selected>請選擇</option>
-                            <option value="同意">同意</option>
-                            <option value="不同意">不同意</option>
-                        </select> -->
                     </div>
                 </div>
             </div>
@@ -286,9 +204,6 @@
                                 @endif
 
                                 @endforeach
-
-
-
                             </div>
                         </div>
 
@@ -335,13 +250,6 @@
             </div>
         </div>
 
-
-
-
-
-
-
-
         <div class="my-5 d-flex justify-content-center">
             <a class="btn bg-brand text-white submit_btn" onClick="submit_onclick()">送出</a>
         </div>
@@ -386,11 +294,79 @@
             }
         })
         
+        //判斷報名領導人數量
+        const leaderList = document.querySelector('#leader-List')
+        let dom='';
+        let leaderNum = 1;
+        for(let i=1;i<=5;i++){
+            if(i==1){
+                dom += `
+                <div class="row leader0${i} border-bottom py-3 my-3">
+                    <div class="mb-3 col-md-12">
+                        <input class="form-check-input" type="radio" name="leader-call" id="leader-call-${i}" value="${i}" checked >
+                        <label class="form-check-label" for="leader-call-${i}">主要聯絡人</label>
+                    </div>
+                    <div class="mb-3 col-md-3">
+                        <label for="leader-${leaderNum}" class="form-label">企業接班代表</label>
+                        <input type="text" class="form-control" id="leader-${leaderNum}" name="leader-${leaderNum}">
+                    </div>
+                    <div class="mb-3 col-md-3">
+                        <label for="leader-${leaderNum++}" class="form-label">部門職稱</label>
+                        <input type="text" class="form-control" id="leader-${leaderNum}" name="leader-${leaderNum}">
+                    </div>
+                    <div class="mb-3 col-md-3">
+                        <label for="leader-${leaderNum++}" class="form-label">連絡電話</label>
+                        <input type="text" class="form-control" id="leader-${leaderNum}" name="leader-${leaderNum}" onblur=checkPhone(this.value)>
+                    </div>
+                    <div class="mb-3 col-md-3">
+                        <label for="leader-${leaderNum++}" class="form-label">E-MAIL</label>
+                        <input type="email" class="form-control" id="leader-${leaderNum}" name="leader-${leaderNum}" onblur=isEmail(this.value)>
+                    </div>
+                    <div class="mb-3 col-md-3">
+                        <label for="leader-${leaderNum++}" class="form-label">業務簡介</label>
+                        <input type="text" class="form-control" id="leader-${leaderNum}" name="leader-${leaderNum}">
+                    </div>
+                </div>   
+            `;
+            }else{
+                dom += `
+                <div class="row leader0${i} border-bottom py-3 my-3" style="display: none;">
+                    <div class="mb-3 col-md-12">
+                        <input class="form-check-input" type="radio" name="leader-call" id="leader-call-${i}" value="${((i-1)*5)+1}">
+                        <label class="form-check-label" for="leader-call-${i}">姓名${i}</label>
+                    </div>
+                    <div class="mb-3 col-md-3">
+                        <label for="leader-${leaderNum++}" class="form-label">企業接班代表</label>
+                        <input type="text" class="form-control" id="leader-${leaderNum}" name="leader-${leaderNum}">
+                    </div>
+                    <div class="mb-3 col-md-3">
+                        <label for="leader-${leaderNum++}" class="form-label">部門職稱</label>
+                        <input type="text" class="form-control" id="leader-${leaderNum}" name="leader-${leaderNum}">
+                    </div>
+                    <div class="mb-3 col-md-3">
+                        <label for="leader-${leaderNum++}" class="form-label">連絡電話</label>
+                        <input type="text" class="form-control" id="leader-${leaderNum}" name="leader-${leaderNum}" onblur=checkPhone(this.value)>
+                    </div>
+                    <div class="mb-3 col-md-3">
+                        <label for="leader-${leaderNum++}" class="form-label">E-MAIL</label>
+                        <input type="email" class="form-control" id="leader-${leaderNum}" name="leader-${leaderNum}" onblur=isEmail(this.value)>
+                    </div>
+                    <div class="mb-3 col-md-3">
+                        <label for="leader-${leaderNum++}" class="form-label">業務簡介</label>
+                        <input type="text" class="form-control" id="leader-${leaderNum}" name="leader-${leaderNum}">
+                    </div>
+                </div>   
+            `;
+            }
+        }
+        leaderList.innerHTML = dom;
 
         const add_btn = document.querySelector('#add_btn');
         const delete_btn = document.querySelector('#delete_btn');
         const leader02 = document.querySelector('.leader02');
         const leader03 = document.querySelector('.leader03');
+        const leader04 = document.querySelector('.leader04');
+        const leader05 = document.querySelector('.leader05');
         let count = 1;
         add_btn.addEventListener('click', () => {
             count++
@@ -405,21 +381,38 @@
             if (count < 1) {
                 count = 1
             }
-            if (count > 3) {
-                count = 3
+            if (count > 5) {
+                count = 5
+                alert('最多五人');
             }
-            console.log(count)
+            // console.log(count)
             if (count == 1) {
                 delete_btn.style.display = 'none'
                 leader02.style.display = 'none';
                 leader03.style.display = 'none';
+                leader04.style.display = 'none';
+                leader05.style.display = 'none';
             } else if (count == 2) {
                 delete_btn.style.display = 'inline'
                 leader02.style.display = 'flex';
                 leader03.style.display = 'none';
+                leader04.style.display = 'none';
+                leader05.style.display = 'none';
             } else if (count == 3) {
                 leader02.style.display = 'flex';
                 leader03.style.display = 'flex';
+                leader04.style.display = 'none';
+                leader05.style.display = 'none';
+            } else if (count == 4) {
+                leader02.style.display = 'flex';
+                leader03.style.display = 'flex';
+                leader04.style.display = 'flex';
+                leader05.style.display = 'none';
+            } else if (count == 5) {
+                leader02.style.display = 'flex';
+                leader03.style.display = 'flex';
+                leader04.style.display = 'flex';
+                leader05.style.display = 'flex';
             }
         }
         
@@ -427,8 +420,7 @@
         const submit_btn = document.querySelector('.submit_btn');
 
         const submit_onclick = () => {
-
-            
+      
             const data = {};
             const files = {};
             const ques_s = {};
@@ -459,7 +451,8 @@
 
             const leaderCall = document.querySelectorAll('input[name="leader-call"]:checked');
 
-            for(let i=1;i<=15;i++){
+            for(let i=1;i<=25;i++){
+                // console.log(i)
                 if(leaderCall[0].value == i){
                     leaderArr.push(document.querySelector('#leader-'+i).value+'[聯絡人]');
                 }else{
@@ -514,16 +507,41 @@
                 flag_leader.scrollIntoView()
                 return
             }
+            //判斷參與計畫接班梯隊人數量有打開就必填否則免
+                if(count >= 2){
+                    if(leaderArr[5] == '' || leaderArr[6] == '' || leaderArr[7] == '' ||  leaderArr[8] == '' || leaderArr[9] == ''){
+                        alert(txt+flag_leader.innerHTML);
+                        flag_leader.scrollIntoView()
+                        return
+                    }
+                }
+                if(count >= 3){
+                    if(leaderArr[10] == '' || leaderArr[11] == '' || leaderArr[12] == '' ||  leaderArr[13] == '' || leaderArr[14] == ''){
+                        alert(txt+flag_leader.innerHTML);
+                        flag_leader.scrollIntoView()
+                        return
+                    }
+                }
+                if(count >= 4){
+                    if(leaderArr[15] == '' || leaderArr[16] == '' || leaderArr[17] == '' ||  leaderArr[18] == '' || leaderArr[19] == ''){
+                        alert(txt+flag_leader.innerHTML);
+                        flag_leader.scrollIntoView()
+                        return
+                    }
+                }
+                if(count >= 5){
+                    if(leaderArr[20] == '' || leaderArr[21] == '' || leaderArr[22] == '' ||  leaderArr[23] == '' || leaderArr[24] == ''){
+                        alert(txt+flag_leader.innerHTML);
+                        flag_leader.scrollIntoView()
+                        return
+                    }
+                }
+            //END判斷參與計畫接班梯隊人數量有打開就必填否則免
             if(succeedVal == ''){
                 alert(txt+flag_succeed.innerHTML);
                 flag_succeed.scrollIntoView()
                 return
             }
-            // if(amount_scaleVal == ''){
-            //     alert(txt+flag_amount_scale.innerHTML);
-            //     flag_amount_scale.scrollIntoView()
-            //     return
-            // }
             if(document.querySelector('#amount_scale-01').value == '' || document.querySelector('#amount_scale-02').value == ''){
                 alert(txt+flag_amount_scale.innerHTML);
                 flag_amount_scale.scrollIntoView()
@@ -549,6 +567,7 @@
                 flag_upload3.scrollIntoView()
                 return
             }
+            //-------------------------------------------------
             let change_classesVal = '';
             if(change_classes !== null){
                  change_classesVal = change_classes.value
@@ -631,7 +650,7 @@
 
             data['ques_m'] = ques_mArr;
 
-            //資料
+            //資料 參考用而已
             // axios.post('/class01s', {
             //     data
             // }).then((response) => {
@@ -659,13 +678,14 @@
             bodyFormData.append('upload', files['upload']); 
             bodyFormData.append('upload2', files['upload2']); 
             bodyFormData.append('upload3', files['upload3']); 
-            console.log(bodyFormData)
+            // console.log(bodyFormData)
             //檔案
+            //----------------------
             axios({
-            method: "post",
-            url: '/class01s',
-            data: bodyFormData,
-            headers: { "Content-Type": "multipart/form-data" },
+                method: "post",
+                url: '/class01s',
+                data: bodyFormData,
+                headers: { "Content-Type": "multipart/form-data" },
             })
             .then(function (response) {
                 submit_btn.disabled = false;
@@ -688,7 +708,7 @@
                     }else{
                         alert(response.data.msg);
                     }
-                        
+                    
                 }
             })
             .catch(function (response) {
@@ -698,6 +718,7 @@
                 console.log(response);
                 alert('送出發生錯誤，請聯絡管理人員');
             });
+            //----------------------
 
         }
 
@@ -785,6 +806,16 @@
             return true;
             else
             alert("Email格式錯誤，請重新填寫");
+        }
+        //電話驗證
+        function checkPhone(phoneNum){ 
+            // var phone = document.getElementById('phone').value;
+            // let pettern = /^1[34578]\d{9}$/;
+            let pettern = /(\d{2,3}-?|\(\d{2,3}\))\d{3,4}-?\d{4}|09\d{2}(\d{6}|-\d{3}-\d{3})/;
+            if(pettern.test(phoneNum))
+            return true;
+            else
+            alert("手機號碼有誤，請重填"); 
         }
         
     </script>
