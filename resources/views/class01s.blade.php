@@ -304,7 +304,7 @@
                 <div class="row leader0${i} border-bottom py-3 my-3">
                     <div class="mb-3 col-md-12">
                         <input class="form-check-input" type="radio" name="leader-call" id="leader-call-${i}" value="${i}" checked >
-                        <label class="form-check-label" for="leader-call-${i}">主要聯絡人</label>
+                        <label class="form-check-label" for="leader-call-${i}">若為主要聯絡人請勾選</label>
                     </div>
                     <div class="mb-3 col-md-3">
                         <label for="leader-${leaderNum}" class="form-label">企業接班代表</label>
@@ -335,7 +335,7 @@
                 <div class="row leader0${i} border-bottom py-3 my-3" style="display: none;">
                     <div class="mb-3 col-md-12">
                         <input class="form-check-input" type="radio" name="leader-call" id="leader-call-${i}" value="${((i-1)*5)+1}">
-                        <label class="form-check-label" for="leader-call-${i}">主要聯絡人${i}</label>
+                        <label class="form-check-label" for="leader-call-${i}">若為主要聯絡人請勾選</label>
                     </div>
                     <div class="mb-3 col-md-3">
                         <label for="leader-${leaderNum++}" class="form-label">姓名</label>
