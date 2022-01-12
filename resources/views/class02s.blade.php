@@ -401,6 +401,7 @@
             }
             if (count > 5) {
                 count = 5
+                alert('最多五人');
             }
             // console.log(count)
             if (count == 1) {
