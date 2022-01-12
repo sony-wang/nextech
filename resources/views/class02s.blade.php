@@ -172,11 +172,11 @@
                 <div class="row">
                     <div class="mb-3 col-md-12">
                         <label for="upload" class="form-label" id="flag_upload">執行政府計畫揭露聲明書(上傳格式PDF、JPG、PNG)</label>
-                        <input type="file" class="form-control" id="upload" name="upload">
+                        <input type="file" class="form-control" id="upload" name="upload" accept=".pdf,.jpg,.png" onchange="checkfile(this);">
                     </div>
                     <div class="mb-3 col-md-12">
                         <label for="upload2" class="form-label" id="flag_upload2">公司登記證明文件(上傳格式PDF、JPG、PNG)</label>
-                        <input type="file" class="form-control" id="upload2" name="upload2">
+                        <input type="file" class="form-control" id="upload2" name="upload2" accept=".pdf,.jpg,.png" onchange="checkfile(this);">
                     </div>
                 </div>
             </div>
@@ -329,11 +329,13 @@
                     </div>
                     <div class="mb-3 col-md-3">
                         <label for="leader-${leaderNum++}" class="form-label">連絡電話</label>
-                        <input type="text" class="form-control" id="leader-${leaderNum}" name="leader-${leaderNum}" onblur=checkPhone(this.value)>
+                        <input type="text" class="form-control" id="leader-${leaderNum}" name="leader-${leaderNum}" onblur=checkPhone(this.value,${i},"leader-${leaderNum}")>
+                        <div id="phone-alert${i}" class="form-text text-danger"></div>
                     </div>
                     <div class="mb-3 col-md-3">
                         <label for="leader-${leaderNum++}" class="form-label">E-MAIL</label>
-                        <input type="email" class="form-control" id="leader-${leaderNum}" name="leader-${leaderNum}" onblur=isEmail(this.value)>
+                        <input type="email" class="form-control" id="leader-${leaderNum}" name="leader-${leaderNum}" onblur=isEmail(this.value,${i},"leader-${leaderNum}")>
+                        <div id="email-alert${i}" class="form-text text-danger"></div>
                     </div>
                     <div class="mb-3 col-md-3">
                         <label for="leader-${leaderNum++}" class="form-label">業務簡介</label>
@@ -346,10 +348,10 @@
                 <div class="row leader0${i} border-bottom py-3 my-3" style="display: none;">
                     <div class="mb-3 col-md-12">
                         <input class="form-check-input" type="radio" name="leader-call" id="leader-call-${i}" value="${((i-1)*5)+1}">
-                        <label class="form-check-label" for="leader-call-${i}">姓名${i}</label>
+                        <label class="form-check-label" for="leader-call-${i}">主要聯絡人${i}</label>
                     </div>
                     <div class="mb-3 col-md-3">
-                        <label for="leader-${leaderNum++}" class="form-label">企業接班代表</label>
+                        <label for="leader-${leaderNum++}" class="form-label">姓名</label>
                         <input type="text" class="form-control" id="leader-${leaderNum}" name="leader-${leaderNum}">
                     </div>
                     <div class="mb-3 col-md-3">
@@ -358,11 +360,13 @@
                     </div>
                     <div class="mb-3 col-md-3">
                         <label for="leader-${leaderNum++}" class="form-label">連絡電話</label>
-                        <input type="text" class="form-control" id="leader-${leaderNum}" name="leader-${leaderNum}" onblur=checkPhone(this.value)>
+                        <input type="text" class="form-control" id="leader-${leaderNum}" name="leader-${leaderNum}" onblur=checkPhone(this.value,${i},"leader-${leaderNum}")>
+                        <div id="phone-alert${i}" class="form-text text-danger"></div>
                     </div>
                     <div class="mb-3 col-md-3">
                         <label for="leader-${leaderNum++}" class="form-label">E-MAIL</label>
-                        <input type="email" class="form-control" id="leader-${leaderNum}" name="leader-${leaderNum}" onblur=isEmail(this.value)>
+                        <input type="email" class="form-control" id="leader-${leaderNum}" name="leader-${leaderNum}" onblur=isEmail(this.value,${i},"leader-${leaderNum}")>
+                        <div id="email-alert${i}" class="form-text text-danger"></div>
                     </div>
                     <div class="mb-3 col-md-3">
                         <label for="leader-${leaderNum++}" class="form-label">業務簡介</label>
@@ -836,22 +840,45 @@
         })
 
         //email驗證
-        function isEmail(strEmail) {
+        function isEmail(strEmail, i, inpDOM) {
             let pattern = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-            if (pattern.test(strEmail))
-            return true;
-            else
-            alert("Email格式錯誤，請重新填寫");
+            if (pattern.test(strEmail)){
+                document.querySelector(`#email-alert${i}`).innerHTML = '';
+                return true;
+            }else{
+                document.querySelector(`#email-alert${i}`).innerHTML = 'Email格式錯誤，請重新填寫';
+                document.querySelector('#'+inpDOM).value = '';
+                // alert("Email格式錯誤，請重新填寫");
+            }
         }
         //電話驗證
-        function checkPhone(phoneNum){ 
-            // var phone = document.getElementById('phone').value;
-            // let pettern = /^1[34578]\d{9}$/;
+        function checkPhone(phoneNum, i, inpDOM){
             let pettern = /(\d{2,3}-?|\(\d{2,3}\))\d{3,4}-?\d{4}|09\d{2}(\d{6}|-\d{3}-\d{3})/;
-            if(pettern.test(phoneNum))
-            return true;
-            else
-            alert("手機號碼有誤，請重填"); 
+            if(pettern.test(phoneNum)){
+                document.querySelector(`#phone-alert${i}`).innerHTML = '';
+                return true;
+            }else{
+                document.querySelector(`#phone-alert${i}`).innerHTML = '手機號碼有誤，請重填';
+                document.querySelector('#'+inpDOM).value = '';
+                // alert("手機號碼有誤，請重填"); 
+            }
+        }
+
+        //判斷上傳檔案的類型
+        function checkfile(sender) {
+        // 可接受的附檔名.pdf,.jpg,.png
+        let validExts = ['.pdf','.jpg','.png'];
+        if (sender.value == null) {
+            return;
+        }
+        let fileExt = sender.value;
+        fileExt = fileExt.substring(fileExt.lastIndexOf('.'));
+        if (validExts.indexOf(fileExt) < 0) {
+            sender.value = null;
+            alert("檔案類型錯誤，可接受的副檔名有：" + validExts.toString());
+                return;
+        }
+        else return true;
         }
 
     </script>

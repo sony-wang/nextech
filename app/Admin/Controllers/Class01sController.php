@@ -40,7 +40,21 @@ class Class01sController extends AdminController
         $grid->column('industry', __('Industry'));
         $grid->column('business', __('Business'));
         $grid->column('address', __('Address'));
-        $grid->column('leader', __('Leader'))->hide();
+        // $grid->column('leader', __('Leader'))->hide();
+        $grid->column('leader', __('Leader'))->display(function($title){
+            $txt = '';
+            foreach(json_decode($title) as $key => $item){
+                if(empty($item)){
+                    continue;
+                }
+                if($key == 0)$txt .= '【';
+                if($key % 5 == 0 && $key != 0){
+                    $txt .= '】【';
+                }
+                $txt .= $item . ',';
+            }
+            return $txt;
+        });
         $grid->column('succeed', __('Succeed'));
         $grid->column('amount_scale', __('Amount scale'));
         $grid->column('change_classes', __('Change classes'));

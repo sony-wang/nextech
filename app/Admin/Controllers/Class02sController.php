@@ -47,7 +47,21 @@ class Class02sController extends AdminController
         $grid->column('expect', __('Expect'));
         $grid->column('succeed', __('Succeed'));
         $grid->column('deputy', __('Deputy'));
-        $grid->column('leader', __('Member list'))->hide();
+        // $grid->column('leader', __('Member list'))->hide();
+        $grid->column('leader', __('Member list'))->display(function($title){
+            $txt = '';
+            foreach(json_decode($title) as $key => $item){
+                if(empty($item)){
+                    continue;
+                }
+                if($key == 0)$txt .= '【';
+                if($key % 5 == 0 && $key != 0){
+                    $txt .= '】【';
+                }
+                $txt .= $item . ',';
+            }
+            return $txt;
+        });
         $grid->column('upload', __('Gov_plan_tatement'))->hide();
         $grid->column('upload2', __('Com_reg_cert'))->hide();
         $grid->column('ques_s', __('Ques_s'))->hide();
