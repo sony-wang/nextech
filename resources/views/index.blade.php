@@ -155,6 +155,8 @@
 
             if (DifferenceHour < 0 || DifferenceMinute < 0 || DifferenceSecond < 0) {
                 timeTXT.innerHTML = '<h1 class="text-danger">已截止</h1>'
+                document.querySelector('.class01').href = '#';
+                return
             }
 
             if (convertHour != DifferenceHour) dd.innerHTML = DifferenceHour //+ '天'
@@ -189,6 +191,7 @@
 
             if (DifferenceHour < 0 || DifferenceMinute < 0 || DifferenceSecond < 0) {
                 timeTXT2.innerHTML = '<h1 class="text-danger">已截止</h1>'
+                document.querySelector('.class02').href = '#';
             }
 
             // if (convertHour != DifferenceHour) dd2.innerHTML = DifferenceHour //+ '天'
