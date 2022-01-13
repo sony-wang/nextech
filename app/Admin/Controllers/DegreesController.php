@@ -17,7 +17,7 @@ class DegreesController extends AdminController
      *
      * @var string
      */
-    protected $title = 'Degree';
+    protected $title = '企業數位化程度健診';
 
     /**
      * Make a grid builder.

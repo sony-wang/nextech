@@ -25,6 +25,10 @@
                 <h5 class="card-title text-brand">第一部分:基本資料</h5>
                 <div class="row">
                     <div class="mb-3 col-md-6">
+                        <label for="recommend" class="form-label">推薦單位(非必填)</label>
+                        <input type="text" class="form-control" id="recommend" name="recommend">
+                    </div>
+                    <div class="mb-3 col-md-6">
                         <label for="tax_id_no" class="form-label" id="flag_tax_id_no">統一編號</label>
                         <input type="text" class="form-control" id="tax_id_no" name="tax_id_no">
                     </div>
@@ -457,6 +461,7 @@
             const companyVal = document.querySelector('#company').value;
             const establishmentVal = document.querySelector('#establishment').value;
             const tax_id_noVal = document.querySelector('#tax_id_no').value;
+            const recommendVal = document.querySelector('#recommend').value;
             const addressVal = document.querySelector('#address').value;
             const capitalVal = document.querySelector('#capital').value;
             const employeesVal = document.querySelector('#employees').value;
@@ -627,6 +632,7 @@
             data['company'] = companyVal;
             data['establishment'] = establishmentVal;
             data['tax_id_no'] = tax_id_noVal;
+            data['recommend'] = recommendVal;
             data['address'] = addressVal;
             data['capital'] = capitalVal;
             data['employees'] = employeesVal;

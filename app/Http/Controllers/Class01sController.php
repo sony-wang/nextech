@@ -92,6 +92,7 @@ class Class01sController extends Controller
         $data = [
             'company' => $req['company'],
             'tax_id_no' => $req['tax_id_no'],
+            'recommend' => $req['recommend'],
             'establishment' => $req['establishment'],
             'capital' => $req['capital'],
             'employees' => $req['employees'],
@@ -173,49 +174,49 @@ class Class01sController extends Controller
     }
 
 
-    public function handUpload(Request $request){
+    // public function handUpload(Request $request){
         
-        $storagePath_upload = Storage::put('/public/class01/upload', $request['upload']);
-        $fileName_upload = basename($storagePath_upload);
-        Log::info($fileName_upload);
+    //     $storagePath_upload = Storage::put('/public/class01/upload', $request['upload']);
+    //     $fileName_upload = basename($storagePath_upload);
+    //     Log::info($fileName_upload);
 
-        $storagePath_upload2 = Storage::put('/public/class01/upload2', $request['upload2']);
-        $fileName_upload2 = basename($storagePath_upload2);
-        Log::info($fileName_upload2);
+    //     $storagePath_upload2 = Storage::put('/public/class01/upload2', $request['upload2']);
+    //     $fileName_upload2 = basename($storagePath_upload2);
+    //     Log::info($fileName_upload2);
 
-        $storagePath_upload3 = Storage::put('/public/class01/upload3', $request['upload3']);
-        $fileName_upload3 = basename($storagePath_upload3);
-        Log::info($fileName_upload3);
+    //     $storagePath_upload3 = Storage::put('/public/class01/upload3', $request['upload3']);
+    //     $fileName_upload3 = basename($storagePath_upload3);
+    //     Log::info($fileName_upload3);
 
 
-        $data = [
-            'company' => $request['company'],
-            'tax_id_no' => $request['tax_id_no'],
-            'establishment' => $request['establishment'],
-            'capital' => $request['capital'],
-            'employees' => $request['employees'],
-            'industry' => $request['industry'],
-            'business' => $request['business'],
-            'address' => $request['address'],
-            'leader' => json_encode($request['leader']),
-            'succeed' => $request['succeed'],
-            'amount_scale' => $request['amount_scale'],
-            'change_classes' => $request['change_classes'],
-            'upload' => '/storage/class01/upload/'.$fileName_upload,
-            'upload2' => '/storage/class01/upload2/'.$fileName_upload2,
-            'upload3' => '/storage/class01/upload3/'.$fileName_upload3,
-            'ques_s' => json_encode($request['ques_s']),
-            'ques_m' => json_encode($request['ques_m']),
+    //     $data = [
+    //         'company' => $request['company'],
+    //         'tax_id_no' => $request['tax_id_no'],
+    //         'establishment' => $request['establishment'],
+    //         'capital' => $request['capital'],
+    //         'employees' => $request['employees'],
+    //         'industry' => $request['industry'],
+    //         'business' => $request['business'],
+    //         'address' => $request['address'],
+    //         'leader' => json_encode($request['leader']),
+    //         'succeed' => $request['succeed'],
+    //         'amount_scale' => $request['amount_scale'],
+    //         'change_classes' => $request['change_classes'],
+    //         'upload' => '/storage/class01/upload/'.$fileName_upload,
+    //         'upload2' => '/storage/class01/upload2/'.$fileName_upload2,
+    //         'upload3' => '/storage/class01/upload3/'.$fileName_upload3,
+    //         'ques_s' => json_encode($request['ques_s']),
+    //         'ques_m' => json_encode($request['ques_m']),
 
-            'created_at' => date('d-m-y h:i:s'),
-            'updated_at' => date('d-m-y h:i:s')
-        ];
+    //         'created_at' => date('d-m-y h:i:s'),
+    //         'updated_at' => date('d-m-y h:i:s')
+    //     ];
         
 
-        DB::table('class01s')->insert(
-            $data
-        );
+    //     DB::table('class01s')->insert(
+    //         $data
+    //     );
 
-        return 'OKOK';
-    }
+    //     return 'OKOK';
+    // }
 }

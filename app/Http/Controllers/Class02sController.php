@@ -88,6 +88,7 @@ class Class02sController extends Controller
             'company' => $req['company'],
             'establishment' => $req['establishment'],
             'tax_id_no' => $req['tax_id_no'],
+            'recommend' => $req['recommend'],
             'address' => $req['address'],
             'capital' => $req['capital'],
             'employees' => $req['employees'],
