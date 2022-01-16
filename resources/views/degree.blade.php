@@ -285,6 +285,11 @@
                 flag_tax_id_no.scrollIntoView()
                 return
             }
+            if(tax_id_noVal.length !== 8){
+                alert('統一編號錯誤，請確認後輸入');
+                flag_tax_id_no.scrollIntoView()
+                return
+            }
             if(establishmentVal == ''){
                 alert(txt+flag_establishment.innerHTML);
                 flag_establishment.scrollIntoView()
