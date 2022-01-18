@@ -35,6 +35,7 @@ class Class02sController extends AdminController
         // });
         $grid->column('establishment', __('Establishment'));
         $grid->column('tax_id_no', __('Tax id no'));
+        $grid->column('recommend', __('Recommend'));
         $grid->column('address', __('Address'));
         $grid->column('capital', __('Capital'));
         $grid->column('employees', __('Employees'));
@@ -86,6 +87,7 @@ class Class02sController extends AdminController
         $show->field('company', __('Company'));
         $show->field('establishment', __('Establishment'));
         $show->field('tax_id_no', __('Tax id no'));
+        $show->field('recommend', __('Recommend'));
         $show->field('address', __('Address'));
         $show->field('capital', __('Capital'));
         $show->field('employees', __('Employees'));
@@ -259,6 +261,7 @@ class Class02sController extends AdminController
         $form->text('company', __('Company'));
         $form->text('establishment', __('Establishment'));
         $form->text('tax_id_no', __('Tax id no'));
+        $form->text('recommend', __('Recommend'));
         $form->text('address', __('Address'));
         $form->text('capital', __('Capital'));
         $form->text('employees', __('Employees'));

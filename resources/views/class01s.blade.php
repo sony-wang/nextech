@@ -20,6 +20,13 @@
         <h3 class="bg-brand2 text-white rounded-3 p-2 text-center">標竿企業實戰班</h3>
         <!-- <form action="/class01s" method="post"> -->
         @csrf
+        <div class="form-check my-5">
+            <input class="form-check-input" type="checkbox" id="agree">
+            <label class="form-check-label">
+            <p class="my-0">我已詳細閱讀，並同意接受<a class="text-brand text-decoration-none" href="javascript:;" data-bs-toggle="modal" data-bs-target="#exampleModal">「蒐集個人資料告知事項暨個人資料提供同意書」</a>內容</p>
+            <p class="my-0 text-secondary">（請注意，此處點選同意具有個人資料保護法所定之書面同意效果，不勾選亦無法送出本次填寫）</p>
+            </label>
+        </div>
         <div class="card mb-3">
             <div class="card-body">
                 <h5 class="card-title text-brand">第一部分:基本資料</h5>
@@ -65,6 +72,10 @@
                     <div class="mb-3 col-md-6">
                         <label for="address" class="form-label" id="flag_address">公司地址(含郵遞區號)</label>
                         <input type="text" class="form-control" id="address" name="address">
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="recommend" class="form-label">訊息來源(非必填)</label>
+                        <input type="text" class="form-control" id="recommend" name="recommend">
                     </div>
                 </div>
             </div>
@@ -254,6 +265,51 @@
             <a class="btn bg-brand text-white submit_btn" onClick="submit_onclick()">送出</a>
         </div>
         <!-- </form> -->
+
+        <!-- modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                <div class="modal-header bg-brand">
+                    <h5 class="modal-title text-white" id="exampleModalLabel">蒐集個人資料告知事項暨個人資料提供同意書</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>蒐集個人資料告知事項</p>
+                    <p>經濟部中小企業處(以下簡稱本處)為遵守個人資料保護法規定，在您提供個人資料予本處或本處委辦計畫執行單位前，依法告知下列事項：</p>
+                    <p>蒐集目的與個人資料類別：本處或本處委辦計畫執行單位，因【辦理各項產業發展活動及統計分析本處計畫執行情形】，而獲取您下列個人資料類別，【姓名、性別、連絡方式(包括但不限於電話/傳真號碼、E-MAIL、居住或工作地址等)】，或其他得以直接或間接識別您個人之資料。</p>
+                    <p>本處或本處委辦計畫執行單位將依個人資料保護法及相關法令之規定，依本處隱私權政策，蒐集、處理及利用您的個人資料。</p>
+                    <p>若您的個人資料有任何異動，請主動向本處或本處委辦計畫執行單位申請更正，使其保持正確、最新及完整。</p>
+                    <p>個人資料利用之期間、地區、對象及方式：</p>
+                    <p>利用期間：本處或本處委辦計畫執行單位，將於原蒐集目的之存續期間合理利用您的個人資料。</p>
+                    <ol>
+                        <li>利用地區：除蒐集之目的涉及國際業務或活動外，本處或本處委辦計畫執行單位僅於中華民國領域內利用您的個人資料。</li>
+                        <li>利用對象：本處或本處委辦計畫執行單位。</li>
+                        <li>利用方式：將於原蒐集之特定目的，及其他公務機關行政協助之目的範圍內，合理利用您的個人資料。</li>
+                    </ol>
+                    您可依個人資料保護法第3條規定，就您的個人資料向本處或本處委辦計畫執行單位(有關個人資料當事人權利行使請洽本同意書上方所示個資聯絡窗口)，行使下列權利，但因本處或本處委辦計畫執行單位執行職務或業務所必須者，本處或本處委辦計畫執行單位得拒絕之：
+                    <p>
+                    (一)查詢或請求閱覽。<br>
+                    (二)請求製給複製本。<br>
+                    (三)請求補充或更正。<br>
+                    (四)請求停止蒐集、處理及利用。<br>
+                    (五)請求刪除。<br>
+                    </p>
+                    <p>依個人資料保護法第14條規定，本處得酌收行政作業費用。</p>
+                    <p>若您未提供正確之個人資料，本處或本處委辦計畫執行單位將無法為您提供特定目的之相關業務。</p>
+                    <p>本處因業務需要而委託其他機關處理您的個人資料時，將善盡監督之責。</p>
+                    <p>您瞭解此一同意書符合個人資料保護法及相關法令之要求，且同意本處留存此同意書，供日後取出查驗。</p>
+                    <p>個人資料之同意提供</p>
+                    <p>本人已充分知悉貴處上述告知事項。</p>
+                    <p>本人同意貴處或貴處授權之專案管理單位，蒐集、處理、利用本人之個人資料，以及其他公務機關請求行政協助目的之提供。</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
@@ -424,6 +480,14 @@
         const submit_btn = document.querySelector('.submit_btn');
 
         const submit_onclick = () => {
+
+            //資料蒐集同意
+            const agree = document.querySelector('#agree')
+            if(!agree.checked){
+                alert('請同意蒐集個人資料告知事項暨個人資料提供')
+                agree.scrollIntoView()
+                return
+            }
       
             const data = {};
             const files = {};
@@ -440,6 +504,7 @@
             
             const companyVal = document.querySelector('#company').value;
             const tax_id_noVal = document.querySelector('#tax_id_no').value;
+            const recommendVal = document.querySelector('#recommend').value;
             const establishmentVal = document.querySelector('#establishment').value;
             const capitalVal = document.querySelector('#capital').value;
             const employeesVal = document.querySelector('#employees').value;
@@ -473,6 +538,11 @@
             }
             if(tax_id_noVal == ''){
                 alert(txt+flag_tax_id_no.innerHTML);
+                flag_tax_id_no.scrollIntoView()
+                return
+            }
+            if(tax_id_noVal.length !== 8){
+                alert('統一編號錯誤，請確認後輸入');
                 flag_tax_id_no.scrollIntoView()
                 return
             }
@@ -578,6 +648,7 @@
             }
             data['company'] = companyVal;
             data['tax_id_no'] = tax_id_noVal;
+            data['recommend'] = recommendVal;
             data['establishment'] = establishmentVal;
             data['capital'] = capitalVal;
             data['employees'] = employeesVal;

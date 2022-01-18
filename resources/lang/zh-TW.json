@@ -1,6 +1,7 @@
 {
     "ID": "ID",
-    "Company":"名字",
+    "Company":"公司名稱",
+    "Recommend":"推薦單位(非必填)",
     "Tax id no":"統一編號",
     "Establishment":"創立日期(西元年)",
     "Capital":"資本額（萬元）",

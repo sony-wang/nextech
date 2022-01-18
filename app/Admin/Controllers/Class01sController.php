@@ -34,6 +34,7 @@ class Class01sController extends AdminController
         //     return "<span style='color:#efa960'>$title</span>";
         // });
         $grid->column('tax_id_no', __('Tax id no'));
+        $grid->column('recommend', __('Recommend'));
         $grid->column('establishment', __('Establishment'));
         $grid->column('capital', __('Capital'));
         $grid->column('employees', __('Employees'));
@@ -82,6 +83,7 @@ class Class01sController extends AdminController
         $show->field('id', __('Id'));
         $show->field('company', __('Company'));
         $show->field('tax_id_no', __('Tax id no'));
+        $show->field('recommend', __('Recommend'));
         $show->field('establishment', __('Establishment'));
         $show->field('capital', __('Capital'));
         $show->field('employees', __('Employees'));
@@ -256,6 +258,7 @@ class Class01sController extends AdminController
 
         $form->text('company', __('Company'));
         $form->text('tax_id_no', __('Tax id no'));
+        $form->text('recommend', __('Recommend'));
         $form->text('establishment', __('Establishment'));
         $form->text('capital', __('Capital'));
         $form->text('employees', __('Employees'));
