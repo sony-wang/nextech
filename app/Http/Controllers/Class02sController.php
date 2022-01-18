@@ -108,8 +108,8 @@ class Class02sController extends Controller
             'upload' => '/storage/class02/upload/'.$fileName_upload,
             'upload2' => '/storage/class02/upload2/'.$fileName_upload2,
 
-            'created_at' => date('d-m-y h:i:s'),
-            'updated_at' => date('d-m-y h:i:s')
+            'created_at' => date('y-m-d h:i:s'),
+            'updated_at' => date('y-m-d h:i:s')
         ];
 
         //先查有沒有已存在統編

@@ -15,7 +15,7 @@ class MainsController extends AdminController
      *
      * @var string
      */
-    protected $title = 'Main';
+    protected $title = '首頁設定';
 
     /**
      * Make a grid builder.

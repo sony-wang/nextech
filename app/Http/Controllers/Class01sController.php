@@ -108,8 +108,8 @@ class Class01sController extends Controller
             'ques_s' => json_encode($req['ques_s'],JSON_UNESCAPED_UNICODE),
             'ques_m' => json_encode($req['ques_m'],JSON_UNESCAPED_UNICODE),
 
-            'created_at' => date('d-m-y h:i:s'),
-            'updated_at' => date('d-m-y h:i:s')
+            'created_at' => date('y-m-d h:i:s'),
+            'updated_at' => date('y-m-d h:i:s')
         ];
         
 
