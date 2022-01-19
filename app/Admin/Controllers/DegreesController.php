@@ -58,6 +58,10 @@ class DegreesController extends AdminController
         $show = new Show(Degree::findOrFail($id));
 
         $show->field('id', __('Id'));
+        $show->field('filler', __('Filler'));
+        $show->field('department_title', __('Department_title'));
+        $show->field('phone', __('Phone'));
+        $show->field('email', __('Email'));
         $show->field('company', __('Company'));
         $show->field('tax_id_no', __('Tax id no'));
         $show->field('establishment', __('Establishment'));
@@ -177,6 +181,10 @@ class DegreesController extends AdminController
     {
         $form = new Form(new Degree());
 
+        $form->text('filler', __('Filler'));
+        $form->text('department_title', __('Department_title'));
+        $form->text('phone', __('Phone'));
+        $form->text('email', __('Email'));
         $form->text('company', __('Company'));
         $form->text('tax_id_no', __('Tax id no'));
         $form->text('establishment', __('Establishment'));
