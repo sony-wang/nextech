@@ -79,6 +79,11 @@ class DegreesController extends Controller
         $req = json_decode($request['data'],JSON_UNESCAPED_UNICODE);
 
         $data = [
+            'filler' => $req['filler'],
+            'department_title' => $req['department_title'],
+            'phone' => $req['phone'],
+            'email' => $req['email'],
+
             'company' => $req['company'],
             'tax_id_no' => $req['tax_id_no'],
             'establishment' => $req['establishment'],

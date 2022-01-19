@@ -43,6 +43,9 @@
     "File":"首頁檔案上傳",
     "Link":"首頁檔案連結",
     "Ques s":"企業數位化程度健診",
-    "Ques m":"企業需求及準備"
+    "Filler":"填表人",
+    "Department_title":"部門職稱",
+    "Phone":"連絡電話",
+    "email":"E-mail"
 
 }

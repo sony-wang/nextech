@@ -29,6 +29,10 @@ class DegreesController extends AdminController
         $grid = new Grid(new Degree());
 
         $grid->column('id', __('Id'));
+        $grid->column('filler', __('Filler'));
+        $grid->column('department_title', __('Department_title'));
+        $grid->column('phone', __('Phone'));
+        $grid->column('email', __('Email'));
         $grid->column('company', __('Company'));
         $grid->column('tax_id_no', __('Tax id no'));
         $grid->column('establishment', __('Establishment'));

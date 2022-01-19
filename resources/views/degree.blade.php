@@ -32,6 +32,22 @@
                 <h5 class="card-title text-brand">第一部分:基本資料</h5>
                 <div class="row">
                     <div class="mb-3 col-md-6">
+                        <label for="filler" class="form-label" id="flag_filler">填表人</label>
+                        <input type="text" class="form-control" id="filler" name="filler">
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="department_title" class="form-label" id="flag_department_title">部門職稱</label>
+                        <input type="text" class="form-control" id="department_title" name="department_title">
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="phone" class="form-label" id="flag_phone">連絡電話</label>
+                        <input type="text" class="form-control" id="phone" name="phone">
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="email" class="form-label" id="flag_email">E-mail</label>
+                        <input type="text" class="form-control" id="email" name="email">
+                    </div>
+                    <div class="mb-3 col-md-6">
                         <label for="company" class="form-label" id="flag_company">公司名稱</label>
                         <input type="text" class="form-control" id="company" name="company">
                     </div>
@@ -266,6 +282,11 @@
             const ques_mObj = {};
 
 
+            const fillerVal = document.querySelector('#filler').value;
+            const department_titleVal = document.querySelector('#department_title').value;
+            const phoneVal = document.querySelector('#phone').value;
+            const emailVal = document.querySelector('#email').value;
+
             const companyVal = document.querySelector('#company').value;
             const tax_id_noVal = document.querySelector('#tax_id_no').value;
             const establishmentVal = document.querySelector('#establishment').value;
@@ -275,6 +296,29 @@
 
 
             const txt = '請輸入'
+            if(fillerVal == ''){
+                alert(txt+flag_filler.innerHTML);
+                flag_filler.scrollIntoView()
+                return
+            }
+            if(department_titleVal == ''){
+                alert(txt+flag_department_title.innerHTML);
+                flag_department_title.scrollIntoView()
+                return
+            }
+            if(phoneVal == ''){
+                alert(txt+flag_phone.innerHTML);
+                flag_phone.scrollIntoView()
+                return
+            }
+            if(emailVal == ''){
+                alert(txt+flag_email.innerHTML);
+                flag_email.scrollIntoView()
+                return
+            }
+
+
+
             if(companyVal == ''){
                 alert(txt+flag_company.innerHTML);
                 flag_company.scrollIntoView()
@@ -311,6 +355,10 @@
                 return
             }
 
+            data['filler'] = fillerVal;
+            data['department_title'] = department_titleVal;
+            data['phone'] = phoneVal;
+            data['email'] = emailVal;
             data['company'] = companyVal;
             data['tax_id_no'] = tax_id_noVal;
             data['establishment'] = establishmentVal;
