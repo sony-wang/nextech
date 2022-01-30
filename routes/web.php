@@ -36,4 +36,7 @@ Route::get('/', 'App\Http\Controllers\MainsController@index');
 Route::get('/degree', 'App\Http\Controllers\DegreesController@index');
 Route::post('/degree', 'App\Http\Controllers\DegreesController@store');
 Route::post('/checkdegree', 'App\Http\Controllers\DegreesController@checkdegree');
+
+Route::get('/getDate', 'App\Http\Controllers\getDataController@index');
+Route::get('/getDate_multi', 'App\Http\Controllers\getDataController@getDate_multi');
 // Route::resource('users', 'UsersController');

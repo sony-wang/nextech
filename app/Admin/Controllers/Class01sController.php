@@ -188,7 +188,8 @@ class Class01sController extends AdminController
                     }
                 }
                 // Log::info($content_ok);
-                $dom = "<ul>";
+                $dom = "<a class='btn btn-primary' href='/getDate?val=$title' target='_blank'>下載</a>";
+                $dom .= "<ul>";
                 foreach($content_ok as $item){
                     $dom .= "<li>[ {$item['ansNO']}.{$item['ansTxt']} ] - {$item['content']}</li>";
                 }
@@ -230,7 +231,8 @@ class Class01sController extends AdminController
                 $content_ok[$key]['ansTxt'] = $tmpChoice;
             }
             // Log::info($content_ok);
-            $dom = "<ul>";
+            $dom = "<a class='btn btn-primary' href='/getDate_multi?val=$title' target='_blank'>下載</a>";
+            $dom .= "<ul>";
             foreach($content_ok as $item){
                 $dom .= "<li>[ {$item['ansTxt']} ] - {$item['category']}</li>";
             }
