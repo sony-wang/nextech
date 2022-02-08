@@ -20,7 +20,7 @@ class UsersController extends Controller
         //
         // $users = DB::select('select * from users where 1', [1]);
         $users = DB::table('users')->get();
-        Log::info(json_decode($users)[0]->name);
+        // Log::info(json_decode($users)[0]->name);
         $tt = json_decode($users)[0]->name;
         return view('users', ['tt' => $tt]);
         // return view('user.name', $users);

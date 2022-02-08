@@ -41,7 +41,7 @@ class Class02sController extends Controller
             }
             array_push($per_cato, $n += $i->total);
         }
-        Log::info($per_cato);
+        // Log::info($per_cato);
 
 
         // Log::info($ques_cate);
@@ -77,11 +77,11 @@ class Class02sController extends Controller
     {
         $storagePath_upload = Storage::put('/public/class02/upload', $request['upload']);
         $fileName_upload = basename($storagePath_upload);
-        Log::info($fileName_upload);
+        // Log::info($fileName_upload);
 
         $storagePath_upload2 = Storage::put('/public/class02/upload2', $request['upload2']);
         $fileName_upload2 = basename($storagePath_upload2);
-        Log::info($fileName_upload2);
+        // Log::info($fileName_upload2);
         $req = json_decode($request['data'],JSON_UNESCAPED_UNICODE);
 
         $data = [

@@ -216,7 +216,7 @@ class getDataController extends Controller
                 );
                 //輸出中文亂碼問題
                 print(chr(0xEF).chr(0xBB).chr(0xBF));
-                Log::info($content_ok);
+                // Log::info($content_ok);
                 $columns = array('答案編號','答案', '題目');
                 $callback = function() use($content_ok, $columns) {
                     $file = fopen('php://output', 'w');
