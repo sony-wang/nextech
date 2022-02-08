@@ -67,6 +67,11 @@
                 @endif
             </div>
         </div>
+        <footer class="text-center rounded py-5 my-3 text-secondary" style="background:#fffc">
+            <p>主辦單位:經濟部中小企業處</p>
+            <p>執行單位:中華民國全國創新創業總會/資訊工業策進會</p>
+            <p>聯絡窗口:02-23328558#320 or 319 林先生</p>
+        </footer>
     </div>
 
 
