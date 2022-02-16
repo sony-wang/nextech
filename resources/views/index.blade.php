@@ -84,6 +84,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js"></script>
 
     <script>
+        // if(window.location.href == 'https://remoremo.xyz/'){
+        //     window.location.href = "https://w1.careernet.org.tw/nextech/register.html";
+        // }
+
         let timeAll01 = new Date("{{$t01}}".replace(/\s/, 'T'));
         let yy_01 = timeAll01.getFullYear()-1911;
         let mm_01 = timeAll01.getMonth()+1;
