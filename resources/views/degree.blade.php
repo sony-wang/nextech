@@ -478,7 +478,8 @@
                 submit_btn.disabled = false;
                 submit_btn.innerHTML = '送出';
                 console.log(response);
-                alert('檔案發生錯誤，請確認檔案格式或檔案大小');
+                alert('請留意輸入字數限制');
+                alert('送出發生錯誤，請聯絡管理人員');
             });
 
         }

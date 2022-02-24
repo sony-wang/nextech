@@ -791,6 +791,7 @@
                 submit_btn.innerHTML = '送出';
                 //handle error
                 console.log(response);
+                alert('請留意輸入字數限制');
                 alert('送出發生錯誤，請聯絡管理人員');
             });
             //----------------------
