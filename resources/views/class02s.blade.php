@@ -816,6 +816,7 @@
 
                     if(response.data.code==1000){
                         alert('已發送完成');
+                        alert('報名成功');
                         // window.location.reload();
                         setTimeout(()=>{
                             document.location.href=`/result?class=02&&id=${data['tax_id_no']}`;
