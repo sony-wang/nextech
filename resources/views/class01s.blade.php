@@ -769,9 +769,9 @@
                 if(response.status == 200){
                     // window.location.reload();
                     if(response.data.code==1000){
+                        alert('已發送完成');
+                        alert('報名成功');
                         if(dotest.checked){
-                            alert('已發送完成');
-                            alert('報名成功');
                             // console.log('有打勾')
                             setTimeout(()=>{
                                 document.location.href=`/result?class=01&&id=${data['tax_id_no']}`;
