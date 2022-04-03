@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\PdfController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,4 +40,6 @@ Route::post('/checkdegree', 'App\Http\Controllers\DegreesController@checkdegree'
 
 Route::get('/getDate', 'App\Http\Controllers\getDataController@index');
 Route::get('/getDate_multi', 'App\Http\Controllers\getDataController@getDate_multi');
+
+Route::get('pdf', [PdfController::class, 'index']);
 // Route::resource('users', 'UsersController');

@@ -22,4 +22,5 @@ Route::group([
     $router->resource('class02', Class02sController::class);
     $router->resource('main', MainsController::class);
     $router->resource('degree', DegreesController::class);
+    $router->resource('degree', DegreesController::class);
 });
