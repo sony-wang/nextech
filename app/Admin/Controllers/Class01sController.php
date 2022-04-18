@@ -27,7 +27,7 @@ class Class01sController extends AdminController
     protected function grid()
     {
         $grid = new Grid(new Class01());
-
+        // $grid->paginate(1);
         $grid->column('id', __('Id'));
         $grid->column('company', __('Company'));
         // $grid->column('company', __('Company'))->display(function ($title) {
@@ -39,8 +39,8 @@ class Class01sController extends AdminController
         $grid->column('capital', __('Capital'));
         $grid->column('employees', __('Employees'));
         $grid->column('industry', __('Industry'));
-        $grid->column('business', __('Business'));
-        $grid->column('address', __('Address'));
+        $grid->column('business', __('Business'))->limit(20);
+        $grid->column('address', __('Address'))->limit(20);
         // $grid->column('leader', __('Leader'))->hide();
         $grid->column('leader', __('Leader'))->display(function($title){
             $txt = '';
@@ -56,7 +56,7 @@ class Class01sController extends AdminController
             }
             return $txt;
         });
-        $grid->column('succeed', __('Succeed'));
+        $grid->column('succeed', __('Succeed'))->limit(20);
         $grid->column('amount_scale', __('Amount scale'));
         $grid->column('change_classes', __('Change classes'));
         $grid->column('upload', __('Proposal'))->hide();
@@ -160,7 +160,8 @@ class Class01sController extends AdminController
             // Log::info('112233');
             // Log::info($newclass01Data[0]['company']);
             $tmpKey = 0;
-            if(!empty( $newclass01Data[0]['ques_s'] )){
+            if(!empty( json_decode($newclass01Data[0]['ques_s']) )){
+            // if(!empty( $newclass01Data[0]['ques_s'] )){
                 foreach(json_decode($newclass01Data[0]['ques_s']) as $key=>$ansNO){
                     $content_ok_s[$tmpKey]['ansNO'] = $ansNO;
                     // array_push($content_ok_s[$tmpKey], $ansNO);
@@ -196,7 +197,8 @@ class Class01sController extends AdminController
                 // Log::info($content_ok_s);
                 $dom = "<h3>單選</h3>";
                 $dom .= "<a class='btn btn-primary' href='/getDate?val={$newclass01Data[0]['ques_s']}' target='_blank'>下載</a>";
-                $dom .= "<a class='btn btn-danger' href='/pdf?type=s&val={$content_json_s}&val2={$newclass01Data[0]['company']}' target='_blank'>PDF下載</a>";
+                // $dom .= "<a class='btn btn-danger' href='/pdf?type=s&val={$content_json_s}&val2={$newclass01Data[0]['company']}' target='_blank'>PDF下載</a>";
+                $dom .= "<a class='btn btn-danger' href='/pdf01?type=s&id={$id}&com={$newclass01Data[0]['company']}' target='_blank'>PDF下載</a>";
                 $dom .= "<ul>";
                 foreach($content_ok_s as $item){
                     $dom .= "<li>[ {$item['ansNO']}.{$item['ansTxt']} ] - {$item['content']}</li>";
@@ -241,14 +243,44 @@ class Class01sController extends AdminController
                 //要傳到PDF的因此轉json
                 $content_json_m = json_encode($content_ok_m);
                 // Log::info($content_ok_m);
+                
                 $dom .= "<h3>多選</h3>";
                 $dom .= "<a class='btn btn-primary' href='/getDate_multi?val={$newclass01Data[0]['ques_m']}' target='_blank'>下載</a>";
-                $dom .= "<a class='btn btn-danger' href='/pdf?type=m&val={$content_json_m}&val2={$newclass01Data[0]['company']}' target='_blank'>PDF下載</a>";
+                // $dom .= "<a class='btn btn-danger' href='/pdf?type=m&val={$content_json_m}&val2={$newclass01Data[0]['company']}' target='_blank'>PDF下載</a>";
+                // $dom .= "<a class='btn btn-danger pdfBtn' target='_blank'>PDF下載(POST)</a>";
+                $dom .= "<a class='btn btn-danger' href='/pdf01?type=m&id={$id}&com={$newclass01Data[0]['company']}' target='_blank'>PDF下載</a>";
                 $dom .= "<ul>";
                 foreach($content_ok_m as $item){
                     $dom .= "<li>[ {$item['ansTxt']} ] - {$item['category']}</li>";
                 }
                 $dom .= "<ul>";
+
+                // $data_m = array(
+                //     'type'=>'m',
+                //     'data'=>$content_json_m,
+                //     'company'=>$newclass01Data[0]['company'],
+                // );
+                // $data = json_encode($data_m,JSON_UNESCAPED_UNICODE );
+
+                // $dom .= "
+                // <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js' integrity='sha512-bPh3uwgU5qEMipS/VOmRqynnMXGGSRv+72H/N260MQeXZIK4PG48401Bsby9Nq5P5fz7hy5UGNmC/W1Z51h2GQ==' crossorigin='anonymous' referrerpolicy='no-referrer'></script>
+                // <script>
+                // const pdfBtn = document.querySelector('.pdfBtn');
+                // pdfBtn.addEventListener('click',()=>{
+                //         axios({
+                //             method: 'post',
+                //             //API要求的資料
+                //             data: {$data},
+                //             url: '/pdf',
+                //             // params:{$data},
+                //         })
+                //         .then( (response) => {
+                //             console.log(response)
+                //             // document.querySelector('body').innerHTML = response;
+                //         })
+                //     })
+                // </script>
+                // ";
 
 
 

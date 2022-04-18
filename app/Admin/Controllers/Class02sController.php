@@ -28,6 +28,7 @@ class Class02sController extends AdminController
     {
         $grid = new Grid(new Class02());
 
+        // $grid->paginate(1);
         $grid->column('id', __('Id'));
         $grid->column('company', __('Company'));
         // $grid->column('company', __('Company'))->display(function ($title) {
@@ -36,17 +37,17 @@ class Class02sController extends AdminController
         $grid->column('establishment', __('Establishment'));
         $grid->column('tax_id_no', __('Tax id no'));
         $grid->column('recommend', __('Recommend'));
-        $grid->column('address', __('Address'));
+        $grid->column('address', __('Address'))->limit(20);
         $grid->column('capital', __('Capital'));
         $grid->column('employees', __('Employees'));
         $grid->column('revenue', __('Revenue'));
         $grid->column('industry', __('Industry'));
-        $grid->column('business', __('Business'));
-        $grid->column('status_and_goals', __('Status and goals'));
-        $grid->column('challenge', __('Challenge'));
+        $grid->column('business', __('Business'))->limit(20);
+        $grid->column('status_and_goals', __('Status and goals'))->limit(20);
+        $grid->column('challenge', __('Challenge'))->limit(20);
         $grid->column('class', __('Class'));
-        $grid->column('expect', __('Expect'));
-        $grid->column('succeed', __('Succeed'));
+        $grid->column('expect', __('Expect'))->limit(20);
+        $grid->column('succeed', __('Succeed'))->limit(20);
         $grid->column('deputy', __('Deputy'));
         // $grid->column('leader', __('Member list'))->hide();
         $grid->column('leader', __('Member list'))->display(function($title){
@@ -200,7 +201,8 @@ class Class02sController extends AdminController
                 // Log::info($content_ok_s);
                 $dom = "<h3>單選</h3>";
                 $dom .= "<a class='btn btn-primary' href='/getDate?val={$newclass01Data[0]['ques_s']}' target='_blank'>下載</a>";
-                $dom .= "<a class='btn btn-danger' href='/pdf?type=s&val={$content_json_s}&val2={$newclass01Data[0]['company']}' target='_blank'>PDF下載</a>";
+                // $dom .= "<a class='btn btn-danger' href='/pdf?type=s&val={$content_json_s}&val2={$newclass01Data[0]['company']}' target='_blank'>PDF下載</a>";
+                $dom .= "<a class='btn btn-danger' href='/pdf02?type=s&id={$id}&com={$newclass01Data[0]['company']}' target='_blank'>PDF下載</a>";
                 $dom .= "<ul>";
                 foreach($content_ok_s as $item){
                     $dom .= "<li>[ {$item['ansNO']}.{$item['ansTxt']} ] - {$item['content']}</li>";
@@ -242,12 +244,11 @@ class Class02sController extends AdminController
                     }
                     $content_ok_m[$key]['ansTxt'] = $tmpChoice;
                 }
-                //要傳到PDF的因此轉json
-                $content_json_m = json_encode($content_ok_m);
                 // Log::info($content_ok_m);
                 $dom .= "<h3>多選</h3>";
                 $dom .= "<a class='btn btn-primary' href='/getDate_multi?val={$newclass01Data[0]['ques_m']}' target='_blank'>下載</a>";
-                $dom .= "<a class='btn btn-danger' href='/pdf?type=m&val={$content_json_m}&val2={$newclass01Data[0]['company']}' target='_blank'>PDF下載</a>";
+                // $dom .= "<a class='btn btn-danger' href='/pdf?type=m&val={$content_json_m}&val2={$newclass01Data[0]['company']}' target='_blank'>PDF下載</a>";
+                $dom .= "<a class='btn btn-danger' href='/pdf02?type=m&id={$id}&com={$newclass01Data[0]['company']}' target='_blank'>PDF下載</a>";
                 $dom .= "<ul>";
                 foreach($content_ok_m as $item){
                     $dom .= "<li>[ {$item['ansTxt']} ] - {$item['category']}</li>";
