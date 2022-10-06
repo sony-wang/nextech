@@ -29,7 +29,7 @@
         </div>
         <div class="card mb-3">
             <div class="card-body">
-                <h5 class="card-title text-brand">第一部分:基本資料</h5>
+                <h5 class="card-title text-brand">第一部分:基本資料!</h5>
                 <div class="row">
                     <div class="mb-3 col-md-6">
                         <label for="tax_id_no" class="form-label" id="flag_tax_id_no">統一編號</label>
